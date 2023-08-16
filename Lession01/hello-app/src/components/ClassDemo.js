@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { Component } from "react";
 
-function ClassDemo() {
-  return (
-    <div>
-        <h2>This is a class ClassDemo</h2>
+class ClassDemo extends Component {
+  render() {
+    return (
+      <>
+      
+        <div>ClassDemo</div>
+        <p>
+          Hello {this.props.name} - Age : {this.props.age}
+        </p>
         <hr/>
-    </div>
-  )
+      </>
+    );
+  }
 }
 
-export default ClassDemo
+export default ClassDemo;

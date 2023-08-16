@@ -4,6 +4,7 @@ import FunctionDemo from './components/FunctionDemo';
 import ClassDemo from './components/ClassDemo';
 import JSXEpresstion from './components/JSXEpresstion';
 import Member from './components/Member';
+import JSXElementObjectDemo from './components/JSXElementObjectDemo';
 
 function App() {
   return (
@@ -23,8 +24,11 @@ function App() {
         </a>
         <JSXEpresstion/>
         <FunctionDemo></FunctionDemo>
-        <ClassDemo></ClassDemo>
+        <ClassDemo name ="Dam Luan" age ="27"></ClassDemo>
         <Member name ="Dam Luan" age ="27" company ="Devmaster"></Member>
+        {/* <Member></Member> */}
+        <JSXElementObjectDemo/>
+        <div id="root"></div>
       </header>
     </div>
   );

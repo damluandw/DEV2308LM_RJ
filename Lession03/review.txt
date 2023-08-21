@@ -1,0 +1,15 @@
+//Review
+1. Cấu trúc ứng dụng reactJS
+2. JSX: (transform.tool)
+3. Components
+    - Function Components
+    - Class Components
+4. props => Trao đổi dữ liệu giữa các components
+5. state: là đối tượng quản lý dữ liệu trong class components
+6. Vòng đời của 1 component
+
+
+
+//
+envent: child -> parent
+render : parent ->child

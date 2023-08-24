@@ -28,7 +28,7 @@ export default class ComponentControl extends Component {
             type="search"
             placeholder="Search"
             aria-label="Search"
-            name={this.state.valSearch} 
+            name="valSearch"
             onChange={this.handleSearchData}
             value={this.state.valSearch} 
           />

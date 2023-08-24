@@ -8,9 +8,16 @@ export default class ComponentControl extends Component {
         valSearch: ''
     }
   }
-  handleSearchData = (evt) => {
+  // handleSearchData = (evt) => {
+  //   this.setState({
+  //       valSearch: evt.target.value,
+  //   })
+  // };
+  handleChangeData = (evt) => {
+    let name = evt.target.name;
+    let value = evt.target.value;
     this.setState({
-        valSearch: evt.target.value,
+        [name]: value
     })
   };
   handleSubmit = (evt) => {
@@ -28,8 +35,10 @@ export default class ComponentControl extends Component {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            
+            // onChange={this.handleSearchData}
+            onChange={this.handleChangeData}
             name="valSearch"
-            onChange={this.handleSearchData}
             value={this.state.valSearch} 
           />
           <button className="btn btn-outline-success" type="submit" >

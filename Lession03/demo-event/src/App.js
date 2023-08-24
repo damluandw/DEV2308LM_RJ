@@ -70,9 +70,9 @@ export default class App extends Component {
         </div>
         <div>
           <LoginComp isLogin={this.state.isLogin} />
-          {isLogin ? <input type="button" value={Logout} onClick={this.handleLogout}/> 
+          {/* {isLogin ? <input type="button" value={Logout} onClick={this.handleLogout}/> 
           :<input type="button" value={Logout} onClick={this.handleLogin}/> 
-          }
+          } */}
         </div>
       </div>
     )

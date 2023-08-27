@@ -2,11 +2,28 @@ import React, { Component } from 'react'
 import Student from './Student'
 
 export default class ListStudents extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          studentId: "",
+          isEdit: false,
+          isDel: false,
+        };
+      }
+    handleChangeData = (evt) => {
+        this.setState({
+            studentId : evt.studentId,
+            isEdit : evt.isEdit,
+            isDel: evt.isDel,
+        });
+        this.props.onFormStudent(this.state);
+        // console.log(this.state.studentId);
+      };
     render() {
         let { renderStudents } = this.props;
         let elementStudent = renderStudents.map((student, index) => {
             return (
-                <Student key={index} renderStudent={student} stt={index + 1} />
+                <Student key={index} renderStudent={student} stt={index + 1} onShowStudent={this.handleChangeData} />
             )
         })
         return (

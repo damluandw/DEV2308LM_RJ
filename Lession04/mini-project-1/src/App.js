@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Title from './components/Title'
 import Control from './components/Control'
 import ListStudents from './components/ListStudents'
-import Form from './components/Form'
+import ControlShowForm from './components/ControlShowForm'
 
 export default class App extends Component {
   constructor(props) {
@@ -14,8 +14,11 @@ export default class App extends Component {
         { studentId: "SV003", studentName: "Nguyễn Văn C", age: 19, sex: true, birthDate: "2003-07-07", birthPlace: "HCM", address: "1, Lý Tự Trọng" },
         { studentId: "SV004", studentName: "Nguyễn Văn D", age: 29, sex: false, birthDate: "2005-07-07", birthPlace: "HCM", address: "1, Lý Tự Trọng" },
       ],
-      edit: false,
+      isShow: false,
       valSearch: '',
+      studentId: '',
+      isEdit: false,
+      isDel: false,
     }
   }
   handleSearchData = (data) => {
@@ -23,10 +26,29 @@ export default class App extends Component {
       valSearch: data
     });
   };
+  
+  handleShowForm = (evt) => {
+    this.setState({
+      isShow: evt,
+      studentId:''
+    });
+  };
+  handleChangeShowForm= (evt) => {
+    this.setState({
+      studentId : evt.studentId,
+      isEdit : evt.isEdit,
+      isDel: evt.isDel,
+    });
+    if(evt.isDel === false){
+      this.setState({
+        isShow : true
+      });
+    }
+   
+  };
 
   render() {
-    let { students, edit, valSearch } = this.state;
-
+    let { students, isShow, valSearch ,studentId,isEdit,isDel} = this.state;
     //Search
     let sourceArray = students;
     let newArray = [];
@@ -40,19 +62,30 @@ export default class App extends Component {
       }
     }
     students = newArray;
-    //Search
+    // End Search
+    // Hanh Dong
+    let objStudent ={studentId: "", studentName: "", age: 0, sex: true, birthDate: "", birthPlace: "", address: ""};
+    if(studentId !='' && isDel == false){
+      for (let item of this.state.students) {
+        if (item.studentId == studentId) {
+          objStudent = item;
+        }
+      }
+    }
+    // console.log(this.state.studentId)
+
     return (
       <div className='container-fliud'>
         <Title />
         <div className="row">
           <div className="col-lg-7 grid-margin stretch-card">
             <div className="card">
-              <Control onSearch={this.handleSearchData} />
-              <ListStudents renderStudents={students} />
+              <Control onSearch={this.handleSearchData} onIsShow={this.handleShowForm}/>
+              <ListStudents renderStudents={students} onFormStudent ={this.handleChangeShowForm}/>
             </div>
           </div>
           <div className="col-5 grid-margin" >
-            <Form />
+            <ControlShowForm  isShow = {isShow} />
 
           </div>
         </div>

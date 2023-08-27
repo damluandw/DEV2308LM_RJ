@@ -5,7 +5,7 @@ export default class Control extends Component {
         super(props);
         this.state = {
             valSearch: '',
-
+            isShow :false        
         }
     }
 
@@ -16,6 +16,14 @@ export default class Control extends Component {
             [name]: value
         })
     };
+    handleChangeFormShow =(evt) => {
+        let istrue =  this.state.isShow ==true? false : true
+        this.setState({
+            isShow: istrue
+        })
+        this.props.onIsShow(this.state.isShow);
+    };
+
 
     handleSearch = (evt) => {
         evt.preventDefault();
@@ -27,7 +35,7 @@ export default class Control extends Component {
             <div className="card-header">
                 <div className="row">
                     <div className="col-3 ">
-                        <button type="button" className="btn btn-primary btn-icon-text" >
+                        <button type="button" className="btn btn-primary btn-icon-text" onClick={this.handleChangeFormShow} >
                             Thêm mới sinh viên
                         </button>
                     </div>

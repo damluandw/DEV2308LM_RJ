@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import ButtonHandle from './components/ButtonHandle'
-import FormInput from './components/FormInput';
-import FormSelect from './components/FormSelect';
-import FormFull from './components/FormFull';
-import ListRender from './components/ListRender';
-import ListStudent from './components/ListStudent';
-import LoginComp from './components/LoginComp';
+import React, { Component } from "react";
+import ButtonHandle from "./components/ButtonHandle";
+import FormInput from "./components/FormInput";
+import FormSelect from "./components/FormSelect";
+import FormFull from "./components/FormFull";
+import ListRender from "./components/ListRender";
+import ListStudent from "./components/ListStudent";
+import LoginCotrol from "./components/LoginCotrol";
 
 export default class App extends Component {
   constructor(props) {
@@ -23,35 +23,34 @@ export default class App extends Component {
         { name: "Dam Luan 4", age: "26" },
         { name: "Dam Luan 4", age: "26" },
       ],
-      isLogin: false
-    }
+      isLogin: false,
+    };
   }
   // Nhận dữ liệu từ Component ButtonHandle
   handleChangeData = (data) => {
     this.setState({
-      company: data
-    })
-  }
+      company: data,
+    });
+  };
   handleSubmitForm = (data) => {
-    console.log('====================================');
-    console.log("App:", data);
-    console.log('====================================');
-  }
+    // console.log('====================================');
+    // console.log("App:", data);
+    // console.log('====================================');
+  };
 
-  handleLogin = () => {
-    this.state({
-      isLogin: true
-    })
-
-  }
-  handleLogout = () => {
-    this.state({
-      isLogin: false
-    })
-
-  }
+  handleLoginClick = () => {
+    this.setState({
+      isLogin: true,
+    });
+  };
+  handleLogoutClick = () => {
+    this.setState({
+      isLogin: false,
+    });
+  };
 
   render() {
+    let isLogin = this.state.isLogin;
     return (
       <div className="container border my-5">
         <h1>Demo Event - Form - {this.state.company}</h1>
@@ -69,12 +68,22 @@ export default class App extends Component {
           <ListStudent renderStudents={this.state.students} />
         </div>
         <div>
-          <LoginComp isLogin={this.state.isLogin} />
-          {/* {isLogin ? <input type="button" value={Logout} onClick={this.handleLogout}/> 
-          :<input type="button" value={Logout} onClick={this.handleLogin}/> 
-          } */}
+          <LoginCotrol isLogin={this.state.isLogin} />
+          {isLogin == true ? (
+            <input
+              type="button"
+              value="Logout"
+              onClick={this.handleLogoutClick}
+            />
+          ) : (
+            <input
+              type="button"
+              value="Login"
+              onClick={this.handleLoginClick}
+            />
+          )}
         </div>
       </div>
-    )
+    );
   }
 }

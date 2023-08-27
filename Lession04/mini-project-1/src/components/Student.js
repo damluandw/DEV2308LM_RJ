@@ -4,7 +4,7 @@ export default class Student extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentId: '',
+      studentId: "",
       isEdit: false,
       isDel: false,
     };
@@ -19,31 +19,40 @@ export default class Student extends Component {
   //     console.log(this.state.studentId)
   //   };
   handleShowStudent = (evt) => {
-    this.setState({
-      studentId: evt,
-      isEdit: false,
-      isDel: false,
-    });
-   
-    this.props.onShowStudent(this.state);
-    console.log(evt)
-    console.log(this.state);
+    this.setState(
+      {
+        studentId: evt,
+        isEdit: false,
+        isDel: false,
+      },
+      () => {
+        this.props.onShowStudent(this.state);
+      }
+    );
   };
   handleEditStudent = (evt) => {
-    this.setState({
-      studentId: evt,
-      isEdit: true,
-      isDel: false,
-    });
-    this.props.onShowStudent(this.state);
+    this.setState(
+      {
+        studentId: evt,
+        isEdit: true,
+        isDel: false,
+      },
+      () => {
+        this.props.onShowStudent(this.state);
+      }
+    );
   };
   handleDelStudent = (evt) => {
-    this.setState({
-      studentId: evt,
-      isEdit: false,
-      isDel: true,
-    });
-    this.props.onShowStudent(this.state);
+    this.setState(
+      {
+        studentId: evt,
+        isEdit: false,
+        isDel: true,
+      },
+      () => {
+        this.props.onShowStudent(this.state);
+      }
+    );
   };
   render() {
     let { renderStudent, stt } = this.props;

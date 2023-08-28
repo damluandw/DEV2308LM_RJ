@@ -18,6 +18,17 @@ Ap:
     + Form
 5. Tách các thành phần giao diện
 6. Tổ chức dữ liệu trong state của app
-    *render dữ liệu trên ListStudent
+    * render dữ liệu trên ListStudent
     -App: (state)
         - render -> ListStudent -> student
+7. Chức năng ẩn hiện form
+- (Thêm sửa xem)
+- Render có điều kiện
+	+ isToggle(true/false)
+	+ Thêm : ActionName AddNew
+	+ Sửa : ActionName Update
+	+ Xem : ActionName Close
+8. Click buttom: Thêm mới
+- Control - event -> handlerAdd (toggle) -> App
+- App:
+	setState: isToggle =  toggle

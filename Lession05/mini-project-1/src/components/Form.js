@@ -80,6 +80,12 @@ class Form extends Component {
 
   render() {
     let { renderActionName } = this.props;
+    let isReadOnly=false;
+    if(renderActionName=== "Close"){
+      isReadOnly = true
+    }else{
+      isReadOnly = false
+    }
     return (
       <div className="card">
         <div className="card-body">
@@ -91,7 +97,8 @@ class Form extends Component {
                 <input type="text" className="form-control"
                   name="studentId"
                   value={this.state.studentId}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly} />
               </div>
             </div>
             <div className="form-group row">
@@ -101,6 +108,7 @@ class Form extends Component {
                   name="studentName"
                   value={this.state.studentName}
                   onChange={this.handleChange}
+                  readOnly={isReadOnly}
                 />
               </div>
             </div>
@@ -110,7 +118,8 @@ class Form extends Component {
                 <input type="text" className="form-control"
                   name="age"
                   value={this.state.age}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly} />
               </div>
             </div>
             <div className="form-group row">
@@ -119,7 +128,8 @@ class Form extends Component {
                 <select className="form-control"
                   name="sex"
                   value={this.state.sex}
-                  onChange={this.handleChange}>
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly}>
                   <option value={true}>Nam</option>
                   <option value={false}>Nữ</option>
                 </select>
@@ -131,7 +141,8 @@ class Form extends Component {
                 <input className="form-control" placeholder="dd/mm/yyyy"
                   name="birthDate"
                   value={this.state.birthDate}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly} />
               </div>
             </div>
             <div className="form-group row">
@@ -140,7 +151,8 @@ class Form extends Component {
                 <select className="form-control"
                   name="birthPlace"
                   value={this.state.birthPlace}
-                  onChange={this.handleChange}>
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly}>
                   <option value="HN">Hà Nội</option>
                   <option value="HCM">TP. Hồ Chí Minh</option>
                   <option value="ĐN">Đà Nẵng</option>
@@ -154,7 +166,8 @@ class Form extends Component {
                 <textarea className="form-control"
                   name="address"
                   value={this.state.address}
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  readOnly={isReadOnly} />
               </div>
             </div>
             <button type="submit" className="btn btn-primary me-2"

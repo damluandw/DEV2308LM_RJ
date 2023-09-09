@@ -9,17 +9,49 @@ class App extends Component {
     super(props);
     this.state = {
       students: [
-        { studentId: "SV001", studentName: "Nguyễn Văn A", age: 20, sex: true, birthDate: "2002-04-23", birthPlace: "HN", address: "25, Vũ Ngọc Phan" },
-        { studentId: "SV002", studentName: "Nguyễn Văn B", age: 21, sex: false, birthDate: "2001-09-09", birthPlace: "ĐN", address: "1, Ngô Quyền" },
-        { studentId: "SV003", studentName: "Nguyễn Văn C", age: 19, sex: true, birthDate: "2003-07-07", birthPlace: "HCM", address: "1, Lý Tự Trọng" },
-        { studentId: "SV004", studentName: "Nguyễn Văn D", age: 29, sex: false, birthDate: "2005-07-07", birthPlace: "HCM", address: "1, Lý Tự Trọng" },
+        {
+          studentId: "SV001",
+          studentName: "Nguyễn Văn A",
+          age: 20,
+          sex: true,
+          birthDate: "2002-04-23",
+          birthPlace: "HN",
+          address: "25, Vũ Ngọc Phan",
+        },
+        {
+          studentId: "SV002",
+          studentName: "Nguyễn Văn B",
+          age: 21,
+          sex: false,
+          birthDate: "2001-09-09",
+          birthPlace: "ĐN",
+          address: "1, Ngô Quyền",
+        },
+        {
+          studentId: "SV003",
+          studentName: "Nguyễn Văn C",
+          age: 19,
+          sex: true,
+          birthDate: "2003-07-07",
+          birthPlace: "HCM",
+          address: "1, Lý Tự Trọng",
+        },
+        {
+          studentId: "SV004",
+          studentName: "Nguyễn Văn D",
+          age: 29,
+          sex: false,
+          birthDate: "2005-07-07",
+          birthPlace: "HCM",
+          address: "1, Lý Tự Trọng",
+        },
       ],
       isToggle: false, // sử dụng cho chức năng ẩn hiện form
-      actionName: '', // Giá tri hiển thị trên nút sumit của form
+      actionName: "", // Giá tri hiển thị trên nút sumit của form
       student: {},
-      search: '',
-      sortBy: ""
-    }
+      search: "",
+      sortBy: "",
+    };
   }
 
   // Hàm sử lý sự kiện: Add, view
@@ -27,9 +59,9 @@ class App extends Component {
     this.setState({
       isToggle: toggle,
       actionName: actionName,
-      student: student
-    })
-  }
+      student: student,
+    });
+  };
 
   // Sự kiện xứ lý dữ liệu khi submit form
   handleSubmit = (toggle, student) => {
@@ -38,15 +70,15 @@ class App extends Component {
     // console.log("student:",student);
     //  thật dễ dàng
     this.setState({
-      isToggle: toggle
-    })
+      isToggle: toggle,
+    });
     if (this.state.actionName === "Save") {
       // thêm mới
       let { students } = this.state;
       students.push(student);
       this.setState({
-        students: students
-      })
+        students: students,
+      });
     } else if (this.state.actionName === "Update") {
       // sửa
       let { students } = this.state;
@@ -57,10 +89,10 @@ class App extends Component {
         }
       }
       this.setState({
-        students: students
-      })
+        students: students,
+      });
     }
-  }
+  };
   // Hàm xử lý sự kiện Delete
   handleDelete = (student) => {
     //tìm đối tượng student trong student của state -> thực hiện xoá và cập nhật lại
@@ -75,28 +107,23 @@ class App extends Component {
     // }
 
     // Cách 2
-    students = students.filter(x => x.studentId != student.studentId);
+    students = students.filter((x) => x.studentId != student.studentId);
     this.setState({
-      students: students
-    })
-  }
+      students: students,
+    });
+  };
 
   // sự kiện tìm kiếm
   handleSearch = (keyWord) => {
-    this.setState(
-      {
-        search: keyWord
-      }
-    )
-  }
+    this.setState({
+      search: keyWord,
+    });
+  };
   handleSort = (sortBy) => {
-    this.setState(
-      {
-        sortBy: sortBy
-      }
-    )
-  }
-
+    this.setState({
+      sortBy: sortBy,
+    });
+  };
 
   render() {
     let { students, search, sortBy } = this.state;
@@ -106,17 +133,25 @@ class App extends Component {
     // }
     let classNameLeft = "";
     if (this.state.isToggle === true)
-      classNameLeft = "col-lg-7 grid-margin stretch-card"
-    else classNameLeft = "col-lg-12 grid-margin stretch-card"
+      classNameLeft = "col-lg-7 grid-margin stretch-card";
+    else classNameLeft = "col-lg-12 grid-margin stretch-card";
 
     // render form theo giá trị của isToggle
-    let elementForm = this.state.isToggle === true ?
-      <Form renderActionName={this.state.actionName}
-        renderStudent={this.state.student}
-        onSubmit={this.handleSubmit} /> : "";
+    let elementForm =
+      this.state.isToggle === true ? (
+        <Form
+          renderActionName={this.state.actionName}
+          renderStudent={this.state.student}
+          onSubmit={this.handleSubmit}
+        />
+      ) : (
+        ""
+      );
     //tìm kiếm
-    if (search !== '') {
-      students = students.filter(x => x.studentName.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+    if (search !== "") {
+      students = students.filter((x) =>
+        x.studentName.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      );
     }
 
     // sắp xếp
@@ -125,18 +160,21 @@ class App extends Component {
       let arr = sortBy.split("-");
       if (arr[0] === "studentName") {
         if (arr[1] === "ASC") {
-          students.sort((x, y) => x.studentName.localeCompare(y.studentName))
+          students.sort((x, y) => x.studentName.localeCompare(y.studentName));
         } else {
-          students.sort((x, y) => y.studentName.localeCompare(x.studentName))
+          students.sort((x, y) => y.studentName.localeCompare(x.studentName));
         }
       } else {
         if (arr[1] === "ASC") {
-          students.sort((x, y) => { return x.age - y.age })
+          students.sort((x, y) => {
+            return x.age - y.age;
+          });
         } else {
-          students.sort((x, y) => { return y.age - x.age })
+          students.sort((x, y) => {
+            return y.age - x.age;
+          });
         }
       }
-
     }
     return (
       <div className="container-fluid">
@@ -146,11 +184,16 @@ class App extends Component {
         <div className="row">
           <div className={classNameLeft}>
             <div className="card">
-              <Control onAddOrEditView={this.handleAddOrEditView} onSearch={this.handleSearch}
-                onSort={this.handleSort} />
-              <ListStudent renderStudents={students}
+              <Control
+                onAddOrEditView={this.handleAddOrEditView}
+                onSearch={this.handleSearch}
+                onSort={this.handleSort}
+              />
+              <ListStudent
+                renderStudents={students}
                 onHandleEditOrView={this.handleAddOrEditView}
-                onDelete={this.handleDelete} />
+                onDelete={this.handleDelete}
+              />
             </div>
           </div>
           <div className="col-5 grid-margin">

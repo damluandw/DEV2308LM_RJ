@@ -1,0 +1,90 @@
+-> Tạo component
+-> constains (tạo các action thay đổi ->khai báo hằng dùng chung cho ứng dụng)
+   + export name types
+        ex: export const CHANGE_USERNAME = "Change/UserName"
+-> actions 
+    + import constains
+        ex: import * as  types from '../constants'
+    + export actChange
+        ex :
+            export const actChangeUserName = (value) =>{
+                return {
+                    type : types.CHANGE_USERNAME, //change /userName
+                    data: value
+            }
+};
+-> reducers :
+    + import constains
+        ex: import * as  types from '../constants'
+    + Khai báo state
+        ex: 
+            const initialState = {
+                userName: "Redux-Demo",
+                courseName: "Redux-ReacJS",
+            }
+    + Export reducer
+        ex: 
+            const rootReducer = (state = initialState, action) => {
+                switch (action.type) {
+                    case types.CHANGE_USERNAME: {
+                        return {
+                            ...state,
+                            userName: action.data,
+                        }
+                    };
+                    case types.CHANGE_COURSENAME: {
+                        return {
+                            ...state,
+                            courseName: action.data,
+                        }
+                    };
+                    default:
+                        return state;
+                }
+            }
+            export default rootReducer;
+-> store (quản lý trạng thái state)
+    + import {createStore} from 'redux'
+    + import {rootReducer}  from '../'
+    + export store createStore(rootReducer);
+
+
+-> Tại component
+    + import { connect } from "react-redux";
+    + tạo hàm map state với props
+        const mapStateToProps = (state) => {
+            return {
+                userName: state.userName,
+                courseName: state.courseName,
+            }
+        };
+    + export default connect(mapStateToProps, null)(WellcomeRedux);
+-> index.js
+    + import { store } from './store';
+    + import { Provider } from 'react-redux';
+    +
+        <Provider store ={store}>
+            <App/>
+        </Provider>
+-> Bắt sự kiện handleChange 
+    + import { actChangeCourseName, actChangeUserName } from './actions';
+    + import { connect } from 'react-redux';
+    +
+        ex:  handleChangeUserName = (e) => {
+                this.props.changeUserName(e.target.value);
+            }
+
+    + mapDispathToProps thực hiện bắn các action vào store
+        ex  
+            const mapDispathToProps = (dispath) => {
+                return {
+                    changeUserName: (value) => {
+                    dispath(actChangeUserName(value));
+
+                    }, changeCourseName: (value) => {
+                    dispath(actChangeCourseName(value));
+
+                    }
+                }
+            }
+    + export default connect(null, mapDispathToProps)(App);

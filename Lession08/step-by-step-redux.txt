@@ -1,0 +1,92 @@
+Mini project - shopping cart - Reactjs - Redux
+
+1, Tạo project mini-shoppingcart
+2, có mini-shoppingcart
+    -> cài đặt Reactjs
+    - nmp install --save redux react-redux
+3, chuyển thiết kế từ template
+    - transfor.tool
+    - chuyển code html -> jsx
+    -copy file tài nguyên(css,js, imgs, fonts...) từ template vào thư mục public của ứng dụng 
+    - copy jsx -> apps js của ứng dụng
+    - tạo liên kế tài nguyên
+
+4, Phân chia các componnents
+    - apps
+        + Titile
+        + ListProduct
+            - Product
+        +Cart
+            - CartItem
+            - CartTotal
+            - Notify
+=>15' hoàn thiện
+5, Tổ chức cấu trúc của ứng dụng ReactJS-Redux
+    src: 
+        + componnents (views người dùng)
+        + actions (xác định các action trong ứng dụng )
+        + constants (xác định các hằng số của ứng dụng)
+        + reducers (tạo các reducer)
+        + store (tổ chức kho dữ liệu)
+6, Tổ chức các componnents (class componnent)
+
+7, tạo các constants cho ứng dụng
+    - actionType.js
+        + Xử lý các chức năng CRUD cho ứng dụng
+            ++ loadProduct: "LIST_PRODUCT"
+            ++ Mua hàng: "BUY_ITEM"
+            ++ Cập nhật giỏ hang: "UPDATE_ITEM"
+            ++ Xoá sản phẩm trong giỏ hàng: "DELETE_ITEM" 
+    - Message.js
+        + hằng thông báo tương ứng với các chức năng
+            ++ MSG_LOAD_SUCCESS     : thông báo -> Ready to buy
+            ++ MSG_BUY_SUCCESS      : Buy successfull!
+            ++ MSG_UPDATE_SUCCESS   : Update successfull!
+            ++ MSG_DELTE_SUCCESS    : Delete successfull!
+
+8. Xác định các chức năng trong hệ thống: (action)
+    action: {type:...., data: ....}
+    - chức năng hiển thị thông tin sản phẩm:
+        act_list_product :
+            return {type:}
+    - chức năng thêm sản phẩm vào giỏ hàng:
+        act_buy_item (product, quantity) => return {
+            type:
+            product,
+            quantity
+        }
+    - chức năng cập nhật giỏ hàng: thêm bớt số lượng trong giỏ hàng
+        act_update-item(product,quantity)=> return{
+            type:
+            product,
+            quantity
+        }
+    - chức năng xoá sản phẩm trong giỏ hàng
+        act_delete_item (product) => return {
+            type:...
+            product
+        }
+    - chức năng thông báo: mỗi khi các hành động trên xảy ra thì đưa ra thông báo
+        act_change_notify(content)=> return{
+            type:...
+            content
+        }
+
+
+9, Tạo các reducer -> để xử lý các action tương ứng
+    - listProduct.js : trạng thái dữ liệu cho list product
+    - notify.js : trạng thái dữ liệu thông báo
+    - cart.js : trạng thái dữ liệu cho giỏ hàng
+    - index.js : kết hợp quản lý trạng thái cho ứng dụng (combine)
+
+10, Tạo store cho ứng dụng
+    index.js 
+        createStore của redux
+11, Cung cấp store cho ứng dụng
+    - Sử dụng Provider của react-redux
+        + bao trùm  <App/>
+            src -> index.js
+
+12, connect store với componnent (ListProduct)
+    - sử dụng hàm connect của react-redux
+    - mapStateToProps : kết nối state trong store với props trong componnent

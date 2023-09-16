@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
-
-export default class Notify extends Component {
+import { connect } from "react-redux";
+class Notify extends Component {
     render() {
         return (
             <div className="alert alert-success" role="alert" id="mnotification">
-                Updated <b>ivysaur</b>
+                Message: <b>{this.props.message}</b>
             </div>
         )
     }
 }
+
+// map state trong store với props trong component
+const mapStateToProps = (state) => {
+    return {
+      message: state.notify,
+    };
+  };
+  
+  export default connect(mapStateToProps, null)(Notify);

@@ -1,10 +1,15 @@
-//hằng
-const initState =[];
+import * as messages from "../constants/message";
+import { CHANGE_NOTIFY } from "../constants/actionType";
 
-// tạo reducer
-const notify = (state =initState, action )=>{
+const initialState = messages.MSG_LOAD_SUCCESS;
 
-    return state; //new state
-}
-
+const notify = (state = initialState, action) => {
+  switch (action.type) {
+    case CHANGE_NOTIFY:
+      state = action.content;
+      return state;
+    default:
+      return state;
+  }
+};
 export default notify;

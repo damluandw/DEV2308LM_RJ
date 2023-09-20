@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // bắn action mua hàng đến reducer
     buyItem: (product, quantity) => {
-      dispatch(act_buy_item(product, quantity));
+      dispatch(act_buy_item(product, quantity,false));
     },
     // bắn action thay đổi notify đến reducer
     changNotify: (content) => {

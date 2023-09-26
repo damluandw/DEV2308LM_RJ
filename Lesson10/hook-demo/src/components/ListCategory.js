@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import data from '../datas/data'
+import InsertCategories from './InsertCategories';
 // import InsertCategories from './InsertCategories';
 function ListCategory() {
     console.log(data)
@@ -9,6 +10,10 @@ function ListCategory() {
         console.log(list)
     }, [])
 
+    useEffect(() => {
+        setList(data)
+        console.log(list)
+    }, [list])
     // const handleAddCategory = useCallback((category) => {
     //     setList([
     //         ...list,
@@ -44,7 +49,7 @@ function ListCategory() {
 
             </table>
 
-            {/* <InsertCategories onAddCategory={handleAddCategory} /> */}
+            <InsertCategories />
         </div>
     )
 }

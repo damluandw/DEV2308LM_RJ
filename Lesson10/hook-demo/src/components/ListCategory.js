@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import data from '../datas/data'
 import InsertCategories from './InsertCategories';
-// import InsertCategories from './InsertCategories';
+
 function ListCategory() {
     console.log(data)
     const [list, setList] = useState([]);

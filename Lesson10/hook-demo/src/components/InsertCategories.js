@@ -1,4 +1,5 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
+import data from "../datas/data";
 
 function InsertCategories() {
   // const item = {
@@ -19,26 +20,30 @@ function InsertCategories() {
   //     "status": 1,
   //     "isdelete": null
   // }
-  const [list, setList] = useState([]);
-//   useEffect(() => {
-//     setList(data);
-//     console.log(list);
-//   });
-  const [category, setCategory] = useState({id:0,title:"",icon:"",metaDescription:""});
+  // const [list, setList] = useState([]);
   // useEffect(() => {
-  //     setCategory(
-  //         category.id =
-  //     )
-  //     console.log(category)
-  // }, [])
+  //   setList(data);
+  // }, []);
+  // const list = useRef;
+  const [id, setID] = useState(0);
+  const [title, setTitle] = useState("");
+  const [icon, setIcon] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+  const [category, setCategory] = useState({});
+  const handleSubmit = () => {
+    const frmdetails = {
+      id: id,
+      title: title,
+      icon: icon,
+      metaDescription: metaDescription,
+    };
+    setCategory(category,frmdetails);
+    // list.push(category)
+    // setList(...list, category);
+    // console.log(list)
+    // data = list;
+  };
 
-//   const handleChange =(item)  =>{
-//     let name =  item.target.name;
-//     let value =  item.target.value
-//       setCategory(
-        
-//       )
-//   }
   return (
     <div>
       <h2>Thêm mới Category</h2>
@@ -48,13 +53,13 @@ function InsertCategories() {
           <input
             type="text"
             className="form-control"
-            value={(item) => setCategory((category.id = item.target.value))}
+            onChange={(item) => setID(item.target.value)}
           />
         </div>
         <div className="mb-3">
           <label className="form-label">Tilte</label>
           <input
-            value={(item) => setCategory((category.title = item.target.value))}
+            onChange={(item) => setTitle(item.target.value)}
             type="text"
             className="form-control"
           />
@@ -62,7 +67,7 @@ function InsertCategories() {
         <div className="mb-3">
           <label className="form-label">Icon</label>
           <input
-            value={(item) => setCategory((category.icon = item.target.value))}
+            onChange={(item) => setIcon(item.target.value)}
             type="text"
             className="form-control"
           />
@@ -70,12 +75,12 @@ function InsertCategories() {
         <div className="mb-3">
           <label className="form-label">Meta data</label>
           <input
-            value={(item) => setCategory((category.metaDescription = item.target.value))}
+            onChange={(item) => setMetaDescription(item.target.value)}
             type="text"
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="button" className="btn btn-primary" onClick={handleSubmit}>
           Submit
         </button>
       </form>

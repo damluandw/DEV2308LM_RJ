@@ -4,6 +4,7 @@ import DemoUseEffect from './components/DemoUseEffect';
 import DemoContext from './components/DemoContext';
 import DemoUseCallback from './components/DemoUseCallback';
 import ListCategory from './components/ListCategory';
+import DemoUseRef from './components/DemoUseRef';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <DemoUseEffect />
       <DemoContext />
       <DemoUseCallback />
+      <DemoUseRef/>
       <ListCategory />
 
     </div>

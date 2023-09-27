@@ -7,7 +7,7 @@ function DemoUseCallback() {
         setCount(pre => pre + 1)
     }, [])
     return (
-        <div>
+        <div className="alert alert-danger">
             <ContentUseCallback onIncrease={handleIncrement}></ContentUseCallback>
             <h1>{count}</h1>
         </div>

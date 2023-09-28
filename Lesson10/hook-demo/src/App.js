@@ -5,6 +5,7 @@ import DemoContext from './components/DemoContext';
 import DemoUseCallback from './components/DemoUseCallback';
 import ListCategory from './components/ListCategory';
 import DemoUseRef from './components/DemoUseRef';
+import DemoMemo from './components/DemoMemo';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <DemoContext />
       <DemoUseCallback />
       <DemoUseRef/>
+      <DemoMemo/>
       <ListCategory />
 
     </div>

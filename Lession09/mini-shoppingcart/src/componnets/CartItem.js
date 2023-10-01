@@ -42,7 +42,7 @@ class CartItem extends Component {
       this.state.quantity == 0
         ? this.props.renderCartItem.quantity
         : this.state.quantity;
-    
+
     // let quantity = renderCartItem.isChangeCart === false ? renderCartItem.quantity : this.state.quantity;
 
     return (

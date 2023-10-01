@@ -1,23 +1,11 @@
 import React from "react";
 import Task from "./Task";
 
-function ListTask({ renderTasks, onEdit }) {
-  // envet edit task
-  const handleEditTask = (task,toggle) => {
-    onEdit(task,toggle);
-  };
+function ListTask({ renderTasks }) {
   // tạo ra Task từ danh sách
   let elementTask = renderTasks.map((item, index) => {
-    return (
-      <Task
-        key={item.taskId}
-        renderTask={item}
-        rollNo={index + 1}
-        onEdit={handleEditTask}
-      />
-    );
+    return <Task key={item.taskId} renderTask={item} rollNo={index + 1} />;
   });
-
   return (
     <div className="panel panel-success">
       <div className="panel-heading">List Task</div>

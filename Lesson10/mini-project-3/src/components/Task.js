@@ -1,17 +1,12 @@
 import React from "react";
 
-function Task({ renderTask, rollNo, onEdit }) {
-  let elementLevel = <span className="label label-danger">High</span>;
+function Task({ renderTask, rollNo }) {
+  let elementLevel = (<span className="label label-danger">High</span>);
   if (renderTask.level === 2) {
-    elementLevel = <span className="label label-info">Medium</span>;
+    elementLevel = (<span className="label label-info">Medium</span>);
   } else if (renderTask.level === 3) {
-    elementLevel = <span className="label label-default">Small</span>;
+    elementLevel = (<span className="label label-default">Small</span>);
   }
-
-  // envet edit task
-  const handleEditTask = (toggle) => {
-    onEdit(renderTask,true);
-  };
   return (
     <>
       <tr>
@@ -19,8 +14,7 @@ function Task({ renderTask, rollNo, onEdit }) {
         <td>{renderTask.taskName}</td>
         <td className="text-center">{elementLevel}</td>
         <td>
-          <button type="button" className="btn btn-warning"
-           onClick={handleEditTask}>
+          <button type="button" className="btn btn-warning">
             Edit
           </button>
           <button type="button" className="btn btn-danger">

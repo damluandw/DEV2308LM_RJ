@@ -15,7 +15,7 @@ function App() {
     },
     {
       taskId: 2,
-      taskName: "Lorem ipsum dolor sit amet, Reiciendis ea b",
+      taskName: "Lorem ipsum dolor sit amet,  Reiciendis ea b",
       level: 2,
     },
     {
@@ -49,12 +49,10 @@ function App() {
   // task add/edit
   let initTask = {
     taskId: 0,
-    taskName: '',
-    level: ''
-  }
+    taskName: "",
+    level: 2,
+  };
   const [task, setTask] = useState(initTask); //state của form
-
-
 
   // trạng thía hiện thị giá trị trên nút submit của form: save(add)/ update (edit)
   const [actionName, setActionName] = useState("Save"); //state của form
@@ -68,9 +66,13 @@ function App() {
       setTask(task);
       // xử lý thêm mới
       if (actionName === "Save") {
-        //thêm 
+        console.log(task);
+        //thêm
         setTasks((pre) => {
           //tạo taskId tự động
+          pre.sort((x, y) => {
+            return x.taskId - y.taskId;
+          });
           let id = pre.length <= 0 ? 1 : pre[pre.length - 1].taskId + 1;
           // console.log("taskIdAdd ", taskIdAdd);
           const taskAdd = {
@@ -91,55 +93,95 @@ function App() {
           }
           return [...pre];
         });
-
       }
     }
-
-  }
+  };
   //hàm xử lý sự kiện cancel
   const handleCancel = (toggle) => {
     setToggle(toggle);
-  }
+  };
   //Xử lý chức năng Edit => bắt đầu từ componentTask
   const handleDelete = (task) => {
     setTasks((pre) => {
       pre = pre.filter((x) => x.taskId != task.taskId);
       return [...pre];
     });
-  }
-  const [search, setSearch] = useState('');
+  };
+  const [search, setSearch] = useState("");
   //xử lý chức năng search
   const handleSearch = (keyWord) => {
     setSearch(keyWord);
     let listTask = tasks;
     if (keyWord !== "") {
-
       listTask = listTask.filter((x) =>
-        x.taskName.toLocaleLowerCase().trim().includes(keyWord.toLocaleLowerCase().trim())
+        x.taskName
+          .toLocaleLowerCase()
+          .trim()
+          .includes(keyWord.toLocaleLowerCase().trim())
       );
       setTaskShow(listTask);
     } else {
       setTaskShow(tasks);
     }
+  };
 
-  }
+  const [sort, setSort] = useState("Name ASC");
+  const handleSort = (keySort) => {
+    setSort(keySort);
 
-  const [sort, setSort] = useState('');
-
-  let elementForm = (toggle === true) ? <Form onCancel={handleCancel} onsubmit={handleAddOrEditTask} renderTask={task} actionName={actionName} /> : "";
+    if (keySort !== "") {
+      let arr = keySort.split("-");
+      if (arr[0] === "Name") {
+        if (arr[1] === "ASC") {
+          taskShow.sort((x, y) => x.taskName.localeCompare(y.taskName));
+        } else {
+          taskShow.sort((x, y) => y.taskName.localeCompare(x.taskName));
+        }
+      } else {
+        if (arr[1] === "ASC") {
+          taskShow.sort((x, y) => {
+            return x.level - y.level;
+          });
+        } else {
+          taskShow.sort((x, y) => {
+            return y.level - x.level;
+          });
+        }
+      }
+    }
+  };
+  let elementForm =
+    toggle === true ? (
+      <Form
+        onCancel={handleCancel}
+        onsubmit={handleAddOrEditTask}
+        renderTask={task}
+        actionName={actionName}
+      />
+    ) : (
+      ""
+    );
   return (
     <div className="container">
       {/* TITLE : START */}
       <Title />
       {/* TITLE : END */}
       {/* CONTROL (SEARCH + SORT + ADD) : START */}
-      <Control onAddTask={handleAddOrEditTask} onSearch={handleSearch} />
+      <Control
+        onAddTask={handleAddOrEditTask}
+        onSearch={handleSearch}
+        onSort={handleSort}
+      />
       {/* CONTROL (SEARCH + SORT + ADD) : END */}
       {/* FORM : START */}
       {elementForm}
       {/* FORM : END */}
       {/* LIST : START */}
-      <ListTask renderTasks={taskShow} onEdit={handleAddOrEditTask} onDelete={handleDelete} />
+      <ListTask
+        renderTasks={taskShow}
+        onEdit={handleAddOrEditTask}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }

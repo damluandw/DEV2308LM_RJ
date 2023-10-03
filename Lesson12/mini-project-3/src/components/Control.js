@@ -2,26 +2,27 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function Control({ onAddTask,onSearch }) {
+function Control({ onAddTask, onSearch, onSort }) {
   //hàm xử lý sự kiện khi người dùng click vào nút add task
   const handleAdd = () => {
-    onAddTask(true, "Save",null);
-  }
-  const [search,setSearch] =useState('');
-  const [sort,setSort] =useState('Name ASC');
-  
-  const handleSearch =()=>{
-    onSearch(search);
-  }
+    onAddTask(true, "Save", null);
+  };
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("Name ASC");
 
-  const handleClick = (evt) =>{
-    evt.preventDefault();
-    console.log("ev:",sort);
-    setSort(evt.target.value);
-  }
-  useEffect(()=>{
-    console.log("sort:",sort);
-  },[sort])
+  const handleSearch = () => {
+    onSearch(search);
+  };
+
+  // const handleSort= (evt) =>{
+  //   evt.preventDefault();
+  //   setSort(evt.target.name);
+
+  // }
+  useEffect(() => {
+    // console.log("sort:", sort);
+    onSort(sort);
+  }, [sort]);
   return (
     <div className="row">
       {/* SEARCH : START */}
@@ -34,11 +35,14 @@ function Control({ onAddTask,onSearch }) {
             placeholder="Search for..."
             name="search"
             value={search}
-            onChange={(evt)=>setSearch(evt.target.value)}
+            onChange={(evt) => setSearch(evt.target.value)}
           />
           <span className="input-group-btn">
-            <button className="btn btn-info" type="button"
-            onClick={handleSearch}>
+            <button
+              className="btn btn-info"
+              type="button"
+              onClick={handleSearch}
+            >
               Go!
             </button>
           </span>
@@ -58,19 +62,43 @@ function Control({ onAddTask,onSearch }) {
           >
             Sort by <span className="caret" />
           </button>
-          <ul className="dropdown-menu" aria-labelledby="dropdownMenu1" >
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li>
-              <a role="button" value ="Name-ASC" onClick={handleClick}>Name ASC</a>
+              <a
+                role="button"
+                name="Name-ASC"
+                onClick={(evt) => setSort(evt.target.name)}
+              >
+                Name ASC
+              </a>
             </li>
             <li>
-              <a role="button"  value ="Name-DESC" onClick={(evt)=>setSort(evt.target.value)}>Name DESC</a>
+              <a
+                role="button"
+                name="Name-DESC"
+                onClick={(evt) => setSort(evt.target.name)}
+              >
+                Name DESC
+              </a>
             </li>
             <li role="separator" className="divider" />
             <li>
-              <a role="button"  value ="Level-ASC" onClick={(evt)=>setSort(evt.target.value)}>Level ASC</a>
+              <a
+                role="button"
+                name="Level-ASC"
+                onClick={(evt) => setSort(evt.target.name)}
+              >
+                Level ASC
+              </a>
             </li>
             <li>
-              <a role="button" value ="Level-DESC" onClick={(evt)=>setSort(evt.target.value)}>Level DESC</a>
+              <a
+                role="button"
+                name="Level-DESC"
+                onClick={(evt) => setSort(evt.target.name)}
+              >
+                Level DESC
+              </a>
             </li>
           </ul>
           <span className="label label-success label-medium">{sort}</span>
@@ -79,8 +107,11 @@ function Control({ onAddTask,onSearch }) {
       {/* SORT : END */}
       {/* ADD : START */}
       <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-        <button type="button" className="btn btn-info btn-block"
-          onClick={handleAdd}>
+        <button
+          type="button"
+          className="btn btn-info btn-block"
+          onClick={handleAdd}
+        >
           Add Task
         </button>
       </div>

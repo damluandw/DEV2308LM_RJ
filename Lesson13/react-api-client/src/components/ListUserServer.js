@@ -6,13 +6,15 @@ function ListUserServer({onEdit,user}) {
     //Lấy dữ liệu từ api local
     const getAllUsers = async () => {
         let response = await axios.get("users");
-        console.log("Object api user:", response);
-        console.log("Data api user :", response.data);
+        // console.log("Object api user:", response);
+        // console.log("Data api user :", response.data);
         setListUsers(response.data);
     }
+
     useEffect(() => {
         getAllUsers();
     }, [])
+
     const handleEdit = (item) =>{
         onEdit(item);
     }
@@ -40,7 +42,7 @@ function ListUserServer({onEdit,user}) {
                                 <td>{item.userName}</td>
                                 <td>{item.password}</td>
                                 <td>
-                                    <button className='btn btn-primary' onClick={()=>handleEdit(item)}>Edit</button>
+                                    <button className='btn btn-primary me-2' onClick={()=>handleEdit(item)}>Edit</button>
                                 </td>
                             </tr>
                         })

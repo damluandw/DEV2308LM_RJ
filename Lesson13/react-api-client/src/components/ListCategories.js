@@ -6,8 +6,8 @@ function ListCategories() {
     //Lấy dữ liệu từ api local
     const getAllCategories = async () => {
         let response = await axios.get("Categories");
-        console.log("Object api user:", response);
-        console.log("Data api user :", response.data);
+        // console.log("Object api user:", response);
+        // console.log("Data api user :", response.data);
         setListCategories(response.data);
     }
     //use Effect

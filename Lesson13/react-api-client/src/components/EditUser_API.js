@@ -1,16 +1,24 @@
 import axios from "../api/api-server-online";
 import React, { useEffect, useState } from "react";
 
-function EditUser({ user, onUpdateID }) {
+function EditUser_API({ user ,onUpdate}) {
   const [id, setID] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
+  useEffect(() => {    
     setID(user.id);
-    setUserName(user.userName);
-    setPassword(user.password);
+    console.log(user.id)
+    getUser();
   }, [user]);
+
+  const getUser = async () => {
+    if(user.id != null || user.id != undefined){
+        let response = await axios.get("users/" + user.id);
+        setUserName(response.data.userName);
+        setPassword(response.data.password);
+    }
+  };
 
   const handleEdit = async () => {
     let item = {
@@ -19,15 +27,14 @@ function EditUser({ user, onUpdateID }) {
       password: password,
     };
     await axios.put("users/" + item.id, item);
-    onUpdateID(id);
+    onUpdate(item);
     setID("");
     setUserName("");
     setPassword("");
   };
-
   return (
     <div className="form">
-      <h1>Sửa user</h1>
+      <h1>Edit user API</h1>
       <hr />
       <div className="input-group flex-nowrap">
         <span className="input-group-text" id="addon-wrapping">
@@ -69,4 +76,4 @@ function EditUser({ user, onUpdateID }) {
   );
 }
 
-export default EditUser;
+export default EditUser_API;

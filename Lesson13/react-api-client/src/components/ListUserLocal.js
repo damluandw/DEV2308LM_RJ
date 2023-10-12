@@ -6,8 +6,8 @@ function ListUserLocal() {
     //Lấy dữ liệu từ api local
     const getAllUsers = async() =>{
         let response = await axios.get("users");
-        console.log("Object api user:", response);
-        console.log("Data api user :", response.data);
+        // console.log("Object api user:", response);
+        // console.log("Data api user :", response.data);
         setListUsers(response.data);
     }
     useEffect(() => {

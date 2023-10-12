@@ -1,39 +1,38 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import CreateUser from './components/CreateUser';
-import ListCategories from './components/ListCategories';
-import ListUserLocal from './components/ListUserLocal';
-import ListUserServer from './components/ListUserServer';
-import EditUser from './components/EditUser';
+import { useEffect, useState } from "react";
+import "./App.css";
+import CreateUser from "./components/CreateUser";
+import ListCategories from "./components/ListCategories";
+import ListUserLocal from "./components/ListUserLocal";
+import ListUserServer from "./components/ListUserServer";
+import EditUser from "./components/EditUser";
+import EditUser_API from "./components/EditUser_API";
 
 function App() {
-  const [user, setUser] = useState({})
-  const handleEdit = (item) =>{
+  const [user, setUser] = useState({});
+  const handleEdit = (item) => {
     setUser(item);
-  }
-  const handleUpdate = (item) =>{
+  };
+  const handleUpdate = (item) => {
     setUser(item);
-  }
+  };
 
   return (
     <div className="container border">
-      <div className='row'>
+      <div className="row">
         <h1> Call api local</h1>
-        <ListUserLocal/>
-
+        <ListUserLocal />
       </div>
-      <div className='row'>
+      <div className="row">
         <h1> Call api Api</h1>
-        <ListUserServer onEdit = {handleEdit} user={user}/>
+        <ListUserServer onEdit={handleEdit} user={user} />
         {/* <CreateUser/> */}
-        <EditUser user ={user} onUpdate ={handleUpdate}/>
+        {/* <EditUser user={user} onUpdate={handleUpdate} /> */}
+        <EditUser_API user={user} onUpdate={handleUpdate} />
       </div>
-      <div className='row'>
+      <div className="row">
         <h1> Call api MX</h1>
-        <ListCategories/>
-
+        <ListCategories />
       </div>
-      
     </div>
   );
 }

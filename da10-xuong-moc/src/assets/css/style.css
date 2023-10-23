@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
+#navbarNav a {
+  font-family: "Gotham-Medium";
+  font-size: 1rem;
+  color: #000;
+  display: block !important;
+  padding-left: 2rem !important;
+}
+header .navbar {
+  padding: 0.25rem 0rem !important;
+}
+header .nav-link {
+  padding: 0.25rem;
+}
+header ul li {
+  position: relative;
+}
+header ul li.active:before {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 0.2rem;
+  top: 100%;
+  left: 2rem;
+  background-color: #bd945f;
+  animation: menuHover 0.2s ease-in 1;
+}
+@keyframes menuHover {
+  from {
+    width: 30px;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+/* catalog  */
+#catelog {
+  position: relative;
+  height: 27rem;
+}
+#catelog .container {
+  background-color: #fff !important;
+  /* margin-top: -5rem; */
+}
+.catalog-box {
+  position: absolute;
+  width: 100%;
+  margin-top: -2.25rem;
+}
+#catelog .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem;
+}
+
+.cl-blue {
+  color: #2c2e53;
+}
+
+.cl-yellow {
+  color: #bd945f;
+}
+.cl-white {
+  color: #fff;
+}
+.w-90 {
+  width: 95%;
+}
+
+footer {
+  background-color: #363636;
+}
+footer ul{
+  padding: 0;
+}
+
+footer h6 {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+footer h6::before {
+  position: absolute;
+  content: "";
+  width: 4.5rem;
+  top: 120%;
+  height: 0.2rem;
+  background-color: #fff;
+}
+.title-cong-ty {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-family: "Gotham-Medium";
+}
+footer ul li {
+  list-style: none;
+  font-size: 1rem;
+  margin: 0.3rem 0;
+  opacity: 0.8;
+}
+footer ul li span,
+footer ul li span .fa-location-dot {
+  margin-right: 0.5rem;
+}
+
+footer .ket-noi li {
+  width: 2.2rem;
+  margin-right: 0.5rem;
+}
+footer .ket-noi li img {
+  filter: brightness(0) invert(1);
+  -webkit-filter: brightness(0) invert(1);
+}
+.icon-da-thong-bao img {
+  margin-top: 1rem;
+  width: 8rem;
+  opacity: 0.8;
+}
+footer .thong-tin-chung ul li {
+  margin: 0.8rem 0;
+}

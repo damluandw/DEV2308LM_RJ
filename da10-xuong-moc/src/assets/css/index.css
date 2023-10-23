@@ -116,7 +116,7 @@ h3:before {
 }
 
 #about-us {
-  background-image: url("/DA10-XuongMoc/images/ve-chung-toi/bg-about-us.jpg");
+  background-image: url("../../../public/images/ve-chung-toi/bg-about-us.jpg");
   background-repeat: no-repeat;
   height: 61rem;
 }
@@ -228,7 +228,7 @@ h3:before {
 
 #lien-he {
   margin-top: 8rem;
-  background-image: url("/DA10-XuongMoc/images/lienhe-bg.jpg");
+  background-image: url("../../../public/images/lienhe-bg.jpg");
   background-repeat: no-repeat;
   height: 20rem;
   position: relative;

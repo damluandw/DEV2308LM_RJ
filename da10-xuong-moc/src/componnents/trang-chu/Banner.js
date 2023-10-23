@@ -1,5 +1,6 @@
 import React from "react";
-import "../../assets/css/index.css"
+// import "../../../public/css/index.css"
+
 function Banner() {
   return (
     <section id="banner">

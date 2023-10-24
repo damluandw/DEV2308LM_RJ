@@ -3,7 +3,6 @@ import React from "react";
 function LienHe() {
   return (
     <>
-      {" "}
       <section id="lien-he">
         <div className="lien-he h-100">
           <div className="img-left">

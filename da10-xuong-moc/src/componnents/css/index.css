@@ -119,16 +119,19 @@ h3:before {
   background-image: url("../../../public/images/ve-chung-toi/bg-about-us.jpg");
   background-repeat: no-repeat;
   height: 61rem;
+  z-index: 3;
 }
 
-#about-us::before {
-  background: rgba(15, 15, 15, 0.9);
+#about-us .background {
+  /* background: rgba(39, 38, 38, 0.9); */
   content: "";
   display: block;
   height: 61rem;
   position: absolute;
   width: 100%;
 }
+
+
 
 #about-us .about-us {
   padding-top: 1rem !important;

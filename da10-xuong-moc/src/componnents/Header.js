@@ -25,17 +25,17 @@ function Header() {
         >
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="#" title="TRANG CHỦ">
+              <a className="nav-link" href="\" title="TRANG CHỦ">
                 TRANG CHỦ
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" title="GIỚI THIỆU">
+              <a className="nav-link" href="\introduce" title="GIỚI THIỆU">
                 GIỚI THIỆU
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" title="SẢN PHẨM">
+              <a className="nav-link" href="\products" title="SẢN PHẨM">
                 SẢN PHẨM
               </a>
             </li>
@@ -50,7 +50,7 @@ function Header() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" title="LIÊN HỆ">
+              <a className="nav-link" href="\contact" title="LIÊN HỆ">
                 LIÊN HỆ
               </a>
             </li>

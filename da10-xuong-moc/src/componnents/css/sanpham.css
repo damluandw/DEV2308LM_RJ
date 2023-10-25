@@ -1,17 +1,17 @@
-#banner {
+#banner-products {
   position: relative;
   height: 100%;
 }
-#banner .container {
+#banner-products .container {
   position: relative;
   height: 100%;
 }
 
-#banner img {
+#banner-products img {
   object-fit: cover;
 }
 
-.btn-mua-ngay {
+ .btn-mua-ngay {
   position: absolute;
   font-size: 1.2rem;
   top: 60%;

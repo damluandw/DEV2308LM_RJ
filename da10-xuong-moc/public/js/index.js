@@ -36,10 +36,10 @@ $(".list-product").slick({
   ],
 });
 
-$(".list-product .slick-arrow").html("");
-$(".list-product .slick-prev").html(
-  '<span><i class="fa-solid fa-angle-left"></i></span>'
-);
-$(".list-product .slick-next").html(
-  '<span><i class="fa-solid fa-angle-right"></i></span>'
-);
+// $(".list-product .slick-arrow").html("");
+// $(".list-product .slick-prev").html(
+//   '<span><i class="fa-solid fa-angle-left"></i></span>'
+// );
+// $(".list-product .slick-next").html(
+//   '<span><i class="fa-solid fa-angle-right"></i></span>'
+// );

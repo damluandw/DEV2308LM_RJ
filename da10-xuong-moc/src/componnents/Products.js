@@ -1,10 +1,10 @@
-import React from 'react'
-import Banner from './trang-chu/Banner'
+import React from 'react';
+import BannerProducts from './BannerProducts'
 
 function Products() {
   return (
     <>
-  <Banner/>
+  <BannerProducts/>
   {/* ./banner  */}
   <section id="products-phong-khach">
     <div className="products">

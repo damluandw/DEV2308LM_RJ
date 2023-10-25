@@ -1,18 +1,17 @@
 import React from "react";
-import "./css/index.css";
-import Banner from "./trang-chu/Banner";
-import Categories from "./trang-chu/Categories";
-import Products from "./trang-chu/Products";
-import AboutUs from "./trang-chu/AboutUs";
-import News from "./trang-chu/News";
-import DoiTac from "./trang-chu/DoiTac";
-import LienHe from "./trang-chu/LienHe";
+import styles from "./css/index.css";
+import AboutUs from "./AboutUs";
+import News from "./News";
+import DoiTac from "./DoiTac";
+import LienHe from "./LienHe";
 import ListProductOneLine from "./ListProductOneLine";
+import Categories from "./Categories";
+import IndexBanner from "./IndexBanner";
 
 function Index() {
   return (
     <>
-      <Banner />
+      <IndexBanner />
       {/* .banner */}
       <Categories />
       {/* ./catalog  */}

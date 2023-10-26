@@ -23,8 +23,29 @@
 }
 
 #product-filter {
-  margin: 3rem 0;
+  margin: 3rem 0 1rem;
 }
+
+#products .products h3 {
+  position: relative;
+  margin: 0rem 0 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#products .products h3:before {
+  position: absolute;
+  content: "";
+  width: 8.5rem;
+  height: 0.3rem;
+  top: 110%;
+  left: 0%;
+  background-color: #bd945f;
+  animation: menuHover 0.2s ease-in 1;
+  transform: translateX(0%);
+}
+
+
 .pages ul li,
 .filter-price ul li {
   list-style-type: none;

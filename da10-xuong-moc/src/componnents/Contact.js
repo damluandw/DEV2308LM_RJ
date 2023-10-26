@@ -1,5 +1,5 @@
 import React from "react";
-import  "./css/lienhe.css";
+import "./css/lienhe.css";
 function Contact() {
   return (
     <>

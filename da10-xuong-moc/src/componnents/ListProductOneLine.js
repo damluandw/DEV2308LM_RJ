@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
-import ItemProduct from "./ItemProduct";
-import axios from "../api/api-xm";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import ItemProductSlick from "./ItemProductSlick";
 
-function ListProductOneLine() {
-  const [listProduct, setlistProduct] = useState([]);
-  //Lấy dữ liệu từ api local
-  const getListProduct = async () => {
-    let response = await axios.get("Products");
-    console.log("Object api user:", response);
-    console.log("Data api user :", response.data);
-    setlistProduct(response.data);
-  };
-  //use Effect
-  useEffect(() => {
-    getListProduct();
-  }, []);
+function ListProductOneLine({ listProduct }) {
   let render = listProduct.map((item, index) => {
     return (
-      <ItemProduct key={item.id} renderProduct={item} rollNo={index + 1} />
+      <ItemProductSlick key={item.id} renderProduct={item} rollNo={index + 1} />
     );
   });
   const settings = {
@@ -30,7 +17,7 @@ function ListProductOneLine() {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
-    
+
     //   fade: true,
     responsive: [
       {
@@ -61,8 +48,6 @@ function ListProductOneLine() {
       // instead of a settings object
     ],
   };
-
- 
 
   return (
     <>

@@ -22,14 +22,14 @@
   font-family: Gotham-Medium;
 }
 
-.products h3 {
+#list-products .products h3 {
   position: relative;
   margin: 5rem 0 2rem;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-.products h3:before {
+#list-products .products h3:before {
   position: absolute;
   content: "";
   width: 8.5rem;
@@ -38,6 +38,7 @@
   left: 0%;
   background-color: #bd945f;
   animation: menuHover 0.2s ease-in 1;
+  transform: translateX(0%);
 }
 .products .xem-tat-ca{
     margin: 6rem 0 1.5rem;

@@ -8,23 +8,23 @@ import ListProductOneLine from "./ListProductOneLine";
 import Categories from "./Categories";
 import IndexBanner from "./IndexBanner";
 
-function Index() {
+function Index({ listCategories,listProduct }) {
   return (
     <>
       <IndexBanner />
       {/* .banner */}
-      <Categories />
+      <Categories listCategories={listCategories} />
       {/* ./catalog  */}
 
       <section id="products">
-      <div className="products-outstanding">
-        <div className="container">
-          <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-          <ListProductOneLine />
+        <div className="products-outstanding">
+          <div className="container">
+            <h3 className="cl-blue">Sản phẩm nổi bật</h3>
+            <ListProductOneLine listProduct={listProduct}/>
+          </div>
         </div>
-      </div>
-    </section>
-      
+      </section>
+
       {/* Sản phẩm nổi bật */}
 
       <AboutUs />

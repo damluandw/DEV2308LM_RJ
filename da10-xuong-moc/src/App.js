@@ -11,6 +11,7 @@ import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
 
 import axios from "./api/api-xm";
+import axioslocal from "./api/api-local";
 import AllProducts from "./componnents/AllProducts";
 import News from "./componnents/News";
 import Partner from "./componnents/Partner";
@@ -19,11 +20,9 @@ import ProductDetails from "./componnents/ProductDetails";
 
 function App() {
   const [listCategories, setListCategories] = useState([]);
-  //Lấy dữ liệu từ api local
   const getListCategories = async () => {
     let response = await axios.get("Categories");
     setListCategories(response.data);
-    console.log(response.data);
   };
   //use Effect
   useEffect(() => {
@@ -34,16 +33,16 @@ function App() {
   // });
 
   const [listProduct, setlistProduct] = useState([]);
-  //Lấy dữ liệu từ api local
   const getListProduct = async () => {
-    let response = await axios.get("Products");
-    console.log("Data api products :", response.data);
+    let response = await axioslocal.get("Products");
     setlistProduct(response.data);
+    console.log("list" , listProduct);
   };
   //use Effect
   useEffect(() => {
     getListProduct();
   }, []);
+
 
   return (
     <>
@@ -53,7 +52,7 @@ function App() {
           <Route exact path="/" element={<Index listCategories={listCategories}  listProduct ={listProduct}/>} />
           <Route path="/introduce" element={<Introduce />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={<Products listProduct={listProduct}/>} />
           {listCategories.map((item, index) => {
             let ref = "/products/" + item.slug;
             return <Route key={index} path={ref} element={<AllProducts />} />;

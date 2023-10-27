@@ -4,11 +4,12 @@ import AboutUs from "./AboutUs";
 import News from "./News";
 import DoiTac from "./DoiTac";
 import LienHe from "./LienHe";
-import ListProductOneLine from "./ListProductOneLine";
+import ListProductSlick from "./ListProductSlick";
 import Categories from "./Categories";
 import IndexBanner from "./IndexBanner";
 
 function Index({ listCategories,listProduct }) {
+  let arrows = true;
   return (
     <>
       <IndexBanner />
@@ -20,7 +21,7 @@ function Index({ listCategories,listProduct }) {
         <div className="products-outstanding">
           <div className="container">
             <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-            <ListProductOneLine listProduct={listProduct}/>
+            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat ={true}/>
           </div>
         </div>
       </section>

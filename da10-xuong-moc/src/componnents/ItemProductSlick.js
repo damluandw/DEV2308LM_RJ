@@ -9,8 +9,8 @@ function ItemProductSlick({ renderProduct }) {
           <div className="img-product">
             <img
               className="w-100"
-              src="../images/san-pham-noi-bat/sp-1.jpg"
-              alt="sp-1.jpg"
+              src={img}
+              alt={img}
             />
           </div>
           <div className="product-info text-center w-100 mt-3">

@@ -1,61 +1,80 @@
 import React from "react";
+import { NavLink } from 'react-router-dom'
+
 
 function Header() {
+  
   return (
     <header>
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light">
-          <a className="navbar-brand" href="#">
-            <img src="../images/logo.png" alt="Xưởng mộc giá tốt" />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+          <NavLink className="navbar-brand" to="home">
+            <img src="/images/logo.png" alt="Xưởng mộc giá tốt" />
+          </NavLink>
+         
           <div
             className="collapse navbar-collapse justify-content-end"
             id="navbarNav"
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link" href="\" title="TRANG CHỦ">
+                <NavLink className="nav-link" to="home" >
                   TRANG CHỦ
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="\introduce" title="GIỚI THIỆU">
+                <NavLink className="nav-link" to="introduce" title="GIỚI THIỆU">
                   GIỚI THIỆU
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="\products" title="SẢN PHẨM">
+                <NavLink className="nav-link" to="products" title="SẢN PHẨM">
                   SẢN PHẨM
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="\news" title="TIN TỨC">
+                <NavLink className="nav-link" to="news" title="TIN TỨC">
                   TIN TỨC
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="\partner" title="ĐỐI TÁC">
+                <NavLink className="nav-link" to="partner" title="ĐỐI TÁC">
                   ĐỐI TÁC
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="\contact" title="LIÊN HỆ">
+                <NavLink className="nav-link" to="contact" title="LIÊN HỆ">
                   LIÊN HỆ
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
+          
+          <div className="group-icon  navbar-collapse justify-content-end">
+            <div className="icon icon-cart">
+              <NavLink>
+                <span>
+                <i class="fa-solid fa-basket-shopping"></i>
+                </span>
+              </NavLink>          
+            </div>
+            <div className="icon icon-wishlist">
+              <NavLink>
+                <span>
+                <i class="fa-regular fa-heart"></i>
+                </span>
+              </NavLink>          
+            </div>
+            <div className="icon icon-search">
+              <NavLink>
+                <span>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </NavLink>          
+            </div>
+
+          </div>
+
         </nav>
       </div>
     </header>

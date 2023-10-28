@@ -5,7 +5,15 @@ import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
 
 import Index from "./componnents/Index";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Routes,
+  Route,
+  Link,
+  useParams,
+  Navigate
+} from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
@@ -23,6 +31,7 @@ function App() {
   const getListCategories = async () => {
     let response = await axios.get("Categories");
     setListCategories(response.data);
+    // console.log("listCategories" , response.data);
   };
   //use Effect
   useEffect(() => {
@@ -36,7 +45,7 @@ function App() {
   const getListProduct = async () => {
     let response = await axioslocal.get("Products");
     setlistProduct(response.data);
-    console.log("list" , listProduct);
+    // console.log("listProduct" , response.data);
   };
   //use Effect
   useEffect(() => {
@@ -46,24 +55,28 @@ function App() {
 
   return (
     <>
-      <Header />
+      
       <BrowserRouter>
+      <Header />
         <Routes>
-          <Route exact path="/" element={<Index listCategories={listCategories}  listProduct ={listProduct}/>} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Index listCategories={listCategories} listProduct={listProduct} />} />
           <Route path="/introduce" element={<Introduce />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products listProduct={listProduct}/>} />
+          <Route path="/products" element={<Products listProduct={listProduct} listCategories={listCategories} />} />
           {listCategories.map((item, index) => {
             let ref = "/products/" + item.slug;
-            return <Route key={index} path={ref} element={<AllProducts />} />;
+            return <Route key={index} path={ref} element={<AllProducts key={index} category={item} listProduct={listProduct} />} />;
           })}
-          <Route path="/products/propduct-detail" element={<ProductDetails />} />
+          <Route path="/products/propduct-detail/:id" element={<ProductDetails listProduct={listProduct}/>} />
+
           <Route path="/news" element={<News />} />
           <Route path="/partner" element={<Partner />} />
           <Route path="/news/pagenews" element={<PageNews />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
+      
       {/* Thư viện js  */}
     </>
   );

@@ -63,6 +63,9 @@
   padding-right: 1.5rem;
   padding-left: 1.5rem;
 }
+.group-icon .icon{
+  margin-left: 1rem;
+}
 
 .single-item {
   position: relative;
@@ -238,3 +241,5 @@ footer ul {
 .active {
   color: #69922b !important;
 }
+
+

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./css/index.css";
+import "./css/index.css";
 import AboutUs from "./AboutUs";
 import News from "./News";
 import DoiTac from "./DoiTac";
@@ -8,7 +8,7 @@ import ListProductSlick from "./ListProductSlick";
 import Categories from "./Categories";
 import IndexBanner from "./IndexBanner";
 
-function Index({ listCategories,listProduct }) {
+function Index({ listCategories, listProduct }) {
   let arrows = true;
   return (
     <>
@@ -21,7 +21,7 @@ function Index({ listCategories,listProduct }) {
         <div className="products-outstanding">
           <div className="container">
             <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat ={true}/>
+            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat={true} filterCID={null} />
           </div>
         </div>
       </section>

@@ -9,41 +9,47 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat }) {
 
   useEffect(() => {
     let listTemp = listProduct;
-    // console.log(filterNoiBat);
+    console.log("filterCID",filterCID)
     if (filterNoiBat != null && filterNoiBat != "" && filterNoiBat != undefined) {
-      listTemp.filter((x) => x.home == filterNoiBat);
-      setList(listTemp);
-      // console.log("hot" ,list);
+      let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
+      setList(list1);
+      // console.log(list1);
     }
-    if (filterCID != null && filterCID != ""&& filterCID != undefined) {
-      listTemp.filter((x) => x.cid == filterCID);
-      setList(listTemp);
-      //  console.log("CID",list);
+    // console.log("listProduct lis",listProduct,filterCID);
+    if (filterCID != null && filterCID != "" && filterCID != undefined) {
+      let list1 = listTemp.filter((x) => x.cid == filterCID);
+      setList(list1);
+       console.log("CID",list,filterCID); 
     }
-  });
+  }, [listProduct]);
+
   useEffect(() => {
     let listTemp = listProduct;
-    // if (filterNoiBat != null || filterNoiBat != "") {
-    //   listTemp.filter((x) => x.hot == filterNoiBat);
-    //   setList(listTemp);
-    //   // console.log(list);
-    // }
-    
-    if (filterCID != null && filterCID != ""&& filterCID != undefined) {
-      listTemp.filter((x) => x.cid == filterCID);
-      setList(listTemp);
-      // console.log(list);
-      
+
+    if (filterNoiBat != null && filterNoiBat != "" && filterNoiBat != undefined) {
+      let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
+      setList(list1);
+      // console.log(list1);
+    }
+
+    if (filterCID != null && filterCID != "" && filterCID != undefined) {
+      let list1 = listTemp.filter((x) => x.cid == filterCID);
+      setList(list1);
+      //  console.log("CID",list,filterCID); 
     }
   }, []);
+
   useEffect(() => {
+  
     let listTemp = listProduct;
-    if (filterCID != null || filterCID != ""|| filterCID != undefined) {
-      listTemp.filter((x) => x.cid == filterCID);
-      setList(listTemp);
-      // console.log(list);
+    if (filterCID != null && filterCID != "" && filterCID != undefined) {
+
+      let list1 = listTemp.filter((x) => x.cid == filterCID);
+      setList(list1);
+      // console.log("CID",list,filterCID); 
     }
   }, [filterCID]);
+  
 
   // useEffect(() => {
   //   if (filterNoiBat != null || filterNoiBat != "") {

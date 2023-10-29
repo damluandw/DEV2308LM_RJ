@@ -1,9 +1,28 @@
-import React from "react";
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import Cart from "./Cart";
 
+function Header({ listCart, onDelete, onUpdate }) {
+  const handleDelete = (product) => {
+    onDelete(product);
+  };
+  const handleUpdate = (product, action) => {
+    onUpdate(product, action);
+  };
+  let renderQtyCart =
+    listCart.length > 0 ? <div className="qty">{listCart.length}</div> : <></>;
+  let renderBoxEmpty =
+    listCart.length > 0 ? (
+      <></>
+    ) : (
+      <div className="box box-cart">
+        <p>Giỏ hàng của bạn đang trống</p>
+        <NavLink to="/products" className="d-flex justify-content-center">
+          <button className="btn btn-mua-ngay-header">Mua hàng ngay</button>
+        </NavLink>
+      </div>
+    );
 
-function Header() {
-  
   return (
     <header>
       <div className="container">
@@ -11,14 +30,14 @@ function Header() {
           <NavLink className="navbar-brand" to="home">
             <img src="/images/logo.png" alt="Xưởng mộc giá tốt" />
           </NavLink>
-         
+
           <div
             className="collapse navbar-collapse justify-content-end"
             id="navbarNav"
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <NavLink className="nav-link" to="home" >
+                <NavLink className="nav-link" to="home">
                   TRANG CHỦ
                 </NavLink>
               </li>
@@ -49,34 +68,61 @@ function Header() {
               </li>
             </ul>
           </div>
-          
+
           <div className="group-icon  navbar-collapse justify-content-end">
             <div className="icon icon-cart">
-              <NavLink>
+              <NavLink
+                data-bs-toggle="modal"
+                to="#staticBackdrop"
+                role="button"
+              >
                 <span>
-                <i class="fa-solid fa-basket-shopping"></i>
+                  <i className="fa-solid fa-basket-shopping"></i>
                 </span>
-              </NavLink>          
+                {renderQtyCart}
+              </NavLink>
+              {renderBoxEmpty}
             </div>
             <div className="icon icon-wishlist">
               <NavLink>
                 <span>
-                <i class="fa-regular fa-heart"></i>
+                  <i className="fa-regular fa-heart"></i>
                 </span>
-              </NavLink>          
+              </NavLink>
+              <div className="box box-wishlist">
+                <p>Danh sách yêu thích trống</p>
+                <NavLink
+                  to="/products"
+                  className="d-flex justify-content-center"
+                >
+                  <button className="btn btn-mua-ngay-header">
+                    Xem thêm sản phẩm
+                  </button>
+                </NavLink>
+              </div>
             </div>
             <div className="icon icon-search">
               <NavLink>
                 <span>
-                <i class="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
-              </NavLink>          
+              </NavLink>
+
+              <div className="search-form">
+                <input id="search" type="text" className="search-box" />
+                <NavLink className="btn-search-form">
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </NavLink>
+              </div>
             </div>
-
           </div>
-
         </nav>
       </div>
+      <Cart
+        listCart={listCart}
+        onDelete={handleDelete}
+        onUpdate={handleUpdate}
+      />
     </header>
   );
 }

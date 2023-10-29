@@ -4,11 +4,14 @@ import BannerProducts from "./BannerProducts";
 import ListProductByCategory from "./ListProductByCategory";
 import Page from "./Page";
 
-function AllProducts({index,category,listProduct}) {
+function AllProducts({index,category,listProduct,onBuyProduct}) {
+  let handleBuy = (product) => {
+    onBuyProduct(product);
+  };
   return (
     <>
       <BannerProducts/>
-      <ListProductByCategory category ={category} listProduct={listProduct}/>
+      <ListProductByCategory category ={category} listProduct={listProduct} onBuyProduct={handleBuy}/>
       <Page/>
     </>
   );

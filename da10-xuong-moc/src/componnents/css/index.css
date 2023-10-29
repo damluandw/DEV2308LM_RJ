@@ -71,6 +71,7 @@ h3:before {
 .product-info h4 {
   text-transform: uppercase;
   color: #2c2e53;
+  font-size: 1.3rem;
 }
 .image5 i {
   color: #bd945f !important;
@@ -156,7 +157,7 @@ background-color: #bd945f;
 }
 
 #about-us .background {
-  /* background: rgba(39, 38, 38, 0.9); */
+  background: rgba(39, 38, 38, 0.9);
   content: "";
   display: block;
   height: 61rem;
@@ -212,7 +213,9 @@ background-color: #bd945f;
 
 #tin-tuc {
 }
-
+.item-tin-tuc{
+  margin-bottom: 1rem;
+}
 .tin-tuc-left {
   position: relative;
 }
@@ -270,7 +273,7 @@ background-color: #bd945f;
 .img-left {
   position: absolute;
   top: -50%;
-  left: 3rem;
+  left: 0rem;
 }
 
 #lien-he .box-left {
@@ -288,7 +291,7 @@ background-color: #bd945f;
   width: 20rem;
 }
 
-.btn-lien-he {
+#lien-he .btn-lien-he {
   background-color: #fff;
 }
 

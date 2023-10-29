@@ -20,7 +20,7 @@ function Categories({listCategories}) {
     );
   });
   return (
-    <section id="catelog">
+    <section id="catalog">
       <div className="catalog-box">
         <div className="container">
           <div className="row">

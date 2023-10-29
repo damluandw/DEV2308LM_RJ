@@ -6,7 +6,7 @@ function LienHe() {
       <section id="lien-he">
         <div className="lien-he h-100">
           <div className="img-left">
-            <img src="../images/lienhe-1.png" alt="lienhe-1.png" />
+            <img className="w-90" src="/images/lienhe-1.png" alt="lienhe-1.png" />
           </div>
           <div className="container d-flex justify-content-around h-100">
             <div className="d-flex flex-column justify-content-center">

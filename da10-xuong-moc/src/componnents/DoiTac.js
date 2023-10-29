@@ -1,8 +1,10 @@
 import React from "react";
+import "./css/doitac.css";
 
 function DoiTac() {
   return (
     <>
+    
       <section id="doi-tac">
         <div className="doi-tac">
           <div className="container">

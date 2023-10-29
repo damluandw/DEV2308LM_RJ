@@ -36,7 +36,9 @@
   font-weight: bold;
   margin-top: 1rem;
   color: #fff;
-  width: 8.5rem;
+  width: 16rem;
+  text-align: center;
+ 
 }
 #banner-intro .box-white {
   position: absolute;

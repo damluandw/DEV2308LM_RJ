@@ -1,48 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import "./css/sanpham-chitiet.css";
-import { useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from "react-router-dom";
 import axioslocal from "../api/api-local";
-import ListProductSlick from './ListProductSlick';
+import axios from "../api/api-xm";
+import ListProductSlick from "./ListProductSlick";
+import ListTitleNav from "./ListTitleNav";
 
 function ProductDetails({ listProduct }) {
   const { id } = useParams();
 
-  // const [cid, setCID] = useState(0);
-
-
   const [product, setProduct] = useState({});
+  const [category, setCategory] = useState({});
+  const [img, setImg] = useState("/images/san-pham-chi-tiet/product-1.png");
   const getProduct = async () => {
     let response = await axioslocal.get("Products/" + id);
     setProduct(response.data);
-
+    let response2 = await axios.get("Categories/" + response.data.id);
+    setCategory(response2.data);
     console.log("product", response.data);
   };
   useEffect(() => {
     getProduct();
   }, [id]);
+
+
   return (
     <>
-      <section>
-        <section id="list-title">
-          <div className="container">
-            <div className="list-title">
-              <div>
-                <a href="#">
-                  <span className="cl-yellow">Trang chủ</span>
-                </a>
-                <span className="text-secondary">&gt;</span>
-                <a href="#">
-                  <span className="cl-yellow">Sản phẩm</span>
-                </a>
-                <span className="text-secondary">&gt;</span>
-                <a href="#">
-                  <span className="cl-yellow">Bàn uống nước</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
+    <ListTitleNav/>
       {/* ./header  */}
       <section id="product">
         <div className="container">
@@ -52,9 +36,9 @@ function ProductDetails({ listProduct }) {
               <div className="col-lg-6 main-product-top-left">
                 <div className="img-main-product">
                   <img
-                    className="w-100"
-                    src="/images/san-pham-chi-tiet/product-1.png"
-                    alt="/images/san-pham-chi-tiet/product-1.png"
+                    className="w-100 h-100"
+                    src={img}
+                    alt={img}
                   />
                 </div>
                 <div className="img-secondary-product row my-4">
@@ -63,6 +47,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-1.png"
                       alt="sp-1.png"
+                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-1.png");}}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -70,6 +55,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-2.png"
                       alt="sp-2.png"
+                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-2.png");}}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -77,6 +63,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-3.png"
                       alt="sp-3.png"
+                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-3.png");}}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -84,6 +71,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-4.png"
                       alt="sp-4.png"
+                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-4.png");}}
                     />
                   </div>
                 </div>
@@ -100,10 +88,10 @@ function ProductDetails({ listProduct }) {
                 </div>
                 <div className="price">
                   <div id="price-old">
-                  {product.priceOld} <span>VNĐ</span>
+                    {product.priceOld} <span>VNĐ</span>
                   </div>
                   <div id="price-new">
-                  {product.priceNew} <span>VNĐ</span>
+                    {product.priceNew} <span>VNĐ</span>
                   </div>
                 </div>
                 <label id="bao-hanh">
@@ -132,6 +120,7 @@ function ProductDetails({ listProduct }) {
                   >
                     Đặc trưng
                   </button>
+                  <div className="line-col" />
                 </li>
                 <li className="nav-item d-flex" role="presentation">
                   <button
@@ -193,7 +182,7 @@ function ProductDetails({ listProduct }) {
                   </button>
                 </li>
               </ul>
-              <div className="tab-content" id="myTabContent">
+              <div className="tab-content mt-3" id="myTabContent">
                 <div
                   className="tab-pane fade show active"
                   id="dac-trung"
@@ -201,15 +190,15 @@ function ProductDetails({ listProduct }) {
                   aria-labelledby="dac-trung-tab"
                 >
                   <ul>
-                    <li>- Bàn cà phê cugnws đơn giản với kệ nhở</li>
+                    <li>- Bàn cà phê cũng đơn giản với kệ nhở</li>
                     <li>- Phong cách hình học tối giản</li>
                     <li>
-                      - Kệ bên trong có kích thước hoàn hảo cho tạp chí, đế lót ly
-                      và các phụ kiện phòng khách khac
+                      - Kệ bên trong có kích thước hoàn hảo cho tạp chí, đế lót
+                      ly và các phụ kiện phòng khách khac
                     </li>
                     <li>
-                      - Cóa thể được sử dụng như một bàn TV thấp - Kệ mỏng hoàn hoản
-                      để chứa một hộp hàng đầu hoặc đầu phát blu-ray
+                      - Cóa thể được sử dụng như một bàn TV thấp - Kệ mỏng hoàn
+                      hoản để chứa một hộp hàng đầu hoặc đầu phát blu-ray
                     </li>
                     <li>- Làm bằng gỗ Sheesham cao cấp</li>
                     <li>- Không cần lắp ráp</li>
@@ -221,7 +210,7 @@ function ProductDetails({ listProduct }) {
                   role="tabpanel"
                   aria-labelledby="thong-so-tab"
                 >
-                  ...
+                  thông số
                 </div>
                 <div
                   className="tab-pane fade"
@@ -229,7 +218,7 @@ function ProductDetails({ listProduct }) {
                   role="tabpanel"
                   aria-labelledby="bao-quan-tab"
                 >
-                  ...
+                  bảo quản
                 </div>
                 <div
                   className="tab-pane fade"
@@ -237,7 +226,7 @@ function ProductDetails({ listProduct }) {
                   role="tabpanel"
                   aria-labelledby="bao-hanh-tab"
                 >
-                  ...
+                  bảo hành
                 </div>
                 <div
                   className="tab-pane fade"
@@ -245,7 +234,7 @@ function ProductDetails({ listProduct }) {
                   role="tabpanel"
                   aria-labelledby="cam-ket-tab"
                 >
-                  ...
+                  cam kết
                 </div>
               </div>
             </div>
@@ -259,18 +248,22 @@ function ProductDetails({ listProduct }) {
             <div className="d-flex justify-content-between">
               <h3>Sản phẩm tương tự</h3>
               <div className="xem-tat-ca cl-blue">
-                <a href="#">XEM TẤT CẢ</a>
+                <NavLink to={`products/${category.slug}`}>XEM TẤT CẢ</NavLink>
               </div>
             </div>
-            <div className="list-product row">
-              <ListProductSlick listProduct={listProduct} arrows={true} filterCID={product.cid} filterNoiBat={null} />
+            <div className="list-product">
+              <ListProductSlick
+                listProduct={listProduct}
+                arrows={true}
+                filterCID={category.id}
+                filterNoiBat={null}
+              />
             </div>
           </div>
         </div>
       </section>
-
     </>
-  )
+  );
 }
 
-export default ProductDetails
+export default ProductDetails;

@@ -55,10 +55,10 @@
   margin: 3rem 0 5rem;
 }
 
-.lien-he-box .item-lien-he {
+.lien-he-page-box .item-lien-he-page {
   margin: 3rem;
 }
-#contact .title-lien-he {
+#contact .title-lien-he-page {
   padding-left: 3rem;
 }
 
@@ -73,17 +73,17 @@
 #contact h3::before{
   display: none;
 }
-.title-lien-he input {
+.title-lien-he-page input {
   border: solid 2px #bd945f;
   margin: 1rem 3rem 0 0;
   border-radius: 0;
 }
 
-.title-lien-he input::placeholder {
+.title-lien-he-page input::placeholder {
   color: #2c2e53;
   opacity: 1; /* Firefox */
 }
-.btn-lien-he {
+.btn-lien-he-page {
   margin-top: 1rem;
   background-color: #bd945f;
   font-family: "Gotham-Medium";

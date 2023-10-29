@@ -1,0 +1,17 @@
+.image-item-cart {
+  width: 8rem;
+}
+.margin-auto {
+  margin: auto;
+}
+
+.item-cart {
+  margin-bottom: 0.8rem;
+}
+.title-item-cart h5 {
+  font-size: 1rem;
+}
+#cart-modal .btn-buy-modal{
+  background-color: #bd945f;
+  color: #fff;
+}

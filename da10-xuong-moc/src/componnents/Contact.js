@@ -25,17 +25,17 @@ function Contact() {
       </section>
       {/* ./banner-contact  */}
       <section id="contact">
-        <div className="lien-he-box">
+        <div className="lien-he-page-box">
           <div className="container">
-            <div className="item-lien-he row">
-              <div className="logo-lien-he col-lg-4">
+            <div className="item-lien-he-page row">
+              <div className="logo-lien-he-page col-lg-4">
                 <img
                   className="w-100"
                   src="../images/lien-he/lien-he.png"
                   alt="lien-he.png"
                 />
               </div>
-              <div className="title-lien-he col-lg-8">
+              <div className="title-lien-he-page col-lg-8">
                 <h3>Liên hệ với chúng tôi</h3>
                 <div>
                   <input
@@ -58,7 +58,7 @@ function Contact() {
                     type="text"
                     placeholder="Nội dung"
                   />
-                  <button className="btn btn-lien-he">Gửi</button>
+                  <button className="btn btn-lien-he-page">Gửi</button>
                 </div>
               </div>
             </div>

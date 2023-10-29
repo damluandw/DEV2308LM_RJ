@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function ItemCategory({ renderCategory }) {
   let img = ".." + renderCategory.icon;
@@ -9,9 +10,9 @@ function ItemCategory({ renderCategory }) {
         <div className="item">
           <img className="" src={img} alt="Phòng khách" />
           <h4>
-            <a className="cl-blue" href={ref} title="Phòng khách">
+            <NavLink className="cl-blue" to={ref} title="Phòng khách">
               {renderCategory.title}
-            </a>
+            </NavLink>
           </h4>
         </div>
       </div>

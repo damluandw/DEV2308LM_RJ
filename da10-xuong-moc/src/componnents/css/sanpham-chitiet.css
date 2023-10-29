@@ -1,16 +1,13 @@
-#product h2{
-    margin-bottom: 1rem;
+#product h2 {
+  margin-bottom: 1rem;
 }
-.list-title {
-  margin: 3rem 0;
-  font-family: Gotham-Medium;
-}
-.list-title span{
-  padding: 0 0.2rem ;
 
+.img-main-product{
+  height: 21.75rem;
 }
-.main-product-top-right{
-    padding-left: 3rem;
+
+.main-product-top-right {
+  padding-left: 3rem;
 }
 
 .btn-chat-lieu {
@@ -63,12 +60,10 @@
   position: relative;
 }
 .main-product-bottom .nav-item button.active {
-  position: absolute;
   color: #2c2e53 !important;
   border: none;
   border-bottom: 4px solid #2c2e53;
 }
-
 
 .line-col {
   content: "";
@@ -78,48 +73,48 @@
   z-index: 2;
 }
 
+#products-relate .products h3 {
+  position: relative;
+  margin: 5rem 0 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
-.products h3 {
-    position: relative;
-    margin: 5rem 0 2rem;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-  
-  .products h3:before {
-    position: absolute;
-    content: "";
-    width: 8.5rem;
-    height: 0.3rem;
-    top: 110%;
-    left: 0%;
-    background-color: #bd945f;
-    animation: menuHover 0.2s ease-in 1;
-  }
-  .products a{
-      color: #2c2e53;
-  }
-  
-  .image5 i {
-    color: #bd945f !important;
-  }
-  .vote i {
-    font-size: 1rem;
-  }
-  
-  .product-describe {
-    font-size: 0.8rem;
-    color: #ccc;
-    font-family: "Gotham-Medium";
-  }
-  .product-price {
-    font-family: "Gotham-Medium";
-  }
-  .product-info h4 {
-      text-transform: uppercase;
-      color: #2c2e53;
-  }
+#products-relate .products h3:before {
+  position: absolute;
+  content: "";
+  width: 8.5rem;
+  height: 0.3rem;
+  top: 110%;
+  left: 0%;
+  background-color: #bd945f;
+  animation: menuHover 0.2s ease-in 1;
+  transform: translateX(0%);
+}
+.products a {
+  color: #2c2e53;
+}
 
-  #products-relate{
-    margin-bottom: 3rem;
-  }
+.image5 i {
+  color: #bd945f !important;
+}
+.vote i {
+  font-size: 1rem;
+}
+
+.product-describe {
+  font-size: 0.8rem;
+  color: #ccc;
+  font-family: "Gotham-Medium";
+}
+.product-price {
+  font-family: "Gotham-Medium";
+}
+.product-info h4 {
+  text-transform: uppercase;
+  color: #2c2e53;
+}
+
+#products-relate {
+  margin-bottom: 3rem;
+}

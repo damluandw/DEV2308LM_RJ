@@ -1,6 +1,7 @@
 import React from "react";
 import  "./css/gioithieu.css";
 
+
 function Introduce() {
   return (
     <>
@@ -17,7 +18,7 @@ function Introduce() {
                 <div className="d-flex justify-content-center">
                   <img src="images/logo.png" alt="Xưởng mộc giá tốt" />
                 </div>
-                <h2>ĐỐI TÁC</h2>
+                <h2>GIỚI THIỆU</h2>
               </div>
             </div>
             <div className="box-white" />

@@ -1,15 +1,18 @@
 import React from "react";
 import "./css/index.css";
 import AboutUs from "./AboutUs";
-import News from "./News";
 import DoiTac from "./DoiTac";
 import LienHe from "./LienHe";
 import ListProductSlick from "./ListProductSlick";
 import Categories from "./Categories";
 import IndexBanner from "./IndexBanner";
+import NewsIndex from "./NewsIndex";
 
-function Index({ listCategories, listProduct }) {
+function Index({ listCategories, listProduct ,onBuyProduct}) {
   let arrows = true;
+  const handleBuy = (product) => {
+    onBuyProduct(product);
+  };
   return (
     <>
       <IndexBanner />
@@ -21,7 +24,7 @@ function Index({ listCategories, listProduct }) {
         <div className="products-outstanding">
           <div className="container">
             <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat={true} filterCID={null} />
+            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat={true} filterCID={null} onBuyProduct={handleBuy}/>
           </div>
         </div>
       </section>
@@ -30,7 +33,7 @@ function Index({ listCategories, listProduct }) {
 
       <AboutUs />
       {/* ./about-us  */}
-      <News />
+      <NewsIndex />
       {/* ./tin-tuc  */}
       <DoiTac />
       {/* ./doi-tac  */}

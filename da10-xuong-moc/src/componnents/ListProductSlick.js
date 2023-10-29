@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ItemProductSlick from "./ItemProductSlick";
 
-function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat }) {
+function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyProduct}) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -59,10 +59,12 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat }) {
   //     // console.log(list);
   //   }
   // }, [filterNoiBat]);
-
+  const handleBuy = (product) => {
+    onBuyProduct(product);
+  };
   let render = list.map((item, index) => {
     return (
-      <ItemProductSlick key={item.id} renderProduct={item} rollNo={index + 1} />
+      <ItemProductSlick key={item.id} renderProduct={item} rollNo={index + 1} onBuyProduct={handleBuy}/>
     );
   });
   const settings = {
@@ -106,7 +108,7 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat }) {
 
   return (
     <>
-      <div className="list-product row">
+      <div className="list-product">
         <Slider {...settings} className="row">
           {render}
         </Slider>

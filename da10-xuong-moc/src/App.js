@@ -5,15 +5,7 @@ import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
 
 import Index from "./componnents/Index";
-import {
-  BrowserRouter,
-  Switch,
-  Routes,
-  Route,
-  Link,
-  useParams,
-  Navigate
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
@@ -31,44 +23,149 @@ function App() {
   const getListCategories = async () => {
     let response = await axios.get("Categories");
     setListCategories(response.data);
-    // console.log("listCategories" , response.data);
   };
+
   //use Effect
   useEffect(() => {
     getListCategories();
   }, []);
-  // renderAllProducts = listCategories.map((item, index) => {
-  //   return <Route key={item.id} path={item.slug} element={<AllProducts />} />;
-  // });
 
-  const [listProduct, setlistProduct] = useState([]);
+  const [listProduct, setListProduct] = useState([]);
   const getListProduct = async () => {
     let response = await axioslocal.get("Products");
-    setlistProduct(response.data);
-    // console.log("listProduct" , response.data);
+    setListProduct(response.data);
   };
+
   //use Effect
   useEffect(() => {
     getListProduct();
   }, []);
 
+  const [listCart, setListCart] = useState([]);
+  const getListCart = async () => {
+    const list = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_CARTS"));
+    if (list === null) {
+      let response = await axioslocal.get("Carts");
+      setListCart(response.data);
+    } else setListCart(list);
+  };
+  useEffect(() => {
+    getListCart();
+  }, []);
 
+  const getIndexByProduct = (listCart, product) => {
+    for (let index = 0; index < listCart.length; index++) {
+      if (listCart[index].product.id === product.id) {
+        return index; //sản phẩm đã tồn tại trong giỏ hàng
+      }
+    }
+    return -1; // sản phẩm chưa có trong giỏ hàng
+  };
+
+  const handleBuy = (product) => {
+    let quantity = 1;
+    let item = { product, quantity };
+    let index = -1;
+    let listTemp = listCart;
+    if (listTemp.length === 0) {
+      //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
+      //thêm sản phẩm vào giỏ hàng
+      listTemp.push(item);
+    } else {
+      // giỏ hàng của khách đã tồn tại
+      //TH1/TH2
+      // dựa vào index để xác định => viết hàm kiểm tra sản phẩm đã có trong giỏ hàng chưa
+      index = getIndexByProduct(listTemp, product);
+      if (index === -1) {
+        listTemp.push(item);
+      } else {
+        // nếu sản phẩm mua đã có trong giỏ hàng, thực hiện cập nhật số lượng
+        listTemp[index].quantity =
+          parseInt(listTemp[index].quantity) + parseInt(quantity);
+      }
+    }
+    // cập nhật localStorage
+    localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
+    getListCart();
+  };
+  const handleDelete = (product) => {
+    let index = -1;
+    let listTemp = listCart;
+    index = getIndexByProduct(listTemp, product);
+    if (index >= 0) {
+      listTemp.splice(index, 1);
+    }
+    localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
+    getListCart();
+  };
+  const handleUpdate = (product, action) => {
+    let index = -1;
+    let listTemp = listCart;
+    index = getIndexByProduct(listTemp, product);
+    if (action == "add") {
+      listTemp[index].quantity++;
+    } else {
+      listTemp[index].quantity =
+        parseInt(listTemp[index].quantity) === 1
+          ? 1
+          : listTemp[index].quantity - 1;
+    }
+
+    localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
+    getListCart();
+  };
   return (
     <>
-      
       <BrowserRouter>
-      <Header />
+        <Header
+          listCart={listCart}
+          onDelete={handleDelete}
+          onUpdate={handleUpdate}
+        />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Index listCategories={listCategories} listProduct={listProduct} />} />
+          <Route
+            path="/home"
+            element={
+              <Index
+                listCategories={listCategories}
+                listProduct={listProduct}
+                onBuyProduct={handleBuy}
+              />
+            }
+          />
           <Route path="/introduce" element={<Introduce />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products listProduct={listProduct} listCategories={listCategories} />} />
+          <Route
+            path="/products"
+            element={
+              <Products
+                listProduct={listProduct}
+                listCategories={listCategories}
+              />
+            }
+          />
           {listCategories.map((item, index) => {
             let ref = "/products/" + item.slug;
-            return <Route key={index} path={ref} element={<AllProducts key={index} category={item} listProduct={listProduct} />} />;
+            return (
+              <Route
+                key={index}
+                path={ref}
+                element={
+                  <AllProducts
+                    key={index}
+                    category={item}
+                    listProduct={listProduct}
+                    onBuyProduct={handleBuy}
+                  />
+                }
+              />
+            );
           })}
-          <Route path="/products/propduct-detail/:id" element={<ProductDetails listProduct={listProduct}/>} />
+          <Route
+            path="/products/propduct-detail/:id"
+            element={<ProductDetails listProduct={listProduct} />}
+          />
 
           <Route path="/news" element={<News />} />
           <Route path="/partner" element={<Partner />} />
@@ -76,7 +173,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-      
+
       {/* Thư viện js  */}
     </>
   );

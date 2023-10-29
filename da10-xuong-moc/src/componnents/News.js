@@ -8,7 +8,7 @@ function News() {
           <div className="container">
             <h3>Tin tức</h3>
             <div className="list-tin-tuc row">
-              <div className="item-tin-tuc col-lg-4">
+              <div className="item-tin-tuc-page col-lg-4">
                 <div className="img-tin-tuc tin-tuc-top">
                   <img
                     className="w-100"

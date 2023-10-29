@@ -1,15 +1,16 @@
 import React from "react";
+import "./css/doitac.css";
 
 function Partner() {
   return (
     <>
-      <section id="banner">
+      <section id="banner-partner">
         <img
           src="images/doi-tac/banner-doi-tac-2.png"
           alt="Thế giới nội thất số 1 việt nam"
-          className="w-100 img-banner-main"
+          className="w-100 img-banner-partner-main"
         />
-        <div className="banner-box">
+        <div className="banner-partner-box">
           <div className="container">
             <div className="item">
               <div>
@@ -23,8 +24,8 @@ function Partner() {
           </div>
         </div>
       </section>
-      {/* ./banner  */}
-      <section id="doi-tac">
+      {/* ./banner-partner  */}
+      <section id="partner">
         <div className="doi-tac-box">
           <div className="container">
             <div className="list-doi-tac">

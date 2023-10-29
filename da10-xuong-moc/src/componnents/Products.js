@@ -34,6 +34,7 @@ function Products({ listProduct, listCategories }) {
   return (
     <>
       <BannerProducts />
+
       {/* ./banner  */}
       <div id="list-products">
         {render}

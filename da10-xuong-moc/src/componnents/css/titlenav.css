@@ -1,0 +1,14 @@
+.list-title {
+  margin: 3rem 0;
+  font-family: Gotham-Medium;
+}
+.list-title span {
+  padding: 0 0.2rem;
+}
+
+#list-title ul li{
+  list-style: none;
+}
+#list-title ul{
+  padding-left: 0;
+}

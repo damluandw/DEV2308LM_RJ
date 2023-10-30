@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 
-function Header({ listCart, onDelete, onUpdate }) {
+function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
+ 
   const handleDelete = (product) => {
     onDelete(product);
   };
@@ -23,6 +24,38 @@ function Header({ listCart, onDelete, onUpdate }) {
       </div>
     );
 
+  const [valueSearch, setValueSearch] = useState("");
+
+  let renderLabel =
+    valueSearch === "" ? (
+      <label htmlFor="search">Bạn cần tìm sản phẩm gì?</label>
+    ) : (
+      <></>
+    );
+
+  let renderSearch = isShowSearch ? (
+    <>
+      <div className="search-form">
+        <input
+          id="search"
+          type="text"
+          className="search-box"
+          value={valueSearch}
+          onChange={(e) => setValueSearch(e.target.value)}
+        />
+        {renderLabel}
+        <div className="btn-search-form" onClick={() => handlSearch()}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+    </>
+  ) : (
+    <></>
+  );
+  const handlSearch = () => {
+    onSearch(valueSearch);
+    setValueSearch("");
+  };
   return (
     <header>
       <div className="container">
@@ -37,7 +70,7 @@ function Header({ listCart, onDelete, onUpdate }) {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <NavLink className="nav-link" to="home">
+                <NavLink className="nav-link" to="home" >
                   TRANG CHỦ
                 </NavLink>
               </li>
@@ -102,18 +135,12 @@ function Header({ listCart, onDelete, onUpdate }) {
               </div>
             </div>
             <div className="icon icon-search">
-              <NavLink>
+              <NavLink onClick={() => handlSearch("")}>
                 <span>
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
               </NavLink>
-
-              <div className="search-form">
-                <input id="search" type="text" className="search-box" />
-                <NavLink className="btn-search-form">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </NavLink>
-              </div>
+              {renderSearch}
             </div>
           </div>
         </nav>

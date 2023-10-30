@@ -3,8 +3,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ItemProductSlick from "./ItemProductSlick";
+import { useNavigate } from "react-router-dom";
 
 function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyProduct}) {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
 
   useEffect(() => {

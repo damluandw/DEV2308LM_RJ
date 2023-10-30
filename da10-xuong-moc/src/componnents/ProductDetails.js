@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./css/sanpham-chitiet.css";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import axioslocal from "../api/api-local";
 import axios from "../api/api-xm";
 import ListProductSlick from "./ListProductSlick";
 import ListTitleNav from "./ListTitleNav";
 
 function ProductDetails({ listProduct }) {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
@@ -248,7 +249,7 @@ function ProductDetails({ listProduct }) {
             <div className="d-flex justify-content-between">
               <h3>Sản phẩm tương tự</h3>
               <div className="xem-tat-ca cl-blue">
-                <NavLink to={`products/${category.slug}`}>XEM TẤT CẢ</NavLink>
+                <NavLink onClick={() => navigate("/products/"+category.slug)} >XEM TẤT CẢ</NavLink>
               </div>
             </div>
             <div className="list-product">

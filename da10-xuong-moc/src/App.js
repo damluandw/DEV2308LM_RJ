@@ -5,7 +5,7 @@ import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
 
 import Index from "./componnents/Index";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
@@ -17,6 +17,7 @@ import News from "./componnents/News";
 import Partner from "./componnents/Partner";
 import PageNews from "./componnents/PageNews";
 import ProductDetails from "./componnents/ProductDetails";
+import SearchPage from "./componnents/SearchPage";
 
 function App() {
   const [listCategories, setListCategories] = useState([]);
@@ -114,6 +115,14 @@ function App() {
     localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
     getListCart();
   };
+  const [isShowSearch, setIsShowSearch] = useState(false);
+  const [valueSearch, setValueSearch] = useState("");
+  const handleSearch = (value) => {
+    setIsShowSearch(!isShowSearch);
+    if (value != "") {
+      setValueSearch(value);
+    }
+  };
   return (
     <>
       <BrowserRouter>
@@ -121,6 +130,9 @@ function App() {
           listCart={listCart}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
+          isShowSearch={isShowSearch}
+          onSearch={handleSearch}
+          valueSearch  ={valueSearch}
         />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
@@ -170,6 +182,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/partner" element={<Partner />} />
           <Route path="/news/pagenews" element={<PageNews />} />
+          <Route path={`/search?key=${valueSearch}`} element={<SearchPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -46,8 +46,18 @@ header ul li.active:before {
   background-color: #bd945f;
   animation: menuHover 0.2s ease-in 1;
 }
+@keyframes menuHover {
+  from {
+    width: 30px;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
 
-header .icon>a>span>i {
+header .icon > a > span > i {
   color: #000;
   font-size: 1.2rem;
   margin-left: 1rem;
@@ -55,7 +65,7 @@ header .icon>a>span>i {
 header .icon {
   position: relative;
 }
-header .icon:hover i {
+header .icon:hover span > i {
   color: #bd945f;
 }
 
@@ -142,12 +152,19 @@ header .search-form {
   border: 2px solid transparent;
   align-items: center;
   z-index: 3;
+  /* display: none; */
 }
 header .search-form input {
   width: 100%;
   height: 100%;
   padding: 0 0.5rem;
   border: none;
+  outline: 0;
+  font-family: "Gotham-Medium";
+}
+
+header .search-form input:focus{
+ z-index: 9;
 }
 .btn-search-form {
   padding: 0.25rem 0.75rem;
@@ -159,13 +176,34 @@ header .search-form input {
   display: flex;
   color: #ccc;
 }
-@keyframes menuHover {
+header .search-form label {
+  font-family: "Gotham-Medium";
+  margin-left: 0.5rem;
+  position: absolute;
+  margin-bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type 6s steps(24) infinite;
+  z-index: 5;
+  display: inline-block;
+}
+
+@keyframes type {
   from {
-    width: 30px;
+    width: 0;
     opacity: 0;
   }
+  40% {
+    width: 100%;
+    opacity: 1;
+  } 
+  50% {
+    width: 100%;
+    opacity: 1;
+  }
   to {
-    width: 60px;
+    width: 0;
     opacity: 1;
   }
 }

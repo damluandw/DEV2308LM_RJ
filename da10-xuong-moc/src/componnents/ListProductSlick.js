@@ -11,7 +11,7 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyP
 
   useEffect(() => {
     let listTemp = listProduct;
-    console.log("filterCID",filterCID)
+
     if (filterNoiBat != null && filterNoiBat != "" && filterNoiBat != undefined) {
       let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
       setList(list1);
@@ -21,7 +21,7 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyP
     if (filterCID != null && filterCID != "" && filterCID != undefined) {
       let list1 = listTemp.filter((x) => x.cid == filterCID);
       setList(list1);
-       console.log("CID",list,filterCID); 
+
     }
   }, [listProduct]);
 

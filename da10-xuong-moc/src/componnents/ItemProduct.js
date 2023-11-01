@@ -1,17 +1,24 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
-function ItemProduct({ renderProduct }) {
-  // let handleBuy = (product) => {
-  //   onBuyProduct(product);
-  // };
+function ItemProduct({ renderProduct, onBuyProduct }) {
+  let handleBuy = (product) => {
+    onBuyProduct(product);
+  };
   return (
     <>
-      {/* <div className="item-product col-lg-3">
+      <div className="item-product col-lg-3">
         <div className="img-product">
-          <img src="../images/san-pham-noi-bat/sp-1.jpg" alt="sp-1.jpg" />
+          <img
+            className="w-100"
+            src={renderProduct.image}
+            alt={renderProduct.image}
+          />
         </div>
         <div className="product-info text-center">
-          <h4>{renderProduct.title}</h4>
+          <Link to={`/products/propduct-detail/${renderProduct.id}`}>
+            <h4>{renderProduct.title}</h4>
+          </Link>
           <div className="image5">
             <p className="vote m-0">
               <span>
@@ -32,7 +39,6 @@ function ItemProduct({ renderProduct }) {
         <div className="product-hover">
           <div className="product-description navbar-collapse">
             <div className="btn-product d-flex justify-content-end">
-  
               <a href="#">
                 <button className="btn btn-wishlist ">
                   <span className="d-flex justify-content-center">
@@ -57,7 +63,7 @@ function ItemProduct({ renderProduct }) {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }

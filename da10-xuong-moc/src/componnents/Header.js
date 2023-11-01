@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 
-function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
- 
+function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch ,onShowSearch}) {
   const handleDelete = (product) => {
     onDelete(product);
   };
@@ -32,6 +31,13 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
     ) : (
       <></>
     );
+  const handlSearch = () => {
+    onSearch(valueSearch);
+  };
+  const handlShowSearch = () => {
+    console.log(valueSearch);
+    onShowSearch();
+  };
 
   let renderSearch = isShowSearch ? (
     <>
@@ -45,17 +51,16 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
         />
         {renderLabel}
         <div className="btn-search-form" onClick={() => handlSearch()}>
-          <i className="fa-solid fa-magnifying-glass"></i>
+          <NavLink to={`/search?key=${valueSearch}`}>
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </NavLink>
         </div>
       </div>
     </>
   ) : (
     <></>
   );
-  const handlSearch = () => {
-    onSearch(valueSearch);
-    setValueSearch("");
-  };
+
   return (
     <header>
       <div className="container">
@@ -70,7 +75,7 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
           >
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <NavLink className="nav-link" to="home" >
+                <NavLink className="nav-link" to="home">
                   TRANG CHỦ
                 </NavLink>
               </li>
@@ -135,7 +140,7 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch }) {
               </div>
             </div>
             <div className="icon icon-search">
-              <NavLink onClick={() => handlSearch("")}>
+              <NavLink onClick={() => handlShowSearch("")}>
                 <span>
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>

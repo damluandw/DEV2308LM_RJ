@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./css/itemproduct.css";
-function ItemProductSlick({ renderProduct,onBuyProduct }) {
+function ItemProductSlick({ renderProduct, onBuyProduct }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
@@ -61,7 +61,10 @@ function ItemProductSlick({ renderProduct,onBuyProduct }) {
                   to="#staticBackdrop"
                   role="button"
                 >
-                  <button className="btn btn-buy" onClick={(ev) => handleBuy(renderProduct)}>
+                  <button
+                    className="btn btn-buy"
+                    onClick={(ev) => handleBuy(renderProduct)}
+                  >
                     <span className="d-flex justify-content-center">
                       <i className="fa-solid fa-basket-shopping"></i>
                     </span>

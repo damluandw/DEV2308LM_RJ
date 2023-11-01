@@ -119,10 +119,14 @@ function App() {
   const [valueSearch, setValueSearch] = useState("");
   const handleSearch = (value) => {
     setIsShowSearch(!isShowSearch);
-    if (value != "") {
+    if (value !== "" && value !== null && value !== undefined) {
       setValueSearch(value);
     }
   };
+  const handleShowSearch = (value) => {
+    setIsShowSearch(!isShowSearch);
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -132,6 +136,7 @@ function App() {
           onUpdate={handleUpdate}
           isShowSearch={isShowSearch}
           onSearch={handleSearch}
+          onShowSearch={handleShowSearch}
           valueSearch  ={valueSearch}
         />
         <Routes>
@@ -182,7 +187,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/partner" element={<Partner />} />
           <Route path="/news/pagenews" element={<PageNews />} />
-          <Route path={`/search?key=${valueSearch}`} element={<SearchPage />} />
+          <Route path={`/search`} element={<SearchPage listProduct={listProduct} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

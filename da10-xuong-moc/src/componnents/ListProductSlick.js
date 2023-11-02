@@ -5,14 +5,24 @@ import Slider from "react-slick";
 import ItemProductSlick from "./ItemProductSlick";
 import { useNavigate } from "react-router-dom";
 
-function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyProduct}) {
+function ListProductSlick({
+  listProduct,
+  arrows,
+  filterCID,
+  filterNoiBat,
+  onBuyProduct,
+}) {
   const navigate = useNavigate();
   const [list, setList] = useState([]);
 
   useEffect(() => {
     let listTemp = listProduct;
 
-    if (filterNoiBat != null && filterNoiBat != "" && filterNoiBat != undefined) {
+    if (
+      filterNoiBat != null &&
+      filterNoiBat != "" &&
+      filterNoiBat != undefined
+    ) {
       let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
       setList(list1);
       // console.log(list1);
@@ -21,14 +31,17 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyP
     if (filterCID != null && filterCID != "" && filterCID != undefined) {
       let list1 = listTemp.filter((x) => x.cid == filterCID);
       setList(list1);
-
     }
   }, [listProduct]);
 
   useEffect(() => {
     let listTemp = listProduct;
 
-    if (filterNoiBat != null && filterNoiBat != "" && filterNoiBat != undefined) {
+    if (
+      filterNoiBat != null &&
+      filterNoiBat != "" &&
+      filterNoiBat != undefined
+    ) {
       let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
       setList(list1);
       // console.log(list1);
@@ -37,21 +50,18 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyP
     if (filterCID != null && filterCID != "" && filterCID != undefined) {
       let list1 = listTemp.filter((x) => x.cid == filterCID);
       setList(list1);
-      //  console.log("CID",list,filterCID); 
+      //  console.log("CID",list,filterCID);
     }
   }, []);
 
   useEffect(() => {
-  
     let listTemp = listProduct;
     if (filterCID != null && filterCID != "" && filterCID != undefined) {
-
       let list1 = listTemp.filter((x) => x.cid == filterCID);
       setList(list1);
-      // console.log("CID",list,filterCID); 
+      // console.log("CID",list,filterCID);
     }
   }, [filterCID]);
-  
 
   // useEffect(() => {
   //   if (filterNoiBat != null || filterNoiBat != "") {
@@ -66,7 +76,12 @@ function ListProductSlick({ listProduct, arrows, filterCID, filterNoiBat, onBuyP
   };
   let render = list.map((item, index) => {
     return (
-      <ItemProductSlick key={item.id} renderProduct={item} rollNo={index + 1} onBuyProduct={handleBuy}/>
+      <ItemProductSlick
+        key={item.id}
+        renderProduct={item}
+        rollNo={index + 1}
+        onBuyProduct={handleBuy}
+      />
     );
   });
   const settings = {

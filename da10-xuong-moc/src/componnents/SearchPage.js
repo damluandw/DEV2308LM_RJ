@@ -1,43 +1,94 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ItemProduct from "./ItemProduct";
+import Page from "./Page";
 function useQuery() {
   const { search } = useLocation();
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-function SearchPage({ listProduct, onBuyProduct }) {
+function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   let query = useQuery();
   const [list, setList] = useState([]);
   const [keyWord, setkeyWord] = useState([]);
-  const setListProduct = (key) => {
-    let listTemp = listProduct;
+  const [indexPage, setIndexPage] = useState(0);
+  const [pages, setPages] = useState([]);
+  const getMaxPage = (list) => {
+    if (list.length % pageSize == 0) return list.length / pageSize;
+    else {
+      return Math.round(list.length / pageSize + 0.5);
+    }
+  };
+  const getPages = (list) => {
+    let maxPage = getMaxPage(list);
+    let pages = [{}];
+    let page = 0;
+    for (let i = 1; i <= maxPage; i++) {
+      page = i;
+      pages.push(page);
+      // console.log(pages);
+    }
+    
+    setPages(pages);
+  };
+
+  const getListSearch = (list, key) => {
+    let listTmp = [];
     if (key !== "" && key !== null && key !== undefined) {
-      listTemp = listTemp.filter((x) =>
+      listTmp = list.filter((x) =>
         x.title
           .toLocaleLowerCase()
           .trim()
           .includes(key.toLocaleLowerCase().trim())
       );
+      return listTmp;
+    }
+  };
+  const getListPage = (list, pageIndex) => {
+    if (list != undefined) {
+      let count = list.length;
+      let start = (pageIndex - 1) * pageSize;
+      let end = pageIndex * pageSize;
+      let listTmp = [];
+      // $('.product-page-conten .list-Products').html('');
+      for (let i = start; i < end && i < count; i++) {
+        let obj = list[i];
+        listTmp.push(obj);
+      }
+      return listTmp;
+    }
+    return [];
+  };
+  const setListProduct = (key, pageIndex) => {
+    let listTemp = listProduct;
+    if (listTemp != undefined) {
+      listTemp = getListSearch(listTemp, key);
+      listTemp = getListPage(listTemp, pageIndex);
+      getPages(listTemp);
       setList(listTemp);
     }
   };
 
   useEffect(() => {
     let key = query.get("key");
+    let pageIndex = query.get("page");
     setkeyWord(key);
-    setListProduct(key);
+    setIndexPage(pageIndex);
+    setListProduct(key, pageIndex);
   }, []);
 
   useEffect(() => {
     let key = query.get("key");
+    let pageIndex = query.get("page");
     setkeyWord(key);
-    setListProduct(key);
+    setIndexPage(pageIndex);
+    setListProduct(key, pageIndex);
   }, [query]);
 
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
+
   let render = list.map((item, index) => {
     return (
       <ItemProduct
@@ -65,6 +116,7 @@ function SearchPage({ listProduct, onBuyProduct }) {
           <div className="list-product row">{render}</div>
         </div>
       </div>
+      <Page pages={pages} />
     </section>
   );
 }

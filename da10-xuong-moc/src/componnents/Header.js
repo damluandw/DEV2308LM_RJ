@@ -1,8 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Cart from "./Cart";
 
-function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch ,onShowSearch}) {
+function Header({
+  listCart,
+  onDelete,
+  onUpdate,
+  isShowSearch,
+  onSearch,
+  onShowSearch,
+}) {
+  const { local } = useLocation();
+  
   const handleDelete = (product) => {
     onDelete(product);
   };
@@ -33,10 +42,13 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch ,onShowSe
     );
   const handlSearch = () => {
     onSearch(valueSearch);
+    setValueSearch("");
+    
   };
   const handlShowSearch = () => {
-    console.log(valueSearch);
     onShowSearch();
+
+    console.log("local",local)
   };
 
   let renderSearch = isShowSearch ? (
@@ -51,7 +63,9 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch ,onShowSe
         />
         {renderLabel}
         <div className="btn-search-form" onClick={() => handlSearch()}>
-          <NavLink to={`/search?key=${valueSearch}`}>
+          <NavLink
+            to={valueSearch == "" ? local : `/search?key=${valueSearch}&page=1`}
+          >
             <i className="fa-solid fa-magnifying-glass"></i>
           </NavLink>
         </div>
@@ -140,7 +154,7 @@ function Header({ listCart, onDelete, onUpdate, isShowSearch, onSearch ,onShowSe
               </div>
             </div>
             <div className="icon icon-search">
-              <NavLink onClick={() => handlShowSearch("")}>
+              <NavLink to={local} onClick={() => handlShowSearch("")}>
                 <span>
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>

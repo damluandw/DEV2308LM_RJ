@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ItemProduct from "./ItemProduct";
 
-function ListProductByCategory({ category, listProduct, onBuyProduct }) {
+function ListProductByCategory({ category, listProduct, onBuyProduct ,pageSize}) {
   const [list, setList] = useState([]);
 
   useEffect(() => {

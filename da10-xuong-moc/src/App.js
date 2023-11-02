@@ -5,7 +5,13 @@ import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
 
 import Index from "./componnents/Index";
-import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useSearchParams,
+} from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
@@ -20,28 +26,26 @@ import ProductDetails from "./componnents/ProductDetails";
 import SearchPage from "./componnents/SearchPage";
 
 function App() {
+  //categories
   const [listCategories, setListCategories] = useState([]);
   const getListCategories = async () => {
     let response = await axios.get("Categories");
     setListCategories(response.data);
   };
-
-  //use Effect
   useEffect(() => {
     getListCategories();
   }, []);
-
+  //products
   const [listProduct, setListProduct] = useState([]);
   const getListProduct = async () => {
     let response = await axioslocal.get("Products");
     setListProduct(response.data);
   };
 
-  //use Effect
   useEffect(() => {
     getListProduct();
   }, []);
-
+  //carts
   const [listCart, setListCart] = useState([]);
   const getListCart = async () => {
     const list = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_CARTS"));
@@ -63,6 +67,7 @@ function App() {
     return -1; // sản phẩm chưa có trong giỏ hàng
   };
 
+  //handle
   const handleBuy = (product) => {
     let quantity = 1;
     let item = { product, quantity };
@@ -115,6 +120,8 @@ function App() {
     localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
     getListCart();
   };
+
+  //search
   const [isShowSearch, setIsShowSearch] = useState(false);
   const [valueSearch, setValueSearch] = useState("");
   const handleSearch = (value) => {
@@ -122,10 +129,13 @@ function App() {
     if (value !== "" && value !== null && value !== undefined) {
       setValueSearch(value);
     }
+    setValueSearch("");
   };
-  const handleShowSearch = (value) => {
+  const handleShowSearch = () => {
     setIsShowSearch(!isShowSearch);
   };
+
+  const [pageSize, setPageSize] = useState(8);
 
   return (
     <>
@@ -137,7 +147,7 @@ function App() {
           isShowSearch={isShowSearch}
           onSearch={handleSearch}
           onShowSearch={handleShowSearch}
-          valueSearch  ={valueSearch}
+          valueSearch={valueSearch}
         />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
@@ -159,6 +169,7 @@ function App() {
               <Products
                 listProduct={listProduct}
                 listCategories={listCategories}
+                onBuyProduct={handleBuy}
               />
             }
           />
@@ -174,6 +185,7 @@ function App() {
                     category={item}
                     listProduct={listProduct}
                     onBuyProduct={handleBuy}
+                    pageSize={pageSize}
                   />
                 }
               />
@@ -187,7 +199,12 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/partner" element={<Partner />} />
           <Route path="/news/pagenews" element={<PageNews />} />
-          <Route path={`/search`} element={<SearchPage listProduct={listProduct} />} />
+          <Route
+            path={`/search`}
+            element={
+              <SearchPage listProduct={listProduct} pageSize={pageSize} />
+            }
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

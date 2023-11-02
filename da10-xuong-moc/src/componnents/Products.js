@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import BannerProducts from "./BannerProducts";
 import "./css/sanpham.css";
 import ListProductSlick from "./ListProductSlick";
+import { NavLink } from "react-router-dom";
 
-function Products({ listProduct, listCategories }) {
-
-
+function Products({ listProduct, listCategories, onBuyProduct }) {
+  let handleBuy = (product) => {
+    onBuyProduct(product);
+  };
   let render = listCategories.map((item, index) => {
     return (
-      <section id={`products-${item.slug}`}>
+      <section key={item.id} id={`products-${item.slug}`}>
         <div className="products">
           <div className="container">
             <div className="d-flex justify-content-between">
               <h3>{item.title}</h3>
               <div className="xem-tat-ca cl-blue">
-                <a href={`/products/${item.slug}`}>XEM TẤT CẢ</a>
+                <NavLink to={`/products/${item.slug}`}>XEM TẤT CẢ</NavLink>
               </div>
             </div>
 
             <ListProductSlick
               listProduct={listProduct}
               arrows={false}
-              filterCID={7}
+              filterCID={item.id}
               filterNoiBat={null}
+              onBuyProduct={handleBuy}
             />
           </div>
         </div>
@@ -30,15 +33,11 @@ function Products({ listProduct, listCategories }) {
     );
   });
 
-
   return (
     <>
       <BannerProducts />
-
       {/* ./banner  */}
-      <div id="list-products">
-        {render}
-      </div>
+      <div id="list-products">{render}</div>
     </>
   );
 }

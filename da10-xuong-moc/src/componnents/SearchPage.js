@@ -116,7 +116,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
           <div className="list-product row">{render}</div>
         </div>
       </div>
-      <Page pages={pages} />
+      <Page pages={pages} keyWord={keyWord} indexPage ={indexPage}/>
     </section>
   );
 }

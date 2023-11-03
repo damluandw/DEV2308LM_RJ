@@ -47,8 +47,6 @@ function Header({
   };
   const handlShowSearch = () => {
     onShowSearch();
-
-    console.log("local",local)
   };
 
   let renderSearch = isShowSearch ? (

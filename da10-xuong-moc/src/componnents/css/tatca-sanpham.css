@@ -76,7 +76,7 @@
   margin: 0rem 0 5rem;
 }
 
-.pages ul li {
+.pages ul li{
   padding: 0.3rem;
   width: 2rem;
   background-color: #ccc;
@@ -85,10 +85,16 @@
   font-family: Gotham-Medium;
   color: #fff;
 }
+.pages ul li a{
+  color: #fff;
+}
+.pages ul li.active{
+  background-color: #bd945f;
+
+}
+
 
 .pages ul li:hover {
   background-color: #bd945f;
   color: #2c2e53;
 }
-
-

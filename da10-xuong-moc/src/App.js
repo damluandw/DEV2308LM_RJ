@@ -24,6 +24,8 @@ import Partner from "./componnents/Partner";
 import PageNews from "./componnents/PageNews";
 import ProductDetails from "./componnents/ProductDetails";
 import SearchPage from "./componnents/SearchPage";
+import Login from "./componnents/Login";
+import { AuthProvider } from "./componnents/context/AuthProvider";
 
 function App() {
   //categories
@@ -135,12 +137,12 @@ function App() {
     setIsShowSearch(!isShowSearch);
   };
 
-  const [pageSize, setPageSize] = useState(8);
+  const [pageSize, setPageSize] = useState(4);
 
   return (
     <>
       <BrowserRouter>
-        <Header
+        {/* <Header
           listCart={listCart}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
@@ -148,7 +150,7 @@ function App() {
           onSearch={handleSearch}
           onShowSearch={handleShowSearch}
           valueSearch={valueSearch}
-        />
+        /> */}
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route
@@ -205,8 +207,14 @@ function App() {
               <SearchPage listProduct={listProduct} pageSize={pageSize} />
             }
           />
+           <Route path="/login" element={<Login />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
+        {/* <Routes>
+          <AuthProvider>
+            <Route path="/login" element={<Login />} />
+          </AuthProvider>
+        </Routes> */}
       </BrowserRouter>
 
       {/* Thư viện js  */}

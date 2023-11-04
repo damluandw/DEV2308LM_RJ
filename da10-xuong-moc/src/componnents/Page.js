@@ -3,8 +3,35 @@ import { NavLink, useLocation } from "react-router-dom";
 
 function Page({ pages, keyWord, indexPage }) {
   // console.log("pagelocal",local);
+  // const [pageInfo, setPageInfo] = useState({
+  //   pages: [],
+  //   keyWord: "",
+  //   indexPage: 0,
+  // });
+  // const getPageInfo = () => {
+  //   let infoPage = [];
+  //   infoPage.pages = keyWord;
+  //   infoPage.keyWord = keyWord;
+  //   infoPage.indexPage = indexPage;
+  //   console.log(infoPage);
+  //   setPageInfo(infoPage);
+  // };
+  // useEffect(() => {
+  //   getPageInfo();
+  //   console.log(pageInfo);
+  // }, []);
+  // useEffect(() => {
+  //   getPageInfo();
+  // }, [indexPage]);
+  // useEffect(() => {
+  //   getPageInfo();
+  // }, [pages]);
+  // useEffect(() => {
+  //   getPageInfo();
+  // }, [keyWord]);
+
   let renderPage =
-    pages != undefined ? (
+    pages != undefined && pages != [] && pages != "" ? (
       pages.map((item, index) => {
         return indexPage == index + 1 ? (
           <li key={index} className="active">
@@ -21,6 +48,7 @@ function Page({ pages, keyWord, indexPage }) {
         );
       })
     ) : (
+      // <></>
       <></>
     );
   let renderPageLeft = () => {
@@ -28,25 +56,29 @@ function Page({ pages, keyWord, indexPage }) {
       <></>
     ) : (
       <li>
-        <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}>
-          <span>
-            <i className="fa-solid fa-angle-left" />
-          </span>
-        </NavLink>
+        {/* <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}> */}
+        <span>
+          <i className="fa-solid fa-angle-left" />
+        </span>
+        {/* </NavLink> */}
       </li>
     );
   };
   let renderPageRight = () => {
-    pages.length == indexPage ? (
-      <></>
-    ) : (
-      <li>
-        <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}>
+    pages != undefined && pages != [] && pages != "" ? (
+      pages.length == indexPage ? (
+        <></>
+      ) : (
+        <li>
+          {/* <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}> */}
           <span>
             <i className="fa-solid fa-angle-right" />
           </span>
-        </NavLink>
-      </li>
+          {/* </NavLink> */}
+        </li>
+      )
+    ) : (
+      <></>
     );
   };
 

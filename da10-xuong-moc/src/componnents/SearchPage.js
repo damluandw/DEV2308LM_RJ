@@ -21,14 +21,14 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   };
   const getPages = (list) => {
     let maxPage = getMaxPage(list);
-    let pages = [{}];
-    let page = 0;
+    let pages = [];
+    // let page = 0;
     for (let i = 1; i <= maxPage; i++) {
-      page = i;
+      let page = i;
       pages.push(page);
       // console.log(pages);
     }
-    
+
     setPages(pages);
   };
 
@@ -63,8 +63,9 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
     let listTemp = listProduct;
     if (listTemp != undefined) {
       listTemp = getListSearch(listTemp, key);
-      listTemp = getListPage(listTemp, pageIndex);
       getPages(listTemp);
+      listTemp = getListPage(listTemp, pageIndex);
+
       setList(listTemp);
     }
   };
@@ -116,7 +117,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
           <div className="list-product row">{render}</div>
         </div>
       </div>
-      <Page pages={pages} keyWord={keyWord} indexPage ={indexPage}/>
+      <Page pages={pages} keyWord={keyWord} indexPage={indexPage} />
     </section>
   );
 }

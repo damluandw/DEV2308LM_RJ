@@ -37,8 +37,7 @@ section#login > div {
   padding-bottom: 1rem;
 }
 
-#login a,
-a:visited {
+#login a{
   color: #fff;
 }
 

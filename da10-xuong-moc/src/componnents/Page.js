@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+function useQuery() {
+  const { search } = useLocation();
 
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 function Page({ pages, keyWord, indexPage }) {
+  const local = useLocation();
+  const query = useQuery();
+  // console.log(pages);
   // console.log("pagelocal",local);
+  console.log("query", query.get("key"));
   // const [pageInfo, setPageInfo] = useState({
   //   pages: [],
   //   keyWord: "",
@@ -35,13 +43,14 @@ function Page({ pages, keyWord, indexPage }) {
       pages.map((item, index) => {
         return indexPage == index + 1 ? (
           <li key={index} className="active">
-            <NavLink to={`/search?key=${keyWord}&page=${index + 1}`}>
+            {/* <NavLink to={`/search?key=${keyWord}&page=${index + 1}`}> */}
+            <NavLink to={local.pathname + ((query.get("key") != undefined && query.get("key") != null) ? ("?" + query.get("key")+"&") : "?") + "page=" + +(index + 1)}>
               {index + 1}
             </NavLink>
           </li>
         ) : (
           <li key={index}>
-            <NavLink to={`/search?key=${keyWord}&page=${index + 1}`}>
+            <NavLink to={local.pathname + ((query.get("key") != undefined && query.get("key") != null) ? ("?" + query.get("key")+"&") : "?") + "page=" +(index + 1)}>
               {index + 1}
             </NavLink>
           </li>

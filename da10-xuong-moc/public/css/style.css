@@ -56,7 +56,7 @@ header ul li.active:before {
     opacity: 1;
   }
 }
-
+header .icon > label > span > i ,
 header .icon > a > span > i {
   color: #000;
   font-size: 1.2rem;

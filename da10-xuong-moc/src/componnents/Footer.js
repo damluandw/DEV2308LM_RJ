@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 function Footer() {
   return (
     <footer>
@@ -42,29 +43,29 @@ function Footer() {
             {/* <div class="footer-line"></div> */}
             <ul>
               <li>
-                <a className="cl-white" href="#">
+                <NavLink className="cl-white" to="/introduce">
                   Giới thiêu
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a className="cl-white" href="#">
+              <NavLink className="cl-white" to="/products">
                   Sản phẩm
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a className="cl-white" href="#">
+              <NavLink className="cl-white" to="/news">
                   Tin tức
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a className="cl-white" href="#">
+              <NavLink className="cl-white" to="/partner">
                   Đối tác
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a className="cl-white" href="#">
+              <NavLink className="cl-white" to="/contact">
                   Liên hệ
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

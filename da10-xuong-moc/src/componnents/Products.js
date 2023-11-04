@@ -16,7 +16,7 @@ function Products({ listProduct, listCategories, onBuyProduct }) {
             <div className="d-flex justify-content-between">
               <h3>{item.title}</h3>
               <div className="xem-tat-ca cl-blue">
-                <NavLink to={`/products/${item.slug}`}>XEM TẤT CẢ</NavLink>
+                <NavLink to={`/products/${item.slug}?page=1`}>XEM TẤT CẢ</NavLink>
               </div>
             </div>
 

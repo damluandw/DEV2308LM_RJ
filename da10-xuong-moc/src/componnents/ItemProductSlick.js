@@ -5,6 +5,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
+  
   return (
     <>
       <div className="item-product col-12 d-flex justify-content-center">

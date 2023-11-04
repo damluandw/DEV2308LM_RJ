@@ -14,6 +14,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   const [indexPage, setIndexPage] = useState(0);
   const [pages, setPages] = useState([]);
   const getMaxPage = (list) => {
+    console.log(list);
     if (list.length % pageSize == 0) return list.length / pageSize;
     else {
       return Math.round(list.length / pageSize + 0.5);
@@ -62,6 +63,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   const setListProduct = (key, pageIndex) => {
     let listTemp = listProduct;
     if (listTemp != undefined) {
+      // console.log(listTemp)
       listTemp = getListSearch(listTemp, key);
       getPages(listTemp);
       listTemp = getListPage(listTemp, pageIndex);

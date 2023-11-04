@@ -6,7 +6,7 @@ import axios from "../api/api-xm";
 import ListProductSlick from "./ListProductSlick";
 import ListTitleNav from "./ListTitleNav";
 
-function ProductDetails({ listProduct }) {
+function ProductDetails({ listProduct, onBuyProduct }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -18,16 +18,18 @@ function ProductDetails({ listProduct }) {
     setProduct(response.data);
     let response2 = await axios.get("Categories/" + response.data.id);
     setCategory(response2.data);
-    console.log("product", response.data);
+    // console.log("product", response.data);
   };
   useEffect(() => {
     getProduct();
   }, [id]);
-
+  const handleBuy = (product) => {
+    onBuyProduct(product);
+  }
 
   return (
     <>
-    <ListTitleNav/>
+      <ListTitleNav />
       {/* ./header  */}
       <section id="product">
         <div className="container">
@@ -48,7 +50,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-1.png"
                       alt="sp-1.png"
-                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-1.png");}}
+                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-1.png"); }}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -56,7 +58,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-2.png"
                       alt="sp-2.png"
-                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-2.png");}}
+                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-2.png"); }}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -64,7 +66,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-3.png"
                       alt="sp-3.png"
-                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-3.png");}}
+                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-3.png"); }}
                     />
                   </div>
                   <div className="col-lg-3">
@@ -72,7 +74,7 @@ function ProductDetails({ listProduct }) {
                       className="w-100"
                       src="/images/san-pham-chi-tiet/sp-4.png"
                       alt="sp-4.png"
-                      onClick={()=>{setImg("/images/san-pham-chi-tiet/sp-4.png");}}
+                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-4.png"); }}
                     />
                   </div>
                 </div>
@@ -104,6 +106,15 @@ function ProductDetails({ listProduct }) {
                     <span>Bảo hành sản phẩm lên tới 36 tháng</span>
                   </div>
                 </label>
+                <br />
+                <div>
+                  <NavLink
+                    data-bs-toggle="modal"
+                    to="#staticBackdrop"
+                    role="button">
+                    <button className="btn btn-mua" onClick={() => handleBuy(product)}>Đặt mua</button>
+                  </NavLink>
+                </div>
               </div>
             </div>
             <div className="main-product-bottom">
@@ -249,7 +260,7 @@ function ProductDetails({ listProduct }) {
             <div className="d-flex justify-content-between">
               <h3>Sản phẩm tương tự</h3>
               <div className="xem-tat-ca cl-blue">
-                <NavLink onClick={() => navigate("/products/"+category.slug)} >XEM TẤT CẢ</NavLink>
+                <NavLink onClick={() => navigate("/products/" + category.slug)} >XEM TẤT CẢ</NavLink>
               </div>
             </div>
             <div className="list-product">

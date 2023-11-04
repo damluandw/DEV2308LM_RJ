@@ -59,6 +59,18 @@ function App() {
   useEffect(() => {
     getListCart();
   }, []);
+  //wishlist
+  const [wishlist, setWishlist] = useState([]);
+  const getWishlist = async () => {
+    const list = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_WISHLIST"));
+    if (list === null) {
+
+      setListCart([]);
+    } else setListCart(list);
+  };
+  useEffect(() => {
+    getWishlist();
+  }, []);
 
   const getIndexByProduct = (listCart, product) => {
     for (let index = 0; index < listCart.length; index++) {
@@ -142,16 +154,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Header
+        <Header
           listCart={listCart}
+          wishlist={wishlist}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
           isShowSearch={isShowSearch}
           onSearch={handleSearch}
           onShowSearch={handleShowSearch}
           valueSearch={valueSearch}
-        /> */}
+        />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route
             path="/home"
@@ -195,7 +209,7 @@ function App() {
           })}
           <Route
             path="/products/propduct-detail/:id"
-            element={<ProductDetails listProduct={listProduct} />}
+            element={<ProductDetails listProduct={listProduct} onBuyProduct={handleBuy} />}
           />
 
           <Route path="/news" element={<News />} />
@@ -207,9 +221,8 @@ function App() {
               <SearchPage listProduct={listProduct} pageSize={pageSize} />
             }
           />
-           <Route path="/login" element={<Login />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
         {/* <Routes>
           <AuthProvider>
             <Route path="/login" element={<Login />} />

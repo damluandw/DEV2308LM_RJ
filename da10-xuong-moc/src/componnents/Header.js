@@ -4,6 +4,7 @@ import Cart from "./Cart";
 
 function Header({
   listCart,
+  wishlist,
   onDelete,
   onUpdate,
   isShowSearch,
@@ -11,16 +12,16 @@ function Header({
   onShowSearch,
 }) {
   const { local } = useLocation();
-  
+
   const handleDelete = (product) => {
     onDelete(product);
   };
   const handleUpdate = (product, action) => {
     onUpdate(product, action);
   };
-  let renderQtyCart =
-    listCart.length > 0 ? <div className="qty">{listCart.length}</div> : <></>;
-  let renderBoxEmpty =
+  let renderQtyCart = listCart != undefined ?
+    (listCart.length > 0 ? <div className="qty">{listCart.length}</div> : <></>) : <></>
+  let renderBoxEmptyCart =
     listCart.length > 0 ? (
       <></>
     ) : (
@@ -32,6 +33,25 @@ function Header({
       </div>
     );
 
+  let renderQtyWishlist = wishlist != undefined ?
+    (wishlist.length > 0 ? <div className="qty">{wishlist.length}</div> : <></>) : <></>
+  let renderBoxEmptyWishlist = wishlist != undefined ? (
+    wishlist.length > 0 ? (
+      <>
+      </>
+    ) : (
+      <><p>Danh sách yêu thích trống</p>
+        <NavLink
+          to="/products"
+          className="d-flex justify-content-center"
+        >
+          <button className="btn btn-mua-ngay-header">
+            Xem thêm sản phẩm
+          </button>
+        </NavLink>
+      </>
+    )) : <></>
+
   const [valueSearch, setValueSearch] = useState("");
 
   let renderLabel =
@@ -42,8 +62,8 @@ function Header({
     );
   const handlSearch = () => {
     onSearch(valueSearch);
-    setValueSearch("");
-    
+    // setValueSearch("");
+
   };
   const handlShowSearch = () => {
     onShowSearch();
@@ -63,6 +83,7 @@ function Header({
         <div className="btn-search-form" onClick={() => handlSearch()}>
           <NavLink
             to={valueSearch == "" ? local : `/search?key=${valueSearch}&page=1`}
+          // to={`/search?key=${valueSearch}&page=1`}
           >
             <i className="fa-solid fa-magnifying-glass"></i>
           </NavLink>
@@ -131,32 +152,30 @@ function Header({
                 </span>
                 {renderQtyCart}
               </NavLink>
-              {renderBoxEmpty}
+              {renderBoxEmptyCart}
             </div>
             <div className="icon icon-wishlist">
               <NavLink>
                 <span>
                   <i className="fa-regular fa-heart"></i>
                 </span>
+                {renderQtyWishlist}
               </NavLink>
               <div className="box box-wishlist">
-                <p>Danh sách yêu thích trống</p>
-                <NavLink
-                  to="/products"
-                  className="d-flex justify-content-center"
-                >
-                  <button className="btn btn-mua-ngay-header">
-                    Xem thêm sản phẩm
-                  </button>
-                </NavLink>
+                {renderBoxEmptyWishlist}
               </div>
             </div>
             <div className="icon icon-search">
-              <NavLink to={local} onClick={() => handlShowSearch("")}>
+              {/* <NavLink onClick={() => handlShowSearch("")}>
                 <span>
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
-              </NavLink>
+              </NavLink> */}
+              <label>
+                <span onClick={() => handlShowSearch()} >
+                  <i className="fa-solid fa-magnifying-glass"></i>
+                </span>
+              </label>
               {renderSearch}
             </div>
           </div>

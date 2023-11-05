@@ -4,9 +4,12 @@ import BannerProducts from "./BannerProducts";
 import ListProductByCategory from "./ListProductByCategory";
 import Page from "./Page";
 
-function AllProducts({ index, category, listProduct, onBuyProduct, pageSize }) {
+function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pageSize }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
+  };
+  let handleWishlist = (product) => {
+    onWishlist(product);
   };
 
   const [indexPage, setIndexPage] = useState(1);
@@ -49,6 +52,7 @@ function AllProducts({ index, category, listProduct, onBuyProduct, pageSize }) {
         listProduct={listProduct}
         onBuyProduct={handleBuy}
         pageSize={pageSize}
+        onWishlist={handleWishlist}
       />
       <Page pages={pages} indexPage={indexPage} />
     </>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ItemProduct from "./ItemProduct";
 
-function ListProductByCategory({ category, listProduct, onBuyProduct ,pageSize}) {
+function ListProductByCategory({ category, listProduct, onBuyProduct,onWishlist ,pageSize}) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -19,6 +19,9 @@ function ListProductByCategory({ category, listProduct, onBuyProduct ,pageSize})
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
+  let handleWishlist = (product) => {
+    onWishlist(product);
+  };
   let render = list.map((item, index) => {
     return (
       <ItemProduct
@@ -26,9 +29,12 @@ function ListProductByCategory({ category, listProduct, onBuyProduct ,pageSize})
         renderProduct={item}
         rollNo={index + 1}
         onBuyProduct={handleBuy}
+        onWishlist={handleWishlist}
       />
     );
   });
+
+
   return (
     <section id="products">
       <div className="products">

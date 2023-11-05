@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Cart from "./Cart";
+import Wishlist from "./Wishlist";
 
 function Header({
   listCart,
@@ -10,12 +11,14 @@ function Header({
   isShowSearch,
   onSearch,
   onShowSearch,
+  onDeleteWishlist
 }) {
   const { local } = useLocation();
 
   const handleDelete = (product) => {
     onDelete(product);
   };
+
   const handleUpdate = (product, action) => {
     onUpdate(product, action);
   };
@@ -33,12 +36,17 @@ function Header({
       </div>
     );
 
+
+  const handleDeleteWishlist = (product) => {
+    console.log(product)
+    // onDeleteWishlist(product);
+  }
   let renderQtyWishlist = wishlist != undefined ?
     (wishlist.length > 0 ? <div className="qty">{wishlist.length}</div> : <></>) : <></>
   let renderBoxEmptyWishlist = wishlist != undefined ? (
     wishlist.length > 0 ? (
-      <>
-      </>
+      // <></>
+      <Wishlist wishlist={wishlist} onDeleteWishlist={handleDeleteWishlist} />
     ) : (
       <><p>Danh sách yêu thích trống</p>
         <NavLink

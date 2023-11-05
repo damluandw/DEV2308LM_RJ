@@ -8,10 +8,13 @@ import Categories from "./Categories";
 import IndexBanner from "./IndexBanner";
 import NewsIndex from "./NewsIndex";
 
-function Index({ listCategories, listProduct ,onBuyProduct}) {
+function Index({ listCategories, listProduct ,onBuyProduct,onWishlist}) {
   let arrows = true;
   const handleBuy = (product) => {
     onBuyProduct(product);
+  };
+  let handleWishlist = (product) => {
+    onWishlist(product);
   };
   return (
     <>
@@ -24,7 +27,7 @@ function Index({ listCategories, listProduct ,onBuyProduct}) {
         <div className="products-outstanding">
           <div className="container">
             <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat={true} filterCID={null} onBuyProduct={handleBuy}/>
+            <ListProductSlick listProduct={listProduct} arrows={arrows} filterNoiBat={true} filterCID={null} onBuyProduct={handleBuy} onWishlist={handleWishlist}/>
           </div>
         </div>
       </section>

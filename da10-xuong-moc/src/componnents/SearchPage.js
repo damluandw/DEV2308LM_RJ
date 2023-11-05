@@ -14,23 +14,26 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   const [indexPage, setIndexPage] = useState(0);
   const [pages, setPages] = useState([]);
   const getMaxPage = (list) => {
-    console.log(list);
     if (list.length % pageSize == 0) return list.length / pageSize;
     else {
       return Math.round(list.length / pageSize + 0.5);
     }
   };
   const getPages = (list) => {
-    let maxPage = getMaxPage(list);
-    let pages = [];
-    // let page = 0;
-    for (let i = 1; i <= maxPage; i++) {
-      let page = i;
-      pages.push(page);
-      // console.log(pages);
+    console.log("getpage", list)
+    if (list != undefined) {
+      let maxPage = getMaxPage(list);
+      let pages = [];
+      // let page = 0;
+      for (let i = 1; i <= maxPage; i++) {
+        let page = i;
+        pages.push(page);
+        // console.log(pages);
+      }
+      setPages(pages);
     }
 
-    setPages(pages);
+
   };
 
   const getListSearch = (list, key) => {
@@ -63,8 +66,9 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   const setListProduct = (key, pageIndex) => {
     let listTemp = listProduct;
     if (listTemp != undefined) {
-      // console.log(listTemp)
+
       listTemp = getListSearch(listTemp, key);
+      console.log("setListProduct", listTemp)
       getPages(listTemp);
       listTemp = getListPage(listTemp, pageIndex);
 

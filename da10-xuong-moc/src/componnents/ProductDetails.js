@@ -6,17 +6,18 @@ import axios from "../api/api-xm";
 import ListProductSlick from "./ListProductSlick";
 import ListTitleNav from "./ListTitleNav";
 
-function ProductDetails({ listProduct, onBuyProduct }) {
+function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
+  const [products, setProducts] = useState([]);
   const [category, setCategory] = useState({});
   const [img, setImg] = useState("/images/san-pham-chi-tiet/product-1.png");
   const getProduct = async () => {
     let response = await axioslocal.get("Products/" + id);
     setProduct(response.data);
-    let response2 = await axios.get("Categories/" + response.data.id);
+    let response2 = await axios.get("Categories/" + response.data.cid);
     setCategory(response2.data);
     // console.log("product", response.data);
   };
@@ -25,6 +26,9 @@ function ProductDetails({ listProduct, onBuyProduct }) {
   }, [id]);
   const handleBuy = (product) => {
     onBuyProduct(product);
+  }
+  const handleWishlist = (product) => {
+    onWishlist(product);
   }
 
   return (
@@ -260,7 +264,10 @@ function ProductDetails({ listProduct, onBuyProduct }) {
             <div className="d-flex justify-content-between">
               <h3>Sản phẩm tương tự</h3>
               <div className="xem-tat-ca cl-blue">
-                <NavLink onClick={() => navigate("/products/" + category.slug)} >XEM TẤT CẢ</NavLink>
+                <NavLink 
+                to ={`/products/${category.slug}`}
+                // onClick={() => navigate("/products/" + category.slug)} 
+                >XEM TẤT CẢ</NavLink>
               </div>
             </div>
             <div className="list-product">
@@ -269,6 +276,8 @@ function ProductDetails({ listProduct, onBuyProduct }) {
                 arrows={true}
                 filterCID={category.id}
                 filterNoiBat={null}
+                onBuyProduct={handleBuy}
+                onWishlist={handleWishlist}
               />
             </div>
           </div>

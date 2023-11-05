@@ -1,0 +1,28 @@
+.image-item-wishlist {
+    width: 3rem;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.item-wishlist {
+    margin-bottom: 0.8rem;
+}
+
+.title-item-wishlist h5 {
+    font-size: 1rem;
+}
+.del-wishlist .fa-solid.fa-heart{
+    display: block;
+}
+.del-wishlist .fa-regular.fa-heart{
+    display: none;
+}
+.del-wishlist:hover .fa-regular.fa-heart{
+    display: block;
+}
+
+.del-wishlist:hover .fa-solid.fa-heart{
+    display: none;
+}

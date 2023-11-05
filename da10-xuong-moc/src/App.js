@@ -64,17 +64,21 @@ function App() {
   const getWishlist = async () => {
     const list = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_WISHLIST"));
     if (list === null) {
-
-      setListCart([]);
-    } else setListCart(list);
+      let response = await axioslocal.get("wishlist");
+      setWishlist(response.data);
+    } else setWishlist(list);
   };
   useEffect(() => {
     getWishlist();
   }, []);
 
-  const getIndexByProduct = (listCart, product) => {
-    for (let index = 0; index < listCart.length; index++) {
-      if (listCart[index].product.id === product.id) {
+
+
+  const getIndexByProduct = (list, product) => {
+    console.log(product);
+    console.log(list.product);
+    for (let index = 0; index < list.length; index++) {
+      if (list[index].product.id === product.id) {
         return index; //sản phẩm đã tồn tại trong giỏ hàng
       }
     }
@@ -106,6 +110,34 @@ function App() {
     }
     // cập nhật localStorage
     localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify(listTemp));
+    getListCart();
+  };
+
+  let handleWishlist = (product) => {
+    // let quantity = 1;
+    let item = { product };
+    let index = -1;
+    let listTemp = wishlist;
+    console.log(listTemp)
+    if (listTemp.length === 0) {
+      //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
+      //thêm sản phẩm vào giỏ hàng
+      listTemp.push(item);
+    } else {
+      // giỏ hàng của khách đã tồn tại
+      //TH1/TH2
+      // dựa vào index để xác định => viết hàm kiểm tra sản phẩm đã có trong giỏ hàng chưa
+      index = getIndexByProduct(listTemp, product);
+      if (index === -1) {
+        listTemp.push(item);
+      } else {
+        // nếu sản phẩm mua đã có trong giỏ hàng, thực hiện cập nhật số lượng
+        alert('Sản phẩm đã có trong giỏ hàng');
+      }
+    }
+    // console.log(listTemp);
+    // cập nhật localStorage    
+    localStorage.setItem("DEV2308LMJS_DA10_WISHLIST", JSON.stringify(listTemp));
     getListCart();
   };
   const handleDelete = (product) => {
@@ -148,6 +180,17 @@ function App() {
   const handleShowSearch = () => {
     setIsShowSearch(!isShowSearch);
   };
+  const handleDeleteWishlist = (product) => {
+    console.log(product)
+    // let index = -1;
+    // let listTemp = wishlist;
+    // index = getIndexByProduct(listTemp, product);
+    // if (index >= 0) {
+    //   listTemp.splice(index, 1);
+    // }
+    // localStorage.setItem("DEV2308LMJS_DA10_WISHLIST", JSON.stringify(listTemp));
+    // getWishlist();
+  };
 
   const [pageSize, setPageSize] = useState(4);
 
@@ -163,6 +206,7 @@ function App() {
           onSearch={handleSearch}
           onShowSearch={handleShowSearch}
           valueSearch={valueSearch}
+          onDeleteWishlist ={handleDeleteWishlist}
         />
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -174,6 +218,7 @@ function App() {
                 listCategories={listCategories}
                 listProduct={listProduct}
                 onBuyProduct={handleBuy}
+                onWishlist ={handleWishlist}
               />
             }
           />
@@ -186,6 +231,7 @@ function App() {
                 listProduct={listProduct}
                 listCategories={listCategories}
                 onBuyProduct={handleBuy}
+                onWishlist={handleWishlist}
               />
             }
           />
@@ -201,6 +247,7 @@ function App() {
                     category={item}
                     listProduct={listProduct}
                     onBuyProduct={handleBuy}
+                    onWishlist={handleWishlist}
                     pageSize={pageSize}
                   />
                 }
@@ -209,7 +256,7 @@ function App() {
           })}
           <Route
             path="/products/propduct-detail/:id"
-            element={<ProductDetails listProduct={listProduct} onBuyProduct={handleBuy} />}
+            element={<ProductDetails listProduct={listProduct} onBuyProduct={handleBuy}  onWishlist={handleWishlist}/>}
           />
 
           <Route path="/news" element={<News />} />

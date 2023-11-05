@@ -11,6 +11,7 @@ function ListProductSlick({
   filterCID,
   filterNoiBat,
   onBuyProduct,
+  onWishlist,
 }) {
   const navigate = useNavigate();
   const [list, setList] = useState([]);
@@ -74,6 +75,9 @@ function ListProductSlick({
   const handleBuy = (product) => {
     onBuyProduct(product);
   };
+  let handleWishlist = (product) => {
+    onWishlist(product);
+  };
   let render = list.map((item, index) => {
     return (
       <ItemProductSlick
@@ -81,6 +85,7 @@ function ListProductSlick({
         renderProduct={item}
         rollNo={index + 1}
         onBuyProduct={handleBuy}
+        onWishlist={handleWishlist}
       />
     );
   });

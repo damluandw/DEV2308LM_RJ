@@ -1,11 +1,11 @@
 import React from "react";
 
-function ItemCart({ key, renderCart, rollNo, onDelete,onUpdate }) {
+function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
   const handleDelete = (product) => {
     onDelete(product);
   };
-  const handleUpdate = (product,action) => {
-    onUpdate(product,action);
+  const handleUpdate = (product, action) => {
+    onUpdate(product, action);
   };
   return (
     <>
@@ -23,12 +23,12 @@ function ItemCart({ key, renderCart, rollNo, onDelete,onUpdate }) {
           </div>
           <div className="quantity-item-cart margin-auto">
             <button type="button" className="btn-sub btn"
-            onClick={() => handleUpdate(renderCart.product,"sub")}>
+              onClick={() => handleUpdate(renderCart.product, "sub")}>
               -
             </button>
             <span>{renderCart.quantity} </span>
             <button type="button" className="btn-add btn"
-            onClick={() => handleUpdate(renderCart.product,"add")}>
+              onClick={() => handleUpdate(renderCart.product, "add")}>
               +
             </button>
           </div>

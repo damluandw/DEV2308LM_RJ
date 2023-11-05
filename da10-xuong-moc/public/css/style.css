@@ -304,3 +304,9 @@ footer .thong-tin-chung ul li {
 .xem-tat-ca {
   font-family: "Gotham-Medium";
 }
+
+
+.item-product img{
+  max-width: 17rem;
+  margin: auto;
+}

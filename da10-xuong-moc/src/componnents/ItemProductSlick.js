@@ -1,9 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./css/itemproduct.css";
-function ItemProductSlick({ renderProduct, onBuyProduct }) {
+function ItemProductSlick({ renderProduct, onBuyProduct,onWishlist }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
+  };
+  let handleWishlist = (product) => {
+    onWishlist(product);
   };
   
   return (
@@ -51,7 +54,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct }) {
                   </button>
                 </a> */}
                 <a href="#">
-                  <button className="btn btn-wishlist ">
+                  <button className="btn btn-wishlist " onClick={(ev) => handleWishlist(renderProduct)}>
                     <span className="d-flex justify-content-center">
                       <i className="fa-regular fa-heart"></i>
                     </span>
@@ -64,7 +67,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct }) {
                 >
                   <button
                     className="btn btn-buy"
-                    onClick={(ev) => handleBuy(renderProduct)}
+                    onClick={(ev) => handleBuy(renderProduct)}                    
                   >
                     <span className="d-flex justify-content-center">
                       <i className="fa-solid fa-basket-shopping"></i>

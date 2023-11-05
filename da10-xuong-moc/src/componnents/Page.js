@@ -7,10 +7,15 @@ function useQuery() {
 }
 function Page({ pages, keyWord, indexPage }) {
   const local = useLocation();
-  const query = useQuery();
+  // const query = useQuery();
   // console.log(pages);
   // console.log("pagelocal",local);
-  console.log("query", query.get("key"));
+  // console.log("query", query.get("key"));
+
+  // const [url, setUrl] = useState();
+  // useEffect(() => {
+  //   getPageInfo();
+  // }, [keyWord]);
   // const [pageInfo, setPageInfo] = useState({
   //   pages: [],
   //   keyWord: "",
@@ -43,14 +48,13 @@ function Page({ pages, keyWord, indexPage }) {
       pages.map((item, index) => {
         return indexPage == index + 1 ? (
           <li key={index} className="active">
-            {/* <NavLink to={`/search?key=${keyWord}&page=${index + 1}`}> */}
-            <NavLink to={local.pathname + ((query.get("key") != undefined && query.get("key") != null) ? ("?" + query.get("key")+"&") : "?") + "page=" + +(index + 1)}>
+            <NavLink to={local.pathname + ((keyWord != undefined && keyWord != null) ? ("?key=" + keyWord + "&") : "?") + "page=" + (index + 1)}>
               {index + 1}
             </NavLink>
           </li>
         ) : (
           <li key={index}>
-            <NavLink to={local.pathname + ((query.get("key") != undefined && query.get("key") != null) ? ("?" + query.get("key")+"&") : "?") + "page=" +(index + 1)}>
+            <NavLink to={local.pathname + ((keyWord != undefined && keyWord != null) ? ("?key=" + keyWord + "&") : "?") + "page=" + (index + 1)}>
               {index + 1}
             </NavLink>
           </li>
@@ -60,36 +64,38 @@ function Page({ pages, keyWord, indexPage }) {
       // <></>
       <></>
     );
-  let renderPageLeft = () => {
-    indexPage == 1 ? (
-      <></>
+  let renderPageLeft = (
+    pages != undefined && pages != [] && pages != "" ? (
+      indexPage == 1 ? (
+        <></>
+      ) : (
+        <li>
+          <NavLink to={local.pathname + ((keyWord != undefined && keyWord != null) ? ("?key=" + keyWord + "&") : "?") + "page=" + (indexPage - 1)}>
+            <span>
+              <i className="fa-solid fa-angle-left" />
+            </span>
+          </NavLink>
+        </li>
+      )
     ) : (
-      <li>
-        {/* <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}> */}
-        <span>
-          <i className="fa-solid fa-angle-left" />
-        </span>
-        {/* </NavLink> */}
-      </li>
-    );
-  };
-  let renderPageRight = () => {
+      <></>
+    ));
+  let renderPageRight = (
     pages != undefined && pages != [] && pages != "" ? (
       pages.length == indexPage ? (
         <></>
       ) : (
         <li>
-          {/* <NavLink to={`/search?key=${keyWord}&page=${indexPage + 1}`}> */}
-          <span>
-            <i className="fa-solid fa-angle-right" />
-          </span>
-          {/* </NavLink> */}
+          <NavLink to={local.pathname + ((keyWord != undefined && keyWord != null) ? ("?key=" + keyWord + "&") : "?") + "page=" + (++indexPage)}>
+            <span>
+              <i className="fa-solid fa-angle-right" />
+            </span>
+          </NavLink>
         </li>
       )
     ) : (
       <></>
-    );
-  };
+    ));
 
   return (
     <>

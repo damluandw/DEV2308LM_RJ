@@ -1,9 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-function ItemProduct({ renderProduct, onBuyProduct }) {
+function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
+  };
+  let handleWishlist = (product) => {
+    onWishlist(product);
   };
   return (
     <>
@@ -40,7 +43,9 @@ function ItemProduct({ renderProduct, onBuyProduct }) {
           <div className="product-description navbar-collapse">
             <div className="btn-product d-flex justify-content-end">
               <a href="#">
-                <button className="btn btn-wishlist ">
+                <button className="btn btn-wishlist "
+                  onClick={(ev) => handleWishlist(renderProduct)}
+                  >
                   <span className="d-flex justify-content-center">
                     <i className="fa-regular fa-heart"></i>
                   </span>
@@ -54,6 +59,7 @@ function ItemProduct({ renderProduct, onBuyProduct }) {
                 <button
                   className="btn btn-buy"
                   onClick={(ev) => handleBuy(renderProduct)}
+
                 >
                   <span className="d-flex justify-content-center">
                     <i className="fa-solid fa-basket-shopping"></i>

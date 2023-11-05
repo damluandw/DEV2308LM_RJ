@@ -4,9 +4,12 @@ import "./css/sanpham.css";
 import ListProductSlick from "./ListProductSlick";
 import { NavLink } from "react-router-dom";
 
-function Products({ listProduct, listCategories, onBuyProduct }) {
+function Products({ listProduct, listCategories, onBuyProduct,onWishlist }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
+  };
+  let handleWishlist = (product) => {
+    onWishlist(product);
   };
   let render = listCategories.map((item, index) => {
     return (
@@ -26,6 +29,7 @@ function Products({ listProduct, listCategories, onBuyProduct }) {
               filterCID={item.id}
               filterNoiBat={null}
               onBuyProduct={handleBuy}
+              onWishlist={handleWishlist}
             />
           </div>
         </div>

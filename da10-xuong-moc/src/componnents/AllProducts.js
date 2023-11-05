@@ -29,7 +29,6 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
       pages.push(page);
       // console.log(pages);
     }
-
     setPages(pages);
   };
 

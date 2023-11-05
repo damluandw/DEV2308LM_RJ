@@ -20,7 +20,6 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
     }
   };
   const getPages = (list) => {
-    console.log("getpage", list)
     if (list != undefined) {
       let maxPage = getMaxPage(list);
       let pages = [];
@@ -32,8 +31,6 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
       }
       setPages(pages);
     }
-
-
   };
 
   const getListSearch = (list, key) => {
@@ -68,7 +65,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
     if (listTemp != undefined) {
 
       listTemp = getListSearch(listTemp, key);
-      console.log("setListProduct", listTemp)
+      // console.log("setListProduct", listTemp)
       getPages(listTemp);
       listTemp = getListPage(listTemp, pageIndex);
 

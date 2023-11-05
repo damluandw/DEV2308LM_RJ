@@ -72,8 +72,6 @@ function App() {
     getWishlist();
   }, []);
 
-
-
   const getIndexByProduct = (list, product) => {
     console.log(product);
     console.log(list.product);
@@ -118,7 +116,7 @@ function App() {
     let item = { product };
     let index = -1;
     let listTemp = wishlist;
-    console.log(listTemp)
+    console.log(listTemp);
     if (listTemp.length === 0) {
       //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
       //thêm sản phẩm vào giỏ hàng
@@ -132,13 +130,12 @@ function App() {
         listTemp.push(item);
       } else {
         // nếu sản phẩm mua đã có trong giỏ hàng, thực hiện cập nhật số lượng
-        alert('Sản phẩm đã có trong giỏ hàng');
+        alert("Sản phẩm đã có trong giỏ hàng");
       }
     }
-    // console.log(listTemp);
-    // cập nhật localStorage    
+    // cập nhật localStorage
     localStorage.setItem("DEV2308LMJS_DA10_WISHLIST", JSON.stringify(listTemp));
-    getListCart();
+    getWishlist();
   };
   const handleDelete = (product) => {
     let index = -1;
@@ -181,18 +178,27 @@ function App() {
     setIsShowSearch(!isShowSearch);
   };
   const handleDeleteWishlist = (product) => {
-    console.log(product)
-    // let index = -1;
-    // let listTemp = wishlist;
-    // index = getIndexByProduct(listTemp, product);
-    // if (index >= 0) {
-    //   listTemp.splice(index, 1);
-    // }
-    // localStorage.setItem("DEV2308LMJS_DA10_WISHLIST", JSON.stringify(listTemp));
-    // getWishlist();
+    let index = -1;
+    let listTemp = wishlist;
+    index = getIndexByProduct(listTemp, product);
+    if (index >= 0) {
+      listTemp.splice(index, 1);
+    }
+    localStorage.setItem("DEV2308LMJS_DA10_WISHLIST", JSON.stringify(listTemp));
+    getWishlist();
   };
 
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(2);
+
+
+  const [news, setNews] = useState("");
+  const getNews = async () => {
+    let response = await axios.get("News");
+    setNews(response.data);
+  };
+  useEffect(() => {
+    getNews();
+  }, []);
 
   return (
     <>
@@ -206,7 +212,7 @@ function App() {
           onSearch={handleSearch}
           onShowSearch={handleShowSearch}
           valueSearch={valueSearch}
-          onDeleteWishlist ={handleDeleteWishlist}
+          onDeleteWishlist={handleDeleteWishlist}
         />
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -218,7 +224,7 @@ function App() {
                 listCategories={listCategories}
                 listProduct={listProduct}
                 onBuyProduct={handleBuy}
-                onWishlist ={handleWishlist}
+                onWishlist={handleWishlist}
               />
             }
           />
@@ -256,7 +262,13 @@ function App() {
           })}
           <Route
             path="/products/propduct-detail/:id"
-            element={<ProductDetails listProduct={listProduct} onBuyProduct={handleBuy}  onWishlist={handleWishlist}/>}
+            element={
+              <ProductDetails
+                listProduct={listProduct}
+                onBuyProduct={handleBuy}
+                onWishlist={handleWishlist}
+              />
+            }
           />
 
           <Route path="/news" element={<News />} />

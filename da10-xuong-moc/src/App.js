@@ -43,7 +43,6 @@ function App() {
     let response = await axioslocal.get("Products");
     setListProduct(response.data);
   };
-
   useEffect(() => {
     getListProduct();
   }, []);
@@ -188,13 +187,13 @@ function App() {
     getWishlist();
   };
 
-  const [pageSize, setPageSize] = useState(2);
-
+  const [pageSize, setPageSize] = useState(4);
 
   const [news, setNews] = useState("");
   const getNews = async () => {
     let response = await axios.get("News");
     setNews(response.data);
+    console.log(response.data)
   };
   useEffect(() => {
     getNews();
@@ -271,7 +270,7 @@ function App() {
             }
           />
 
-          <Route path="/news" element={<News />} />
+          <Route path="/news" element={<News news={news} />} />
           <Route path="/partner" element={<Partner />} />
           <Route path="/news/pagenews" element={<PageNews />} />
           <Route

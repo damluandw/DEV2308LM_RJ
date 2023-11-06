@@ -46,7 +46,7 @@
     background: rgba(26, 25, 25, 0.9);
     content: "";
     display: block;
-    height: 39.5rem;
+    height: 36rem;
     position: absolute;
     width: 100%;
   }
@@ -55,7 +55,7 @@
   margin: 3rem 0 5rem;
 }
 
-.lien-he-page-box .item-lien-he-page {
+#contact .lien-he-page-box .item-lien-he-page {
   margin: 3rem;
 }
 #contact .title-lien-he-page {

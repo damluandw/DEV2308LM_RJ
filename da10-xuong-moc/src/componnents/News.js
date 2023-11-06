@@ -1,6 +1,37 @@
 import React from "react";
 import "./css/tintuc.css";
-function News() {
+function News({ news }) {
+
+  let renderNews = news.map((item, index) => {
+    let img = item.image.substring(
+      item.image.search("/images"),
+      item.image.length
+    );
+
+    return (
+      <div key={index} className="item-tin-tuc col-lg-4">
+        <div className="img-tin-tuc tin-tuc-top">
+          <img
+            className="w-100"
+            src={img}
+            alt={img}
+          />
+        </div>
+        <div className="tin-tuc-bottom">
+          <div className="title-tin-tuc">
+            <h4>
+              <a href="#">{item.title}</a>
+            </h4>
+          </div>
+          <div className="describe-tin-tuc">
+            <p>Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
+                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
+                      khoản kinh phí "hạn hẹp".</p>
+          </div>
+        </div>
+      </div>
+    );
+  });
   return (
     <>
       <section id="tin-tuc">
@@ -8,240 +39,7 @@ function News() {
           <div className="container">
             <h3>Tin tức</h3>
             <div className="list-tin-tuc row">
-              <div className="item-tin-tuc-page col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="item-tin-tuc col-lg-4">
-                <div className="img-tin-tuc tin-tuc-top">
-                  <img
-                    className="w-100"
-                    src="../images/tin-tuc-page/tin-tuc-1.png"
-                    alt=""
-                  />
-                </div>
-                <div className="tin-tuc-bottom">
-                  <div className="title-tin-tuc">
-                    <h4>
-                      <a href="#">
-                        Ngất ngây với top 10 mẫu nội thất chung cư 1 phòng ngủ
-                        đẹp
-                      </a>
-                    </h4>
-                  </div>
-                  <div className="describe-tin-tuc">
-                    <p>
-                      Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở
-                      nên ưa chuộng hơn trong cuộc hiện đại với những ai có
-                      khoản kinh phí "hạn hẹp".
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {renderNews}
             </div>
           </div>
         </div>

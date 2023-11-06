@@ -7,7 +7,7 @@ function useQuery() {
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-function SearchPage({ listProduct, onBuyProduct, pageSize }) {
+function SearchPage({ listProduct, onBuyProduct, pageSize }) { 
   let query = useQuery();
   const [list, setList] = useState([]);
   const [keyWord, setkeyWord] = useState([]);
@@ -80,6 +80,13 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
     setIndexPage(pageIndex);
     setListProduct(key, pageIndex);
   }, []);
+  useEffect(() => {
+    let key = query.get("key");
+    let pageIndex = query.get("page");
+    setkeyWord(key);
+    setIndexPage(pageIndex);
+    setListProduct(key, pageIndex);
+  }, [listProduct]);
 
   useEffect(() => {
     let key = query.get("key");

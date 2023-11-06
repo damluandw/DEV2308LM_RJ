@@ -3,7 +3,12 @@ import styles from "./css/tatca-sanpham.css";
 import BannerProducts from "./BannerProducts";
 import ListProductByCategory from "./ListProductByCategory";
 import Page from "./Page";
+import { useLocation } from "react-router-dom";
+function useQuery() {
+  const { search } = useLocation();
 
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pageSize }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
@@ -11,6 +16,7 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
   let handleWishlist = (product) => {
     onWishlist(product);
   };
+  let query = useQuery();
 
   const [indexPage, setIndexPage] = useState(1);
   const [pages, setPages] = useState([]);
@@ -36,13 +42,24 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
     let listTemp = listProduct;
     let list1 = listTemp.filter((x) => x.cid == category.id);
     getPages(list1);
+    let pageIndex = query.get("page");
+    setIndexPage(pageIndex);
   }, [category]);
 
   useEffect(() => {
     let listTemp = listProduct;
     let list1 = listTemp.filter((x) => x.cid == category.id);
     getPages(list1);
+    let pageIndex = query.get("page");
+    setIndexPage(pageIndex);
   }, []);
+  useEffect(() => {
+    let listTemp = listProduct;
+    let list1 = listTemp.filter((x) => x.cid == category.id);
+    getPages(list1);
+    let pageIndex = query.get("page");
+    setIndexPage(pageIndex);
+  }, [query]);
   return (
     <>
       <BannerProducts />

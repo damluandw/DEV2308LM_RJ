@@ -14,7 +14,7 @@ function Contact() {
             <div className="item">
               <div>
                 <div className="d-flex justify-content-center">
-                  <img src="images/logo.png" alt="Xưởng mộc giá tốt" />
+                  <img src="/images/logo.png" alt="Xưởng mộc giá tốt" />
                 </div>
                 <h2>LIÊN HỆ</h2>
               </div>

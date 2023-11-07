@@ -26,7 +26,7 @@ function Partner() {
       </section>
       {/* ./banner-partner  */}
       <section id="partner">
-        <div className="doi-tac-box">
+        <div className="doi-tac-box d-flex justify-content-center">
           <div className="container">
             <div className="list-doi-tac">
               <div className="item-doi-tac row">

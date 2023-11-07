@@ -18,7 +18,7 @@ function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
             <h5>{renderCart.product.title}</h5>
           </div>
           <div className="price-item-cart margin-auto">
-            <span>{renderCart.product.priceNew}</span>
+            <span>{renderCart.product.priceNew.toLocaleString()}</span>
             <span> VNĐ</span>
           </div>
           <div className="quantity-item-cart margin-auto">

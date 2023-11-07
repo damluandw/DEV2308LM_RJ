@@ -95,10 +95,10 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
                 </div>
                 <div className="price">
                   <div id="price-old">
-                    {product.priceOld} <span>VNĐ</span>
+                    {product.priceOld == undefined ? 0 : product.priceOld.toLocaleString()} <span>VNĐ</span>
                   </div>
                   <div id="price-new">
-                    {product.priceNew} <span>VNĐ</span>
+                    {product.priceNew == undefined ? 0 : product.priceNew.toLocaleString()} <span>VNĐ</span>
                   </div>
                 </div>
                 <label id="bao-hanh">
@@ -117,6 +117,9 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
                     to="#staticBackdrop"
                     role="button">
                     <button className="btn btn-mua" onClick={() => handleBuy(product)}>Đặt mua</button>
+                  </NavLink>
+                  <NavLink>
+                    <button className="btn btn-wishlist" onClick={() => handleWishlist(product)}>Yêu thích</button>
                   </NavLink>
                 </div>
               </div>

@@ -142,7 +142,7 @@ function Header({
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="news" title="TIN TỨC">
+                <NavLink className="nav-link" to="news?page=1" title="TIN TỨC">
                   TIN TỨC
                 </NavLink>
               </li>

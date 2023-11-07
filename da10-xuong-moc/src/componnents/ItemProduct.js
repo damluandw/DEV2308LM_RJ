@@ -35,7 +35,7 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
           </div>
           <div className="product-describe">(Size lớn,trắng sữa)</div>
           <div className="product-price">
-            {renderProduct.priceNew}
+            {renderProduct.priceNew.toLocaleString()}
             <span>VNĐ</span>
           </div>
         </div>

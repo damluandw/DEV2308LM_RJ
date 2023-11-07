@@ -28,20 +28,21 @@
   font-size: 1.5rem;
 }
 
-
-#product .main-product-top-right .btn-mua {
+#product .main-product-top-right .btn-mua,
+#product .main-product-top-right .btn-wishlist {
   font-family: Gotham-Medium;
   /* border: solid 4px #ccc; */
   background-color: #bd945f;
-  margin: 0;
+  margin: 0 1rem 0 0;
   color: #fff;
 }
 
-#product .main-product-top-right .btn-mua:hover {
+#product .main-product-top-right .btn-mua:hover,
+#product .main-product-top-right .btn-wishlist:hover {
   color: #ccc;
 }
 
-#bao-hanh>div {
+#bao-hanh > div {
   display: flex;
   padding: 0.3rem 2rem 0.3rem 0.5rem;
   border: solid 4px #ccc;
@@ -49,8 +50,6 @@
   line-height: 34px;
   font-weight: bold;
 }
-
-
 
 #bao-hanh span {
   margin-left: 0.5rem;

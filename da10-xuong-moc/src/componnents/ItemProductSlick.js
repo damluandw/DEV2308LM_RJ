@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./css/itemproduct.css";
-function ItemProductSlick({ renderProduct, onBuyProduct,onWishlist }) {
+function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
   let handleWishlist = (product) => {
     onWishlist(product);
   };
-  
+  var nf = new Intl.NumberFormat();
+
   return (
     <>
       <div className="item-product col-12 d-flex justify-content-center">
@@ -38,7 +39,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct,onWishlist }) {
             </div>
             <div className="product-describe">(Size lớn,trắng sữa)</div>
             <div className="product-price">
-              {renderProduct.priceNew}
+              {renderProduct.priceNew.toLocaleString()}
               <span> VNĐ</span>
             </div>
           </div>
@@ -54,7 +55,10 @@ function ItemProductSlick({ renderProduct, onBuyProduct,onWishlist }) {
                   </button>
                 </a> */}
                 <a href="#">
-                  <button className="btn btn-wishlist " onClick={(ev) => handleWishlist(renderProduct)}>
+                  <button
+                    className="btn btn-wishlist "
+                    onClick={(ev) => handleWishlist(renderProduct)}
+                  >
                     <span className="d-flex justify-content-center">
                       <i className="fa-regular fa-heart"></i>
                     </span>
@@ -67,7 +71,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct,onWishlist }) {
                 >
                   <button
                     className="btn btn-buy"
-                    onClick={(ev) => handleBuy(renderProduct)}                    
+                    onClick={(ev) => handleBuy(renderProduct)}
                   >
                     <span className="d-flex justify-content-center">
                       <i className="fa-solid fa-basket-shopping"></i>

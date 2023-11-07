@@ -72,3 +72,10 @@
   background-color: #bd945f;
   color: #2c2e53;
 }
+
+.img-tin-tuc img{
+  width: 100%;
+  max-height: 16rem;
+  object-fit: cover;
+  object-position: 0% 50%;
+}

@@ -25,7 +25,7 @@ import PageNews from "./componnents/PageNews";
 import ProductDetails from "./componnents/ProductDetails";
 import SearchPage from "./componnents/SearchPage";
 import Login from "./componnents/Login";
-import { AuthProvider } from "./componnents/context/AuthProvider";
+
 
 function App() {
   //categories
@@ -115,7 +115,6 @@ function App() {
     let item = { product };
     let index = -1;
     let listTemp = wishlist;
-    console.log(listTemp);
     if (listTemp.length === 0) {
       //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
       //thêm sản phẩm vào giỏ hàng
@@ -189,11 +188,10 @@ function App() {
 
   const [pageSize, setPageSize] = useState(4);
 
-  const [news, setNews] = useState("");
+  const [news, setNews] = useState([]);
   const getNews = async () => {
     let response = await axios.get("News");
     setNews(response.data);
-    console.log(response.data)
   };
   useEffect(() => {
     getNews();
@@ -270,13 +268,13 @@ function App() {
             }
           />
 
-          <Route path="/news" element={<News news={news} />} />
+          <Route path="/news" element={<News news={news} pageSize={pageSize}/>} />
           <Route path="/partner" element={<Partner />} />
-          <Route path="/news/pagenews" element={<PageNews />} />
+          <Route path="/news/pagenews" element={<PageNews/>} />
           <Route
             path={`/search`}
             element={
-              <SearchPage listProduct={listProduct} pageSize={pageSize} />
+              <SearchPage listProduct={listProduct}/>
             }
           />
         </Routes>

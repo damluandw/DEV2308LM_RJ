@@ -326,6 +326,25 @@ footer .thong-tin-chung ul li {
   box-shadow: 0 0 0 0.25rem #bd945f;
 }
 
-.del-wishlist .btn.btn-del:focus{
+.del-wishlist .btn.btn-del:focus,
+.btn.btn-wishlist:focus,
+.btn-sub.btn:focus,
+.btn-add.btn:focus{
   box-shadow: none;
+}
+header{
+  position: relative;
+}
+
+.quantity-item-cart .btn-sub:hover ,
+.quantity-item-cart  .btn-add:hover{
+  color: #bd945f;
+}
+
+.modal-body {
+  padding: 0.5rem;
+}
+
+#wish-modal .fa-heart{
+  color: #bd945f;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function ItemWishlist({key, item, onDeleteWishlist}) {
   const handleDelete = (product) => {
@@ -11,7 +12,12 @@ function ItemWishlist({key, item, onDeleteWishlist}) {
           <img className="w-100" src={item.product.image} alt="" />
         </div>
         <div className="title-item-wishlist margin-auto">
-          <h5>{item.product.title}</h5>
+        <NavLink
+              to={`/products/propduct-detail/${item.product.id}`}
+              className="text-dark"
+            >
+              <h5>{item.product.title}</h5>
+            </NavLink>
         </div>
         <div className="del-wishlist margin-auto">
           <button

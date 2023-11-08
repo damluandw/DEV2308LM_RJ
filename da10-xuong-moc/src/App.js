@@ -25,7 +25,8 @@ import PageNews from "./componnents/PageNews";
 import ProductDetails from "./componnents/ProductDetails";
 import SearchPage from "./componnents/SearchPage";
 import Login from "./componnents/Login";
-
+import { ReactNotifications, Store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 function App() {
   //categories
@@ -92,6 +93,7 @@ function App() {
       //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
       //thêm sản phẩm vào giỏ hàng
       listTemp.push(item);
+      notify("success", "Thành công", "Sản phẩm đã được thêm vào giỏ hàng");
     } else {
       // giỏ hàng của khách đã tồn tại
       //TH1/TH2
@@ -99,10 +101,12 @@ function App() {
       index = getIndexByProduct(listTemp, product);
       if (index === -1) {
         listTemp.push(item);
+        notify("success", "Thành công", "Sản phẩm đã được thêm vào giỏ hàng");
       } else {
         // nếu sản phẩm mua đã có trong giỏ hàng, thực hiện cập nhật số lượng
         listTemp[index].quantity =
           parseInt(listTemp[index].quantity) + parseInt(quantity);
+        notify("success", "Thành công", "Sản phẩm đã có trong giỏ hàng");
       }
     }
     // cập nhật localStorage
@@ -119,16 +123,27 @@ function App() {
       //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
       //thêm sản phẩm vào giỏ hàng
       listTemp.push(item);
+      notify(
+        "success",
+        "Thành công",
+        "Sản phẩm đã được thêm vào danh sách yêu thích"
+      );
     } else {
       // giỏ hàng của khách đã tồn tại
       //TH1/TH2
       // dựa vào index để xác định => viết hàm kiểm tra sản phẩm đã có trong giỏ hàng chưa
       index = getIndexByProduct(listTemp, product);
       if (index === -1) {
+        notify(
+          "success",
+          "Thành công",
+          "Sản phẩm đã được thêm vào danh sách yêu thích"
+        );
         listTemp.push(item);
       } else {
         // nếu sản phẩm mua đã có trong giỏ hàng, thực hiện cập nhật số lượng
-        alert("Sản phẩm đã có trong giỏ hàng");
+        // alert("Sản phẩm đã có trong giỏ hàng");
+        notify("warning", "Warning", "Sản phẩm đã có trong mục yêu thích");
       }
     }
     // cập nhật localStorage
@@ -196,9 +211,33 @@ function App() {
   useEffect(() => {
     getNews();
   }, []);
-
+  const notify = (type, title, message) => {
+    Store.addNotification({
+      title: title,
+      message: message,
+      type: type,
+      insert: "top",
+      // content: (
+      //   <div>
+      //     <div>success</div> <span onClick={this.remove}>undo</span>
+      //   </div>
+      // ),
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: {
+        duration: 3000,
+        onScreen: true,
+        pauseOnHover: true,
+      },
+      onNotificationRemoval: () => this.remove(),
+    });
+  };
   return (
     <>
+      <div className="app-container">
+        <ReactNotifications />
+      </div>
       <BrowserRouter>
         <Header
           listCart={listCart}
@@ -268,14 +307,15 @@ function App() {
             }
           />
 
-          <Route path="/news" element={<News news={news} pageSize={pageSize}/>} />
+          <Route
+            path="/news"
+            element={<News news={news} pageSize={pageSize} />}
+          />
           <Route path="/partner" element={<Partner />} />
-          <Route path="/news/pagenews" element={<PageNews/>} />
+          <Route path="/news/pagenews" element={<PageNews />} />
           <Route
             path={`/search`}
-            element={
-              <SearchPage listProduct={listProduct}/>
-            }
+            element={<SearchPage listProduct={listProduct} />}
           />
         </Routes>
         <Footer />

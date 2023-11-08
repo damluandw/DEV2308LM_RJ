@@ -43,29 +43,29 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
           <div className="product-description navbar-collapse">
             <div className="btn-product d-flex justify-content-end">
               <a href="#">
-                <button className="btn btn-wishlist "
+                <button
+                  className="btn btn-wishlist "
                   onClick={(ev) => handleWishlist(renderProduct)}
-                  >
+                >
                   <span className="d-flex justify-content-center">
                     <i className="fa-regular fa-heart"></i>
                   </span>
                 </button>
               </a>
-              <NavLink
+              {/* <NavLink
                 data-bs-toggle="modal"
                 to="#staticBackdrop"
                 role="button"
+              > */}
+              <button
+                className="btn btn-buy"
+                onClick={(ev) => handleBuy(renderProduct)}
               >
-                <button
-                  className="btn btn-buy"
-                  onClick={(ev) => handleBuy(renderProduct)}
-
-                >
-                  <span className="d-flex justify-content-center">
-                    <i className="fa-solid fa-basket-shopping"></i>
-                  </span>
-                </button>
-              </NavLink>
+                <span className="d-flex justify-content-center">
+                  <i className="fa-solid fa-basket-shopping"></i>
+                </span>
+              </button>
+              {/* </NavLink> */}
             </div>
           </div>
         </div>

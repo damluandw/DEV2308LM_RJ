@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
   const handleDelete = (product) => {
@@ -15,7 +16,7 @@ function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
             <img className="w-100" src={renderCart.product.image} alt="" />
           </div>
           <div className="title-item-cart margin-auto">
-            <h5>{renderCart.product.title}</h5>
+            <NavLink to={`/products/propduct-detail/${renderCart.product.id}`} className="text-dark" data-bs-dismiss="modal"><h5>{renderCart.product.title}</h5></NavLink>
           </div>
           <div className="price-item-cart margin-auto">
             <span>{renderCart.product.priceNew.toLocaleString()}</span>

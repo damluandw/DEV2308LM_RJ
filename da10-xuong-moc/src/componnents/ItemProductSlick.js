@@ -54,21 +54,21 @@ function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
                     </span>
                   </button>
                 </a> */}
-                <a href="#">
-                  <button
-                    className="btn btn-wishlist "
-                    onClick={(ev) => handleWishlist(renderProduct)}
-                  >
-                    <span className="d-flex justify-content-center">
-                      <i className="fa-regular fa-heart"></i>
-                    </span>
-                  </button>
-                </a>
-                <NavLink
+
+                <button
+                  className="btn btn-wishlist "
+                  onClick={(ev) => handleWishlist(renderProduct)}
+                >
+                  <span className="d-flex justify-content-center">
+                    <i className="fa-regular fa-heart"></i>
+                  </span>
+                </button>
+
+                {/* <NavLink
                   data-bs-toggle="modal"
                   to="#staticBackdrop"
                   role="button"
-                >
+                > */}
                   <button
                     className="btn btn-buy"
                     onClick={(ev) => handleBuy(renderProduct)}
@@ -77,7 +77,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
                       <i className="fa-solid fa-basket-shopping"></i>
                     </span>
                   </button>
-                </NavLink>
+                {/* </NavLink> */}
               </div>
             </div>
           </div>

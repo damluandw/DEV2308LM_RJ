@@ -27,6 +27,7 @@ import SearchPage from "./componnents/SearchPage";
 import Login from "./componnents/Login";
 import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import Register from "./componnents/Register";
 
 function App() {
   //categories
@@ -73,8 +74,6 @@ function App() {
   }, []);
 
   const getIndexByProduct = (list, product) => {
-    console.log(product);
-    console.log(list.product);
     for (let index = 0; index < list.length; index++) {
       if (list[index].product.id === product.id) {
         return index; //sản phẩm đã tồn tại trong giỏ hàng
@@ -233,6 +232,15 @@ function App() {
       onNotificationRemoval: () => this.remove(),
     });
   };
+  const handleLogin = (statusLogin) => {
+    console.log(statusLogin)
+    // if (statusLogin)
+    //   notify("success", "Thành công", "Bạn đã đăng nhập thành công");
+    // else{
+    //   notify("warning", "Cảnh báo", "Tên đăng nhập hoặc mật khẩu của bạn không đúng! Vui lòng thử lại");
+    // }
+  };
+
   return (
     <>
       <div className="app-container">
@@ -315,7 +323,19 @@ function App() {
           <Route path="/news/pagenews" element={<PageNews />} />
           <Route
             path={`/search`}
-            element={<SearchPage listProduct={listProduct} />}
+            element={
+              <SearchPage
+                listProduct={listProduct}
+                pageSize={pageSize}
+                onBuyProduct={handleBuy}
+                onWishlist={handleWishlist}
+              />
+            }
+          />
+          <Route path={`/register`} element={<Register />} />
+          <Route
+            path={`/login`}
+            element={<Login onStatusLogin={handleLogin} />}
           />
         </Routes>
         <Footer />

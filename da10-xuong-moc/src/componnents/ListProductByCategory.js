@@ -37,7 +37,6 @@ function ListProductByCategory({ category, listProduct, onBuyProduct,onWishlist 
     let listTemp = listProduct;
     let list1 = listTemp.filter((x) => x.cid == category.id);
     let pageIndex = query.get("page");
-    console.log(pageIndex);
     list1 = getListPage(list1,pageIndex)
     setList(list1);
   }, []);

@@ -5,8 +5,8 @@ section#login {
 }
 
 section#login {
-  min-height: 100vh;
-  background-color: #bd945f;
+  min-height: 60vh;
+  background-color: #d8bd9a;
 }
 
 section#login {
@@ -14,7 +14,7 @@ section#login {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 60vh;
   padding: 1rem 0.5rem;
 }
 

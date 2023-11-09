@@ -7,7 +7,8 @@ function useQuery() {
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-function SearchPage({ listProduct, onBuyProduct, pageSize }) { 
+function SearchPage({ listProduct, onBuyProduct ,pageSize,onWishlist}) {
+  // const [pageSize, setPageSize] = useState(8);
   let query = useQuery();
   const [list, setList] = useState([]);
   const [keyWord, setkeyWord] = useState([]);
@@ -63,8 +64,8 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   const setListProduct = (key, pageIndex) => {
     let listTemp = listProduct;
     if (listTemp != undefined) {
-
       listTemp = getListSearch(listTemp, key);
+
       // console.log("setListProduct", listTemp)
       getPages(listTemp);
       listTemp = getListPage(listTemp, pageIndex);
@@ -99,7 +100,9 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
-
+  let handleWishlist = (product) => {
+    onWishlist(product);
+  };
   let render = list.map((item, index) => {
     return (
       <ItemProduct
@@ -107,6 +110,7 @@ function SearchPage({ listProduct, onBuyProduct, pageSize }) {
         renderProduct={item}
         rollNo={index + 1}
         onBuyProduct={handleBuy}
+        onWishlist = {handleWishlist}
       />
     );
   });

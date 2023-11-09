@@ -1,6 +1,7 @@
 import React from "react";
 import ItemCart from "./ItemCart";
 import "./css/cart.css";
+import { NavLink } from "react-router-dom";
 
 function Cart({ listCart, onDelete, onUpdate }) {
   const handleDelete = (product) => {
@@ -56,9 +57,11 @@ function Cart({ listCart, onDelete, onUpdate }) {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-buy-modal">
-                  Thanh Toán
-                </button>
+                <NavLink to="/login"  className="text-dark" data-bs-dismiss="modal">
+                  <button type="button" className="btn btn-buy-modal">
+                    Thanh Toán
+                  </button>
+                </NavLink>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
   return (
     <>
       <div className="item-product col-12 d-flex justify-content-center">
-        <div className="w-90">
+        <div className="w-90 box-item">
           <div className="img-product">
             <img
               className="w-100"

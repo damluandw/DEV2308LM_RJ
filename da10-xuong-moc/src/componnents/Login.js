@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext }from "react";
 import "./css/login.css";
 import AuthContext from "./context/AuthProvider";
 
-function Login() {
+function Login({onStatusLogin}) {
   //   const userRef = useRef();
   //   const errRef = useRef();
   const [user, setUser] = useState("");
@@ -18,10 +18,31 @@ function Login() {
   }, [user, pwd]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if(user == "DamLuan" && pwd == "6789"){
+      let statusLogin =  true;
+      let users = {
+        user : user,
+        pwd : pwd,
+        susscess : true,
+      }
+      // onStatusLogin(true);
+      setSusscess(statusLogin);
+      localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
+    }else{
+      let statusLogin =  false;
+      let users = {
+        user : "",
+        pwd : "",
+        susscess : false,
+      }
+      // onStatusLogin(false);
+      localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
+    }
+
     setUser("");
     setPwd("");
-    setSusscess(true);
+    
   };
   return (
     <>

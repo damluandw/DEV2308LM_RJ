@@ -9,7 +9,7 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 function News({ news }) {
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(6);
   let query = useQuery();
   const [list, setList] = useState([]);
   const [indexPage, setIndexPage] = useState(1);
@@ -27,7 +27,6 @@ function News({ news }) {
     for (let i = 1; i <= maxPage; i++) {
       let page = i;
       pages.push(page);
-      // console.log(pages);
     }
     setPages(pages);
   };
@@ -62,12 +61,10 @@ function News({ news }) {
   }, [news]);
   useEffect(() => {
     let listTemp = news;
-    console.log("listTemp", listTemp);
     if (listTemp == []) getNews();
     getPages(listTemp);
     let pageIndex = query.get("page");
     listTemp = getListPage(listTemp, pageIndex);
-    console.log("", listTemp);
     setList(listTemp);
     setIndexPage(pageIndex);
   }, []);
@@ -86,7 +83,6 @@ function News({ news }) {
       <></>
     ) : (
       list.map((item, index) => {
-        // console.log(item);
         let img = item.image.substring(
           item.image.search("/images"),
           item.image.length

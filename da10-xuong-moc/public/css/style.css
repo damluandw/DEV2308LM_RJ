@@ -313,11 +313,11 @@ footer .thong-tin-chung ul li {
   object-position: 100% 100%;
 }
 
-.item-product>.w-90{
+/* .item-product>.w-90{
   border: 1px solid #e6e4e4;
   border-radius: 6px;
   padding-bottom: 1rem;
-}
+} */
 
 .nav-tabs .nav-link:hover{
   border: none;
@@ -347,4 +347,11 @@ header{
 
 #wish-modal .fa-heart{
   color: #bd945f;
+}
+
+
+.item-product>.box-item{
+  border: 1px solid #e6e4e4;
+  border-radius: 6px;
+  padding-bottom: 1rem;
 }

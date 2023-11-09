@@ -11,6 +11,7 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
   return (
     <>
       <div className="item-product col-lg-3">
+        <div className="box-item">
         <div className="img-product">
           <img
             className="w-100"
@@ -18,7 +19,7 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
             alt={renderProduct.image}
           />
         </div>
-        <div className="product-info text-center">
+        <div className="product-info text-center mt-3">
           <Link to={`/products/propduct-detail/${renderProduct.id}`}>
             <h4>{renderProduct.title}</h4>
           </Link>
@@ -68,6 +69,7 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
               {/* </NavLink> */}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>

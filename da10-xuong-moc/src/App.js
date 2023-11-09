@@ -232,15 +232,21 @@ function App() {
       onNotificationRemoval: () => this.remove(),
     });
   };
-  const handleLogin = (statusLogin) => {
-    console.log(statusLogin)
-    // if (statusLogin)
-    //   notify("success", "Thành công", "Bạn đã đăng nhập thành công");
-    // else{
-    //   notify("warning", "Cảnh báo", "Tên đăng nhập hoặc mật khẩu của bạn không đúng! Vui lòng thử lại");
-    // }
+  const [users, setUsers] = useState({
+    user : "",
+    pwd : "",
+    susscess : false,
+  });
+  const getUsers = async () => {
+    const users = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_LOGIN"));
+    setUsers(users)
   };
-
+  useEffect(() => {
+    getUsers();
+    if(users.susscess){
+      notify("success", "Thành công", "Đăng nhập thành công");
+    }
+  }, []);
   return (
     <>
       <div className="app-container">
@@ -335,7 +341,7 @@ function App() {
           <Route path={`/register`} element={<Register />} />
           <Route
             path={`/login`}
-            element={<Login onStatusLogin={handleLogin} />}
+            element={<Login statusLogin = {users.susscess}/>}
           />
         </Routes>
         <Footer />

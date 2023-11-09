@@ -2,13 +2,13 @@ import React, { useRef, useState, useEffect, useContext }from "react";
 import "./css/login.css";
 import AuthContext from "./context/AuthProvider";
 
-function Login({onStatusLogin}) {
+function Login({statusLogin}) {
   //   const userRef = useRef();
   //   const errRef = useRef();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [susscess, setSusscess] = useState(false);
+  const [susscess, setSusscess] = useState(statusLogin);
 
   useEffect(() => {
     // userRef.current.focus();
@@ -26,8 +26,7 @@ function Login({onStatusLogin}) {
         pwd : pwd,
         susscess : true,
       }
-      // onStatusLogin(true);
-      setSusscess(statusLogin);
+      setSusscess(true);
       localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
     }else{
       let statusLogin =  false;
@@ -36,7 +35,7 @@ function Login({onStatusLogin}) {
         pwd : "",
         susscess : false,
       }
-      // onStatusLogin(false);
+      setSusscess(false);
       localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
     }
 

@@ -57,7 +57,11 @@ function Cart({ listCart, onDelete, onUpdate }) {
                 >
                   Close
                 </button>
-                <NavLink to="/login"  className="text-dark" data-bs-dismiss="modal">
+                <NavLink
+                  to="/checkout"
+                  className="text-dark"
+                  data-bs-dismiss="modal"
+                >
                   <button type="button" className="btn btn-buy-modal">
                     Thanh Toán
                   </button>

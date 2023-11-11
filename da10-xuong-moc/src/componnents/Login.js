@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect, useContext }from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import "./css/login.css";
 import AuthContext from "./context/AuthProvider";
 
-function Login({statusLogin}) {
+function Login({ statusLogin, onLogin }) {
   //   const userRef = useRef();
   //   const errRef = useRef();
   const [user, setUser] = useState("");
@@ -19,29 +19,29 @@ function Login({statusLogin}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(user == "DamLuan" && pwd == "6789"){
-      let statusLogin =  true;
+    if (user == "DamLuan" && pwd == "6789") {
+      let statusLogin = true;
       let users = {
-        user : user,
-        pwd : pwd,
-        susscess : true,
-      }
+        user: user,
+        pwd: pwd,
+        susscess: true,
+      };
       setSusscess(true);
+      // onLogin();
       localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
-    }else{
-      let statusLogin =  false;
+    } else {
+      let statusLogin = false;
       let users = {
-        user : "",
-        pwd : "",
-        susscess : false,
-      }
+        user: "",
+        pwd: "",
+        susscess: false,
+      };
       setSusscess(false);
       localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
     }
 
     setUser("");
     setPwd("");
-    
   };
   return (
     <>
@@ -70,7 +70,7 @@ function Login({statusLogin}) {
                 type="text"
                 id="userName"
                 //   ref={useRef}
-                autoComplete="off"
+                // autoComplete="off"
                 onChange={(e) => setUser(e.target.value)}
                 value={user}
                 required
@@ -80,7 +80,7 @@ function Login({statusLogin}) {
                 type="password"
                 id="password"
                 //   ref={useRef}
-                autoComplete="off"
+                // autoComplete="off"
                 onChange={(e) => setPwd(e.target.value)}
                 value={pwd}
                 required

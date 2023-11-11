@@ -28,6 +28,7 @@ import Login from "./componnents/Login";
 import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import Register from "./componnents/Register";
+import Checkout from "./componnents/Checkout";
 
 function App() {
   //categories
@@ -233,20 +234,29 @@ function App() {
     });
   };
   const [users, setUsers] = useState({
-    user : "",
-    pwd : "",
-    susscess : false,
+    user: "",
+    pwd: "",
+    susscess: false,
   });
   const getUsers = async () => {
     const users = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_LOGIN"));
-    setUsers(users)
+    setUsers(users);
+  };
+  const handleLogin = () => {
+    getUsers();
+    if (users.susscess) {
+      notify("success", "Thành công", "Đăng nhập thành công");
+    }
   };
   useEffect(() => {
     getUsers();
-    if(users.susscess){
+    if (users.susscess) {
       notify("success", "Thành công", "Đăng nhập thành công");
     }
   }, []);
+  const handleMessage = (type, title, message) => {
+    notify(type, title, message);
+  };
   return (
     <>
       <div className="app-container">
@@ -341,7 +351,13 @@ function App() {
           <Route path={`/register`} element={<Register />} />
           <Route
             path={`/login`}
-            element={<Login statusLogin = {users.susscess}/>}
+            element={
+              <Login statusLogin={users.susscess} onLogin={handleLogin} />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={<Checkout listCart={listCart} onMessage={handleMessage} />}
           />
         </Routes>
         <Footer />

@@ -53,6 +53,7 @@ function ListProductSlick({
       setList(list1);
       //  console.log("CID",list,filterCID);
     }
+    // console.log(listTemp);
   }, []);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ function ListProductSlick({
   });
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: list.length>5,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,

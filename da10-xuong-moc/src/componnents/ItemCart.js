@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from "../api/api-xm";
 
 function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
   const handleDelete = (product) => {
@@ -13,7 +14,7 @@ function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
       <div className="item-cart" >
         <div className="d-flex justify-between">
           <div className="image-item-cart margin-auto">
-            <img className="w-100" src={renderCart.product.image} alt="" />
+            <img className="w-100" src={axios.getUri() + renderCart.product.image} alt="" />
           </div>
           <div className="title-item-cart margin-auto">
             <NavLink to={`/products/propduct-detail/${renderCart.product.id}`} className="text-dark" data-bs-dismiss="modal"><h5>{renderCart.product.title}</h5></NavLink>

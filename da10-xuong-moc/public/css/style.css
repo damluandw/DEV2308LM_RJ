@@ -308,7 +308,7 @@ footer .thong-tin-chung ul li {
 
 .item-product img{
   width: 100%;
-  max-height: 16rem;
+  max-height: 12rem;
   object-fit: cover;
   object-position: 100% 100%;
 }
@@ -354,4 +354,9 @@ header{
   border: 1px solid #e6e4e4;
   border-radius: 6px;
   padding-bottom: 1rem;
+}
+
+
+.item-cart .price-item-cart{
+  width: 7rem;
 }

@@ -2,10 +2,12 @@
   position: relative;
   height: 100%;
 }
+
 #banner-partner .container {
   position: relative;
   height: 100%;
 }
+
 #banner-partner .img-banner-partner-main {
   width: 100%;
   height: 19rem;
@@ -13,25 +15,26 @@
   object-position: 100% 100%;
 }
 
-.banner-partner-box {
+#bai-viet .banner-partner-box {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
 }
 
-.banner-partner-box .item {
+#bai-viet .banner-partner-box .item {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.banner-partner-box .item img {
+#bai-viet .banner-partner-box .item img {
   filter: brightness(0) invert(1);
   -webkit-filter: brightness(0) invert(1);
 }
-.banner-partner-box .item h2 {
+
+#bai-viet .banner-partner-box .item h2 {
   font-family: "Gotham-Medium";
   font-weight: bold;
   margin-top: 1rem;
@@ -39,15 +42,37 @@
   width: 16rem;
   text-align: center;
 }
-.box-white{
-    position: absolute;
-    height: 2.5rem;
-    z-index: 2;
-    top: calc( 100% - 2.5rem) ;
-    width: 100%;
-    background-color: #fff;
-    
+
+#bai-viet .box-white {
+  position: absolute;
+  height: 2.5rem;
+  z-index: 2;
+  top: calc(100% - 2.5rem);
+  width: 100%;
+  background-color: #fff;
+
 }
+
+#bai-viet .right-bai-viet h3 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #2c2e53;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  text-align: left  ;
+}
+#bai-viet .right-bai-viet h3:before {
+  position: absolute;
+  content: "";
+  width: 5rem;
+  height: 0.3rem;
+  top: 110%;
+  left: 10%;
+  background-color: #bd945f;
+  animation: menuHover 0.2s ease-in 1;
+}
+
 /* #partner {
   position: relative;
   height: 27rem;
@@ -72,9 +97,10 @@
 .list-doi-tac {
   padding-top: 2.25rem;
 } */
-#partner .item-doi-tac{
+#partner .item-doi-tac {
   width: 100%;
 }
+
 #partner .item-doi-tac .title-doi-tac {
   padding: 3rem 2rem 3rem 3rem;
 }
@@ -89,11 +115,12 @@
 
 }
 
-#partner .item-doi-tac h3::before{
+#partner .item-doi-tac h3::before {
 
-   display: none;
+  display: none;
 
 }
+
 #partner .item-doi-tac p {
   color: #2c2e53;
   font-family: Gotham-Medium;
@@ -105,6 +132,7 @@
   overflow: hidden;
   /* width: 90%; */
 }
-#partner .item-doi-tac{
-    margin-bottom: 3rem;
+
+#partner .item-doi-tac {
+  margin-bottom: 3rem;
 }

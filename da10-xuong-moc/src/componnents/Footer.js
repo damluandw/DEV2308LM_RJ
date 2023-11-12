@@ -53,7 +53,7 @@ function Footer() {
                 </NavLink>
               </li>
               <li>
-              <NavLink className="cl-white" to="/news">
+              <NavLink className="cl-white" to="/news?page=1">
                   Tin tức
                 </NavLink>
               </li>

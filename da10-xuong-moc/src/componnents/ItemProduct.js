@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import axios from "../api/api-xm";
 
 function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
   let handleBuy = (product) => {
@@ -15,8 +16,8 @@ function ItemProduct({ renderProduct, onBuyProduct, onWishlist }) {
         <div className="img-product">
           <img
             className="w-100"
-            src={renderProduct.image}
-            alt={renderProduct.image}
+            src={axios.getUri()+renderProduct.image}
+            alt={renderProduct.title}
           />
         </div>
         <div className="product-info text-center mt-3">

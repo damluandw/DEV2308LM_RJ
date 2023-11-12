@@ -47,7 +47,7 @@
     background: rgba(26, 25, 25, 0.9);
     content: "";
     display: block;
-    height: 36rem;
+    height: 100%;
     position: absolute;
     width: 100%;
   }

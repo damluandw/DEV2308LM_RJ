@@ -91,7 +91,7 @@ function NewsIndex() {
                     </div>
                   </div>
                   <div className="xem-them mt-3">
-                    <NavLink to="/news" className="cl-yellow">
+                    <NavLink to="/news?page=1" className="cl-yellow">
                       XEM THÊM
                       <span>
                         <i className="fa-solid fa-arrow-right" />

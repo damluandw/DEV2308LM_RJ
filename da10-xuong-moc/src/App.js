@@ -3,25 +3,23 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import Header from "./componnents/Header";
 import Footer from "./componnents/Footer";
-
 import Index from "./componnents/Index";
 import {
   BrowserRouter,
   Routes,
   Route,
   Navigate,
-  useSearchParams,
+  useLocation
 } from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
 import Products from "./componnents/Products";
-
 import axios from "./api/api-xm";
 import axioslocal from "./api/api-local";
 import AllProducts from "./componnents/AllProducts";
 import News from "./componnents/News";
 import Partner from "./componnents/Partner";
-import PageNews from "./componnents/PageNews";
+import NewsDetail from "./componnents/NewsDetail";
 import ProductDetails from "./componnents/ProductDetails";
 import SearchPage from "./componnents/SearchPage";
 import Login from "./componnents/Login";
@@ -29,12 +27,13 @@ import { ReactNotifications, Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import Register from "./componnents/Register";
 import Checkout from "./componnents/Checkout";
+// import ScrollToTop from "./componnents/ScrollToTop";
 
 function App() {
   //categories
   const [listCategories, setListCategories] = useState([]);
   const getListCategories = async () => {
-    let response = await axios.get("Categories");
+    let response = await axios.get("api/Categories");
     setListCategories(response.data);
   };
   useEffect(() => {
@@ -43,7 +42,7 @@ function App() {
   //products
   const [listProduct, setListProduct] = useState([]);
   const getListProduct = async () => {
-    let response = await axioslocal.get("Products");
+    let response = await axios.get("api/Products");
     setListProduct(response.data);
   };
   useEffect(() => {
@@ -54,8 +53,8 @@ function App() {
   const getListCart = async () => {
     const list = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_CARTS"));
     if (list === null) {
-      let response = await axioslocal.get("Carts");
-      setListCart(response.data);
+      // let response = await axioslocal.get("Carts");
+      // setListCart(response.data);
     } else setListCart(list);
   };
   useEffect(() => {
@@ -205,7 +204,7 @@ function App() {
 
   const [news, setNews] = useState([]);
   const getNews = async () => {
-    let response = await axios.get("News");
+    let response = await axios.get("api/News");
     setNews(response.data);
   };
   useEffect(() => {
@@ -242,19 +241,21 @@ function App() {
     const users = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_LOGIN"));
     setUsers(users);
   };
-  const handleLogin = () => {
+  const handleLogin = (x) => {
+    console.log("x:", x);
     getUsers();
     if (users.susscess) {
       notify("success", "Thành công", "Đăng nhập thành công");
     }
   };
   useEffect(() => {
-    getUsers();
-    if (users.susscess) {
-      notify("success", "Thành công", "Đăng nhập thành công");
-    }
+    // getUsers();
+    // if (users.susscess) {
+    //   notify("success", "Thành công", "Đăng nhập thành công");
+    // }
   }, []);
   const handleMessage = (type, title, message) => {
+
     notify(type, title, message);
   };
   return (
@@ -274,7 +275,10 @@ function App() {
           valueSearch={valueSearch}
           onDeleteWishlist={handleDeleteWishlist}
         />
+     
+
         <Routes>
+          
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route
@@ -336,7 +340,7 @@ function App() {
             element={<News news={news} pageSize={pageSize} />}
           />
           <Route path="/partner" element={<Partner />} />
-          <Route path="/news/pagenews" element={<PageNews />} />
+          <Route path="/news/detail/:id" element={<NewsDetail />} />
           <Route
             path={`/search`}
             element={
@@ -350,14 +354,16 @@ function App() {
           />
           <Route path={`/register`} element={<Register />} />
           <Route
-            path={`/login`}
+            path="/login"
             element={
-              <Login statusLogin={users.susscess} onLogin={handleLogin} />
+              <Login statusLogin={users.susscess} onLoginSubmit={handleLogin} />
             }
           />
           <Route
             path="/checkout"
-            element={<Checkout listCart={listCart} onMessage={handleMessage} />}
+            element={<Checkout listCart={listCart}
+              onMessage={handleMessage}
+            />}
           />
         </Routes>
         <Footer />

@@ -1,6 +1,10 @@
-import React, { useEffect, useState, onMessage } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/checkout.css";
-function Checkout({ listCart }) {
+import axioslocal from "../api/api-local";
+import { useNavigate } from "react-router-dom";
+
+function Checkout({ listCart, onMessage }) {
+  const navigate = useNavigate();
   const [total, setTotal] = useState([]);
   const getCartTotal = () => {
     let total = 0;
@@ -12,6 +16,7 @@ function Checkout({ listCart }) {
 
   useEffect(() => {
     getCartTotal();
+    window.scrollTo(0, 0);
   }, []);
   useEffect(() => {
     getCartTotal();
@@ -20,7 +25,7 @@ function Checkout({ listCart }) {
     // getCartTotal();
     return (
       <li key={item.product.id} className="fw-normal">
-        {item.product.title} x {item.quantity}{" "}
+        {item.product.title}  <b>(SL: {item.quantity})</b>
         <span>{item.product.priceNew.toLocaleString()}</span>
       </li>
     );
@@ -79,11 +84,17 @@ function Checkout({ listCart }) {
     onMessage("success", "Thành công", "Thông tin đơn hàng đã được thêm!");
     return true;
   };
-  const handleSubmit = (e) => {
+  const getDate = () => {
+    const today = new Date();
+    const second = today.getSeconds();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}${month}${date}${second}`;
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(firstName);
     let check = checkInput();
-    console.log(check);
     if (!check) return;
     const reg = {
       firstName: firstName,
@@ -96,6 +107,14 @@ function Checkout({ listCart }) {
       email: email,
     };
     setRegister(reg);
+    const today = new Date();
+    let cart = {
+      id: getDate(),
+      listCart: listCart,
+      infoUserBuy: reg
+    }
+    let response = await axioslocal.post("InfoBuy", cart);
+    navigate("/home")
   };
   return (
     <>
@@ -236,7 +255,7 @@ function Checkout({ listCart }) {
                         Total <span>{total.toLocaleString()}</span>
                       </li>
                     </ul>
-                    <div className="payment-check">
+                    {/* <div className="payment-check">
                       <div className="pc-item">
                         <label htmlFor="pc-check">
                           Cheque Payment
@@ -251,10 +270,10 @@ function Checkout({ listCart }) {
                           <span className="checkmark" />
                         </label>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="order-btn">
                       <button
-                        type="submit"
+                        // type="submit"
                         className="site-btn place-btn"
                         onClick={(e) => handleSubmit(e)}
                       >

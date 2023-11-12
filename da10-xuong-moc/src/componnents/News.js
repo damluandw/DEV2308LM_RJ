@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./css/tintuc.css";
 import Page from "./Page";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import axios from "../api/api-xm";
 function useQuery() {
   const { search } = useLocation();
@@ -49,8 +49,8 @@ function News({ news }) {
     // let response = await axios.get("News");
     // setList(response.data);
   };
-
   useEffect(() => {
+    console.log(news);
     let listTemp = news;
     if (listTemp == "") getNews();
     getPages(listTemp);
@@ -67,6 +67,7 @@ function News({ news }) {
     listTemp = getListPage(listTemp, pageIndex);
     setList(listTemp);
     setIndexPage(pageIndex);
+    
   }, []);
   useEffect(() => {
     let listTemp = news;
@@ -76,6 +77,7 @@ function News({ news }) {
     listTemp = getListPage(listTemp, pageIndex);
     setList(listTemp);
     setIndexPage(pageIndex);
+    window.scrollTo(0, 0);
   }, [query]);
 
   let renderNews =
@@ -91,19 +93,17 @@ function News({ news }) {
         return (
           <div key={index} className="item-tin-tuc col-lg-4">
             <div className="img-tin-tuc tin-tuc-top">
-              <img className="w-100" src={img} alt={img} />
+              <img className="w-100" src={axios.getUri()+item.image} alt={item.title} />
             </div>
             <div className="tin-tuc-bottom">
               <div className="title-tin-tuc">
                 <h4>
-                  <a href="#">{item.title}</a>
+                  <NavLink to={`/news/detail/${item.id}`}>{item.title}</NavLink>
                 </h4>
               </div>
               <div className="describe-tin-tuc">
                 <p>
-                  Những căn hộ chung cư mini, có diện tích nhỏ ngày càng trở nên
-                  ưa chuộng hơn trong cuộc hiện đại với những ai có khoản kinh
-                  phí "hạn hẹp".
+                  {item.metaDescription}
                 </p>
               </div>
             </div>

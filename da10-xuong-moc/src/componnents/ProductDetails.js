@@ -6,31 +6,85 @@ import axios from "../api/api-xm";
 import ListProductSlick from "./ListProductSlick";
 import ListTitleNav from "./ListTitleNav";
 
-function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
+function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState({});
-  const [img, setImg] = useState("/images/san-pham-chi-tiet/product-1.png");
+  const [productImages, setProductImages] = useState([]);
+  const [img, setImg] = useState("");
+  const [extensions, setExtensions] = useState([]);
+
   const getProduct = async () => {
-    let response = await axioslocal.get("Products/" + id);
-    setProduct(response.data);
-    let response2 = await axios.get("Categories/" + response.data.cid);
-    setCategory(response2.data);
+    let resProducts = await axios.get("api/Products/" + id);
+    setProduct(resProducts.data);
+    setImg(axios.getUri() + resProducts.data.image);
+    let resCategories = await axios.get("api/Categories/" + resProducts.data.cid);
+    setCategory(resCategories.data);
+    let resProductImages = await axios.get("api/ProductImages/");
+    let images = resProductImages.data;
+    images = images.filter(x => x.pid == id)
+    setProductImages(images);
+    let resExtensions = await axios.get("api/Extensions/");
+    setExtensions(resExtensions.data);
     // console.log("product", response.data);
   };
   useEffect(() => {
     getProduct();
+    window.scrollTo(0, 0)
   }, [id]);
+
   const handleBuy = (product) => {
     onBuyProduct(product);
   }
   const handleWishlist = (product) => {
     onWishlist(product);
   }
-
+  const renderImage = productImages.map((item, index) => {
+    return (
+      <div className="col-lg-3">
+        <img
+          className="w-100"
+          src={axios.getUri() + item.image}
+          alt={product.title}
+          onClick={() => { setImg(axios.getUri() + item.image); }}
+        />
+      </div>
+    );
+  });
+  const renderExtensions1 = extensions.map((item, index) => {
+    return (
+      <li className="nav-item d-flex" role="presentation">
+        <button
+          className="nav-link active"
+          id={`${item.slug}-tab`}
+          data-bs-toggle="tab"
+          data-bs-target={`#${item.slug}`}
+          type="button"
+          role="tab"
+          aria-controls={`${item.slug}`}
+          aria-selected="true"
+        >
+          {item.title}
+        </button>
+        <div className="line-col" />
+      </li>
+    );
+  });
+  const renderExtensions2 = extensions.map((item, index) => {
+    return (
+      <div
+        className="tab-pane fade show active"
+        id={`${item.slug}`}
+        role="tabpanel"
+        aria-labelledby={`${item.slug}-tab`}
+      >
+        {item.metaDescription}
+      </div>
+    );
+  });
   return (
     <>
       <ListTitleNav />
@@ -45,42 +99,11 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
                   <img
                     className="w-100 h-100"
                     src={img}
-                    alt={img}
+                    alt={product.title}
                   />
                 </div>
                 <div className="img-secondary-product row my-4">
-                  <div className="col-lg-3">
-                    <img
-                      className="w-100"
-                      src="/images/san-pham-chi-tiet/sp-1.png"
-                      alt="sp-1.png"
-                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-1.png"); }}
-                    />
-                  </div>
-                  <div className="col-lg-3">
-                    <img
-                      className="w-100"
-                      src="/images/san-pham-chi-tiet/sp-2.png"
-                      alt="sp-2.png"
-                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-2.png"); }}
-                    />
-                  </div>
-                  <div className="col-lg-3">
-                    <img
-                      className="w-100"
-                      src="/images/san-pham-chi-tiet/sp-3.png"
-                      alt="sp-3.png"
-                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-3.png"); }}
-                    />
-                  </div>
-                  <div className="col-lg-3">
-                    <img
-                      className="w-100"
-                      src="/images/san-pham-chi-tiet/sp-4.png"
-                      alt="sp-4.png"
-                      onClick={() => { setImg("/images/san-pham-chi-tiet/sp-4.png"); }}
-                    />
-                  </div>
+                  {renderImage}
                 </div>
               </div>
               <div className="col-lg-6 main-product-top-right">
@@ -126,6 +149,7 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
             </div>
             <div className="main-product-bottom">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
+              {/* {renderExtensions1} */}
                 <li className="nav-item d-flex" role="presentation">
                   <button
                     className="nav-link active"
@@ -202,6 +226,7 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
                 </li>
               </ul>
               <div className="tab-content mt-3" id="myTabContent">
+              {/* {renderExtensions2} */}
                 <div
                   className="tab-pane fade show active"
                   id="dac-trung"
@@ -267,8 +292,8 @@ function ProductDetails({ listProduct, onBuyProduct ,onWishlist}) {
             <div className="d-flex justify-content-between">
               <h3>Sản phẩm tương tự</h3>
               <div className="xem-tat-ca cl-blue">
-                <NavLink 
-                to ={`/products/${category.slug}`}
+                <NavLink
+                  to={`/products/${category.slug}`}
                 // onClick={() => navigate("/products/" + category.slug)} 
                 >XEM TẤT CẢ</NavLink>
               </div>

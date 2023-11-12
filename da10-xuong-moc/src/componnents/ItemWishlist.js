@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from "../api/api-xm";
 
 function ItemWishlist({key, item, onDeleteWishlist}) {
   const handleDelete = (product) => {
@@ -9,7 +10,7 @@ function ItemWishlist({key, item, onDeleteWishlist}) {
     <>
       <div className="box-item-wishlist w-100 d-flex justify-content-around my-3">
         <div className="image-item-wishlist margin-auto">
-          <img className="w-100" src={item.product.image} alt="" />
+          <img className="w-100" src={axios.getUri() + item.product.image} alt="" />
         </div>
         <div className="title-item-wishlist margin-auto">
         <NavLink

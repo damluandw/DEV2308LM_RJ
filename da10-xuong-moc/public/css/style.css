@@ -358,5 +358,18 @@ header{
 
 
 .item-cart .price-item-cart{
-  width: 7rem;
+  width: 8rem;
+}
+.item-cart .title-item-cart{
+  min-width: 10rem;
+}
+.item-cart .quantity-item-cart{
+  width: 6rem;
+}
+.item-cart .del-cart{
+  width: 2.5rem;
+}
+
+.box-item-wishlist .title-item-wishlist{
+  min-width: 8rem;
 }

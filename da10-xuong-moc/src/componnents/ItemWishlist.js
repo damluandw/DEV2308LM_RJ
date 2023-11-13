@@ -9,10 +9,10 @@ function ItemWishlist({key, item, onDeleteWishlist}) {
   return (
     <>
       <div className="box-item-wishlist w-100 d-flex justify-content-around my-3">
-        <div className="image-item-wishlist margin-auto">
+        <div className="image-item-wishlist">
           <img className="w-100" src={axios.getUri() + item.product.image} alt="" />
         </div>
-        <div className="title-item-wishlist margin-auto">
+        <div className="title-item-wishlist">
         <NavLink
               to={`/products/propduct-detail/${item.product.id}`}
               className="text-dark"
@@ -20,7 +20,7 @@ function ItemWishlist({key, item, onDeleteWishlist}) {
               <h5>{item.product.title}</h5>
             </NavLink>
         </div>
-        <div className="del-wishlist margin-auto">
+        <div className="del-wishlist">
           <button
             type="button"
             className="btn-del btn"

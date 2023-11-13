@@ -5,8 +5,8 @@ import "./css/login.css";
 function Login({ statusLogin, onLoginSubmit }) {
   //   const userRef = useRef();
   //   const errRef = useRef();
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [user, setUser] = useState("DamLuan");
+  const [pwd, setPwd] = useState("6789");
   const [errMsg, setErrMsg] = useState("");
   const [susscess, setSusscess] = useState(statusLogin);
   useEffect(() => {

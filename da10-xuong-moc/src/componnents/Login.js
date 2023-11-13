@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
 
-
 function Login({ statusLogin, onLoginSubmit }) {
   //   const userRef = useRef();
   //   const errRef = useRef();
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [user, setUser] = useState("DamLuan");
+  const [pwd, setPwd] = useState("6789");
   const [errMsg, setErrMsg] = useState("");
   const [susscess, setSusscess] = useState(statusLogin);
   useEffect(() => {
@@ -16,9 +15,8 @@ function Login({ statusLogin, onLoginSubmit }) {
   useEffect(() => {
     setErrMsg("");
   }, [user, pwd]);
-  const fn_handleSubmit = () => {
-
-    console.log("login")
+  const fn_handleSubmit = async () => {
+    console.log("login");
     if (user == "DamLuan" && pwd == "6789") {
       let statusLogin = true;
       let users = {
@@ -26,9 +24,9 @@ function Login({ statusLogin, onLoginSubmit }) {
         pwd: pwd,
         susscess: true,
       };
-      setSusscess(true);
-      onLoginSubmit("Axx");
-      localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
+      await setSusscess(true);
+      await onLoginSubmit("Axx");
+      await localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
     } else {
       let statusLogin = false;
       let users = {
@@ -43,10 +41,11 @@ function Login({ statusLogin, onLoginSubmit }) {
     setUser("");
     setPwd("");
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fn_handleSubmit()
-  }
+    // await onLoginSubmit("Axx");
+    fn_handleSubmit();
+  };
   return (
     <>
       {susscess ? (
@@ -68,7 +67,7 @@ function Login({ statusLogin, onLoginSubmit }) {
             {errMsg}
           </p> */}
             <h1>Sign in</h1>
-            <form >
+            <form>
               <label htmlFor="userName">UserName:</label>
               <input
                 type="text"
@@ -89,7 +88,9 @@ function Login({ statusLogin, onLoginSubmit }) {
                 value={pwd}
                 required
               />
-              <button type="button" onClick={(e) => handleSubmit(e)}>Sign In</button>
+              <button type="button" onClick={handleSubmit}>
+                Sign In
+              </button>
             </form>
             <p>
               Need a Account? <br />

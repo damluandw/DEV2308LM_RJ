@@ -241,12 +241,12 @@ function App() {
     const users = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_LOGIN"));
     setUsers(users);
   };
-  const handleLogin = (x) => {
-    console.log("x:", x);
-    getUsers();
-    if (users.susscess) {
-      notify("success", "Thành công", "Đăng nhập thành công");
-    }
+  const handleLogin = async () => {
+    await console.log("applogin");
+    await getUsers();
+    // if (users.susscess) {
+    //   notify("success", "Thành công", "Đăng nhập thành công");
+    // }
   };
   useEffect(() => {
     // getUsers();
@@ -254,7 +254,7 @@ function App() {
     //   notify("success", "Thành công", "Đăng nhập thành công");
     // }
   }, []);
-  const handleMessage = (type, title, message) => {
+  const handleMessage =  (type, title, message) => {
 
     notify(type, title, message);
   };
@@ -356,7 +356,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <Login statusLogin={users.susscess} onLoginSubmit={handleLogin} />
+              <Login onLoginSubmit={handleLogin} />
             }
           />
           <Route

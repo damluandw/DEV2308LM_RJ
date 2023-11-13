@@ -12,18 +12,18 @@ function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
   return (
     <>
       <div className="item-cart" >
-        <div className="d-flex justify-between">
-          <div className="image-item-cart margin-auto">
+        <div className="d-flex justify-content-around">
+          <div className="image-item-cart">
             <img className="w-100" src={axios.getUri() + renderCart.product.image} alt="" />
           </div>
-          <div className="title-item-cart margin-auto">
+          <div className="title-item-cart">
             <NavLink to={`/products/propduct-detail/${renderCart.product.id}`} className="text-dark" data-bs-dismiss="modal"><h5>{renderCart.product.title}</h5></NavLink>
           </div>
-          <div className="price-item-cart margin-auto">
+          <div className="price-item-cart">
             <span>{renderCart.product.priceNew.toLocaleString()}</span>
             <span> VNĐ</span>
           </div>
-          <div className="quantity-item-cart margin-auto">
+          <div className="quantity-item-cart">
             <button type="button" className="btn-sub btn"
               onClick={() => handleUpdate(renderCart.product, "sub")}>
               -
@@ -34,7 +34,7 @@ function ItemCart({ key, renderCart, rollNo, onDelete, onUpdate }) {
               +
             </button>
           </div>
-          <div className="del-cart margin-auto">
+          <div className="del-cart">
             <button
               type="button"
               className="btn-del btn"

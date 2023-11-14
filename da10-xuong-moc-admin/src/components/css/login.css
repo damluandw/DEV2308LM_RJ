@@ -4,17 +4,21 @@ section#login {
   color: #fff;
 }
 
-section#login {
-  min-height: 60vh;
+html {
+  min-height: 100%;
+  background-color: #d8bd9a;
+}
+section {
+  min-height: 100%;
   background-color: #d8bd9a;
 }
 
 section#login {
+  margin-top: 16vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
   padding: 1rem 0.5rem;
 }
 

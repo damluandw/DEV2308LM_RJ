@@ -27,8 +27,8 @@ function Login({ statusLogin, onLoginSubmit }) {
         susscess: true,
       };
       setSusscess(true);
-      onLoginSubmit("Axx");
-      localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
+      onLoginSubmit(true);
+      sessionStorage.setItem("DEV2308LMJS_DA10ADMIN_LOGIN", JSON.stringify(users));
     } else {
       let statusLogin = false;
       let users = {
@@ -37,7 +37,8 @@ function Login({ statusLogin, onLoginSubmit }) {
         susscess: false,
       };
       setSusscess(false);
-      localStorage.setItem("DEV2308LMJS_DA10_LOGIN", JSON.stringify(users));
+      onLoginSubmit(false);
+      sessionStorage.setItem("DEV2308LMJS_DA10ADMIN_LOGIN", JSON.stringify(users));
     }
 
     setUser("");

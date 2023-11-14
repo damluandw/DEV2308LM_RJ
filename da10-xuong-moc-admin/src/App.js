@@ -2,7 +2,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import Login from "./components/Login";
 import { useState } from "react";
-import { Store } from "react-notifications-component";
+import { ReactNotifications, Store } from "react-notifications-component";
+import 'react-notifications-component/dist/theme.css'
 
 function App() {
   const notify = (type, title, message) => {
@@ -33,20 +34,22 @@ function App() {
     susscess: false,
   });
   const getUsers = async () => {
-    const users = JSON.parse(localStorage.getItem("DEV2308LMJS_DA10_LOGIN"));
+    const users = JSON.parse(sessionStorage.getItem("DEV2308LMJS_DA10ADMIN_LOGIN"));
     setUsers(users);
+    return users;
   };
-  const handleLogin = () => {
-    // getUsers();
-    console.log("applogin");
-    // notify("success", "Thành công", "Đăng nhập thành công");
-    // if (users.susscess) {
-    //    notify("success", "Thành công", "Đăng nhập thành công");
-    // }
+  const handleLogin = (check) => {
+    getUsers();
+    if (check) {
+       notify("success", "Thành công", "Đăng nhập thành công");
+    }else{
+      notify("warning", "warning", "Tài khoản hoặc mật khẩu không chính xác! Vui lòng thử lại");
+    }
   };
   return (
     <>
-      <Login onLoginSubmit={handleLogin} />
+      <ReactNotifications />
+      <Login  onLoginSubmit={handleLogin} />
     </>
   );
 }

@@ -9,7 +9,7 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 import Introduce from "./componnents/Introduce";
 import Contact from "./componnents/Contact";
@@ -83,8 +83,8 @@ function App() {
   };
 
   //handle
-  const handleBuy = (product) => {
-    let quantity = 1;
+  const handleBuy = (product, quantity) => {
+    if ((quantity == undefined)) quantity = 1;    
     let item = { product, quantity };
     let index = -1;
     let listTemp = listCart;
@@ -254,9 +254,11 @@ function App() {
     //   notify("success", "Thành công", "Đăng nhập thành công");
     // }
   }, []);
-  const handleMessage =  (type, title, message) => {
-
+  const handleMessage = (type, title, message) => {
     notify(type, title, message);
+  };
+  const handCheckout = () => {
+    getListCart();
   };
   return (
     <>
@@ -275,10 +277,8 @@ function App() {
           valueSearch={valueSearch}
           onDeleteWishlist={handleDeleteWishlist}
         />
-     
 
         <Routes>
-          
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/home" />} />
           <Route
@@ -298,7 +298,7 @@ function App() {
             path="/products"
             element={
               <Products
-                listProduct={listProduct}
+                // listProduct={listProduct}
                 listCategories={listCategories}
                 onBuyProduct={handleBuy}
                 onWishlist={handleWishlist}
@@ -355,15 +355,17 @@ function App() {
           <Route path={`/register`} element={<Register />} />
           <Route
             path="/login"
-            element={
-              <Login onLoginSubmit={handleLogin} />
-            }
+            element={<Login onLoginSubmit={handleLogin} />}
           />
           <Route
             path="/checkout"
-            element={<Checkout listCart={listCart}
-              onMessage={handleMessage}
-            />}
+            element={
+              <Checkout
+                listCart={listCart}
+                onMessage={handleMessage}
+                onCheckout={handCheckout}
+              />
+            }
           />
         </Routes>
         <Footer />

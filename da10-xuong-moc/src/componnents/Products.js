@@ -3,8 +3,17 @@ import BannerProducts from "./BannerProducts";
 import "./css/sanpham.css";
 import ListProductSlick from "./ListProductSlick";
 import { NavLink } from "react-router-dom";
+import axios from "../api/api-xm";
 
-function Products({ listProduct, listCategories, onBuyProduct,onWishlist }) {
+function Products({  listCategories, onBuyProduct,onWishlist }) {
+  const [listProduct, setListProduct] = useState([]);
+  const getListProduct = async () => {
+    let response = await axios.get("api/Products");
+    setListProduct(response.data);
+  };
+  useEffect(() => {
+    getListProduct();
+  }, []);
   let handleBuy = (product) => {
     onBuyProduct(product);
   };

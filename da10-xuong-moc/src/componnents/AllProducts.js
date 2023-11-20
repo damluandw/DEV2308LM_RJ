@@ -4,6 +4,7 @@ import BannerProducts from "./BannerProducts";
 import ListProductByCategory from "./ListProductByCategory";
 import Page from "./Page";
 import { useLocation } from "react-router-dom";
+import ProductsFilter from "./ProductsFilter";
 function useQuery() {
   const { search } = useLocation();
 
@@ -63,6 +64,7 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
   return (
     <>
       <BannerProducts />
+      {/* <ProductsFilter/> */}
       <ListProductByCategory
         category={category}
         listProduct={listProduct}

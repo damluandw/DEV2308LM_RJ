@@ -11,17 +11,29 @@ function Cart({ listCart, onDelete, onUpdate }) {
     onUpdate(product, action);
   };
 
-  let render = listCart.map((item, index) => {
-    return (
-      <ItemCart
-        key={item.id}
-        renderCart={item}
-        rollNo={index + 1}
-        onUpdate={handleUpdate}
-        onDelete={handleDelete}
-      />
+  let render =
+    listCart.length > 0 ? (
+      listCart.map((item, index) => {
+        return (
+          <ItemCart
+            key={item.id}
+            renderCart={item}
+            rollNo={index + 1}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+          />
+        );
+      })
+    ) : (
+      <>
+        {" "}
+        <div className="item-cart">
+          <div className="d-flex justify-content-center">
+            Không có sản phẩm trong giỏ hàng
+          </div>
+        </div>
+      </>
     );
-  });
   return (
     <>
       <div id="cart-modal">

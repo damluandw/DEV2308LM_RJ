@@ -3,7 +3,7 @@ import "./css/checkout.css";
 import axioslocal from "../api/api-local";
 import { useNavigate } from "react-router-dom";
 
-function Checkout({ listCart, onMessage }) {
+function Checkout({ listCart, onMessage, onCheckout }) {
   const navigate = useNavigate();
   const [total, setTotal] = useState([]);
   const getCartTotal = () => {
@@ -25,7 +25,7 @@ function Checkout({ listCart, onMessage }) {
     // getCartTotal();
     return (
       <li key={item.product.id} className="fw-normal">
-        {item.product.title}  <b>(SL: {item.quantity})</b>
+        {item.product.title} <b>(SL: {item.quantity})</b>
         <span>{item.product.priceNew.toLocaleString()}</span>
       </li>
     );
@@ -51,7 +51,7 @@ function Checkout({ listCart, onMessage }) {
 
   const checkInput = () => {
     let type = "warning";
-    let title = "warning";
+    let title = "Warning";
     let message = "Vui lòng điền đầy đủ thông tin";
     if (firstName == "") {
       onMessage(type, title, message);
@@ -91,9 +91,15 @@ function Checkout({ listCart, onMessage }) {
     const year = today.getFullYear();
     const date = today.getDate();
     return `${year}${month}${date}${second}`;
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (listCart == [] || listCart == undefined || listCart.length == 0 || listCart == null) {
+      onMessage("warning", "Warning", "Không có sản phẩm trong đơn hàng! Vui lòng mua hàng trước khi thanh toán");
+      navigate("/products");
+      return;
+    }
+   
     let check = checkInput();
     if (!check) return;
     const reg = {
@@ -111,10 +117,17 @@ function Checkout({ listCart, onMessage }) {
     let cart = {
       id: getDate(),
       listCart: listCart,
-      infoUserBuy: reg
-    }
+      infoUserBuy: reg,
+    };
     let response = await axioslocal.post("InfoBuy", cart);
-    navigate("/home")
+
+    localStorage.setItem("DEV2308LMJS_DA10_CARTS", JSON.stringify([]));
+    localStorage.setItem(
+      "DEV2308LMJS_DA10_CARTS_HISTORY",
+      JSON.stringify(listCart)
+    );
+    onCheckout();
+    navigate("/home");
   };
   return (
     <>
@@ -248,9 +261,9 @@ function Checkout({ listCart, onMessage }) {
                         Product <span>Total</span>
                       </li>
                       {renderCart}
-                      <li className="fw-normal">
+                      {/* <li className="fw-normal">
                         Subtotal <span>{total.toLocaleString()}</span>
-                      </li>
+                      </li> */}
                       <li className="total-price">
                         Total <span>{total.toLocaleString()}</span>
                       </li>

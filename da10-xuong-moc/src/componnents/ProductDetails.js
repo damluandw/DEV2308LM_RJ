@@ -9,7 +9,7 @@ import ListTitleNav from "./ListTitleNav";
 function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState({});
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState({});
@@ -21,11 +21,13 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
     let resProducts = await axios.get("api/Products/" + id);
     setProduct(resProducts.data);
     setImg(axios.getUri() + resProducts.data.image);
-    let resCategories = await axios.get("api/Categories/" + resProducts.data.cid);
+    let resCategories = await axios.get(
+      "api/Categories/" + resProducts.data.cid
+    );
     setCategory(resCategories.data);
     let resProductImages = await axios.get("api/ProductImages/");
     let images = resProductImages.data;
-    images = images.filter(x => x.pid == id)
+    images = images.filter((x) => x.pid == id);
     setProductImages(images);
     let resExtensions = await axios.get("api/Extensions/");
     setExtensions(resExtensions.data);
@@ -33,15 +35,15 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
   };
   useEffect(() => {
     getProduct();
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, [id]);
 
   const handleBuy = (product) => {
-    onBuyProduct(product);
-  }
+    onBuyProduct(product,quantity);
+  };
   const handleWishlist = (product) => {
     onWishlist(product);
-  }
+  };
   const renderImage = productImages.map((item, index) => {
     return (
       <div className="col-lg-3">
@@ -49,42 +51,19 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
           className="w-100"
           src={axios.getUri() + item.image}
           alt={product.title}
-          onClick={() => { setImg(axios.getUri() + item.image); }}
+          onClick={() => {
+            setImg(axios.getUri() + item.image);
+          }}
         />
       </div>
     );
   });
-  const renderExtensions1 = extensions.map((item, index) => {
-    return (
-      <li className="nav-item d-flex" role="presentation">
-        <button
-          className="nav-link active"
-          id={`${item.slug}-tab`}
-          data-bs-toggle="tab"
-          data-bs-target={`#${item.slug}`}
-          type="button"
-          role="tab"
-          aria-controls={`${item.slug}`}
-          aria-selected="true"
-        >
-          {item.title}
-        </button>
-        <div className="line-col" />
-      </li>
-    );
-  });
-  const renderExtensions2 = extensions.map((item, index) => {
-    return (
-      <div
-        className="tab-pane fade show active"
-        id={`${item.slug}`}
-        role="tabpanel"
-        aria-labelledby={`${item.slug}-tab`}
-      >
-        {item.metaDescription}
-      </div>
-    );
-  });
+  const handleUpdateQuantity = (evt) => {
+    let qty = quantity;
+    if (evt == "add") qty++;
+    else qty = qty == 1 ? qty : --qty;
+    setQuantity(qty);
+  };
   return (
     <>
       <ListTitleNav />
@@ -96,11 +75,7 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
             <div className="main-product-top row">
               <div className="col-lg-6 main-product-top-left">
                 <div className="img-main-product">
-                  <img
-                    className="w-100 h-100"
-                    src={img}
-                    alt={product.title}
-                  />
+                  <img className="w-100 h-100" src={img} alt={product.title} />
                 </div>
                 <div className="img-secondary-product row my-4">
                   {renderImage}
@@ -118,10 +93,16 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
                 </div>
                 <div className="price">
                   <div id="price-old">
-                    {product.priceOld == undefined ? 0 : product.priceOld.toLocaleString()} <span>VNĐ</span>
+                    {product.priceOld == undefined
+                      ? 0
+                      : product.priceOld.toLocaleString()}{" "}
+                    <span>VNĐ</span>
                   </div>
                   <div id="price-new">
-                    {product.priceNew == undefined ? 0 : product.priceNew.toLocaleString()} <span>VNĐ</span>
+                    {product.priceNew == undefined
+                      ? 0
+                      : product.priceNew.toLocaleString()}{" "}
+                    <span>VNĐ</span>
                   </div>
                 </div>
                 <label id="bao-hanh">
@@ -134,22 +115,50 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
                   </div>
                 </label>
                 <br />
+                <div className="quantity-item-cart mb-2">
+                  <button
+                    type="button"
+                    className="btn-sub btn "
+                    onClick={() => handleUpdateQuantity("sub")}
+                  >
+                    -
+                  </button>
+                  <span className="mx-3">{quantity}</span>
+                  <button
+                    type="button"
+                    className="btn-add btn "
+                    onClick={() => handleUpdateQuantity("add")}
+                  >
+                    +
+                  </button>
+                </div>
                 <div>
                   <NavLink
                     data-bs-toggle="modal"
                     to="#staticBackdrop"
-                    role="button">
-                    <button className="btn btn-mua" onClick={() => handleBuy(product)}>Đặt mua</button>
+                    role="button"
+                  >
+                    <button
+                      className="btn btn-mua"
+                      onClick={() => handleBuy(product)}
+                    >
+                      Đặt mua
+                    </button>
                   </NavLink>
                   <NavLink>
-                    <button className="btn btn-wishlist" onClick={() => handleWishlist(product)}>Yêu thích</button>
+                    <button
+                      className="btn btn-wishlist"
+                      onClick={() => handleWishlist(product)}
+                    >
+                      Yêu thích
+                    </button>
                   </NavLink>
                 </div>
               </div>
             </div>
             <div className="main-product-bottom">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
-              {/* {renderExtensions1} */}
+                {/* {renderExtensions1} */}
                 <li className="nav-item d-flex" role="presentation">
                   <button
                     className="nav-link active"
@@ -226,7 +235,7 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
                 </li>
               </ul>
               <div className="tab-content mt-3" id="myTabContent">
-              {/* {renderExtensions2} */}
+                {/* {renderExtensions2} */}
                 <div
                   className="tab-pane fade show active"
                   id="dac-trung"
@@ -294,8 +303,10 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
               <div className="xem-tat-ca cl-blue">
                 <NavLink
                   to={`/products/${category.slug}`}
-                // onClick={() => navigate("/products/" + category.slug)} 
-                >XEM TẤT CẢ</NavLink>
+                  // onClick={() => navigate("/products/" + category.slug)}
+                >
+                  XEM TẤT CẢ
+                </NavLink>
               </div>
             </div>
             <div className="list-product">

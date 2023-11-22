@@ -6,12 +6,9 @@ section#login {
 
 html {
   min-height: 100%;
-  background-color: #d8bd9a;
+  background-color: #525151;
 }
-section {
-  min-height: 100%;
-  background-color: #d8bd9a;
-}
+
 
 section#login {
   margin-top: 16vh;
@@ -30,7 +27,7 @@ section#login > div {
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #d8bd9a;
 }
 
 #login form {

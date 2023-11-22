@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./css/login.css";
+import { useNavigate } from "react-router-dom";
 
 
 function Login({ statusLogin, onLoginSubmit }) {
+  const navigate = useNavigate();
   //   const userRef = useRef();
   //   const errRef = useRef();
   const [user, setUser] = useState("DamLuan");
@@ -29,6 +31,7 @@ function Login({ statusLogin, onLoginSubmit }) {
       setSusscess(true);
       onLoginSubmit(true);
       sessionStorage.setItem("DEV2308LMJS_DA10ADMIN_LOGIN", JSON.stringify(users));
+      navigate("/home");
     } else {
       let statusLogin = false;
       let users = {
@@ -50,16 +53,7 @@ function Login({ statusLogin, onLoginSubmit }) {
   }
   return (
     <>
-      {susscess ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="#">Go to home</a>
-          </p>
-        </section>
-      ) : (
-        <section id="login">
+      <section id="login">
           <div>
             {/* <p
             ref={errRef}
@@ -100,7 +94,6 @@ function Login({ statusLogin, onLoginSubmit }) {
             </p>
           </div>
         </section>
-      )}
     </>
   );
 }

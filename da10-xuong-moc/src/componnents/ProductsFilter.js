@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 
-function ProductsFilter() {
+function ProductsFilter({ onFilter }) {
   const [filterPrice, setFilterPrice] = useState();
   const [filterOrder, setFilterOrder] = useState();
-  const handleChangePrice = (price) => {
-    setFilterPrice(price);
+  const handleChangePrice = (filterPrice) => {
+    setFilterPrice(filterPrice);
+    onFilter(filterPrice, filterOrder);
   };
   const handleChangeOrder = (evt) => {
-    // setFilterPrice(price);
+
+    setFilterOrder(evt.target.value);
+    let filterOrder = evt.target.value;
+    onFilter(filterPrice,filterOrder);
   };
 
   return (
@@ -21,25 +25,25 @@ function ProductsFilter() {
                 <ul className="d-flex">
                   <li
                     className="cl-yellow"
-                    onClick={() => handleChangePrice("5")}
+                    onClick={(evt) => handleChangePrice("5")}
                   >
                     Dưới 5 triệu
                   </li>
                   <li
                     className="cl-yellow"
-                    onClick={() => handleChangePrice("5-10")}
+                    onClick={(evt) => handleChangePrice("10")}
                   >
                     5-10 triệu
                   </li>
                   <li
                     className="cl-yellow"
-                    onClick={() => handleChangePrice("10-15")}
+                    onClick={(evt) => handleChangePrice("15")}
                   >
                     10-15 triệu
                   </li>
                   <li
                     className="cl-yellow"
-                    onClick={() => handleChangePrice("15")}
+                    onClick={(evt) => handleChangePrice("20")}
                   >
                     Trên 15 triệu
                   </li>
@@ -48,14 +52,20 @@ function ProductsFilter() {
               <div className="filter-sort">
                 <select
                   className="form-select"
-                  onClick={() => handleChangeOrder()}
+                  onChange={(evt) => handleChangeOrder(evt)}
                 >
-                  <option value="new" selected="">
+                  <option name={filterOrder} value="new" >
                     Sắp xếp
                   </option>
-                  <option value="pho-bien">Phổ biến nhất</option>
-                  <option value="price-desc">Giá cao đến thấp</option>
-                  <option value="price-asc">Giá thấp đến cao</option>
+                  {/* <option name={filterOrder} value="pho-bien">
+                    Phổ biến nhất
+                  </option> */}
+                  <option name={filterOrder} value="price-desc">
+                    Giá cao đến thấp
+                  </option>
+                  <option name={filterOrder} value="price-asc">
+                    Giá thấp đến cao
+                  </option>
                 </select>
               </div>
             </div>

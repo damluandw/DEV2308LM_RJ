@@ -10,7 +10,14 @@ function useQuery() {
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pageSize }) {
+function AllProducts({
+  index,
+  category,
+  listProduct,
+  onBuyProduct,
+  onWishlist,
+  pageSize,
+}) {
   let handleBuy = (product) => {
     onBuyProduct(product);
   };
@@ -20,6 +27,8 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
   let query = useQuery();
 
   const [indexPage, setIndexPage] = useState(1);
+  const [filterPrice, setFilterPrice] = useState();
+  const [filterOrder, setFilterOrder] = useState();
   const [pages, setPages] = useState([]);
   const getMaxPage = (list) => {
     if (list.length % pageSize == 0) return list.length / pageSize;
@@ -61,13 +70,19 @@ function AllProducts({ index, category, listProduct, onBuyProduct,onWishlist, pa
     let pageIndex = query.get("page");
     setIndexPage(pageIndex);
   }, [query]);
+  const handleFilter = (filterPrice, filterOrder) => {
+    setFilterPrice(filterPrice);
+    setFilterOrder(filterOrder);    
+  };
   return (
     <>
       <BannerProducts />
-      {/* <ProductsFilter/> */}
+      <ProductsFilter onFilter={handleFilter} />
       <ListProductByCategory
         category={category}
         listProduct={listProduct}
+        filterPrice={filterPrice}
+        filterOrder={filterOrder}
         onBuyProduct={handleBuy}
         pageSize={pageSize}
         onWishlist={handleWishlist}

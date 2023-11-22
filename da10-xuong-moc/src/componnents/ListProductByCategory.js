@@ -6,7 +6,15 @@ function useQuery() {
 
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
-function ListProductByCategory({ category, listProduct, onBuyProduct,onWishlist ,pageSize}) {
+function ListProductByCategory({
+  category,
+  listProduct,
+  onBuyProduct,
+  onWishlist,
+  pageSize,
+  filterPrice,
+  filterOrder,
+}) {
   const [list, setList] = useState([]);
   let query = useQuery();
   const getListPage = (list, pageIndex) => {
@@ -24,28 +32,67 @@ function ListProductByCategory({ category, listProduct, onBuyProduct,onWishlist 
     }
     return [];
   };
+  const filter = (listProduct) => {
+    let listTemp = listProduct;
+    if (filterPrice == "5")
+      listTemp = listTemp.filter(
+        (x) => x.priceNew < parseInt(filterPrice) * 1000000
+      );
+    else if (filterPrice == "10") {
+      listTemp = listTemp.filter(
+        (x) => x.priceNew < parseInt(filterPrice) * 1000000
+      );
+      listTemp = listTemp.filter((x) => x.priceNew > 5 * 1000000);
+    } else if (filterPrice == "15") {
+      listTemp = listTemp.filter(
+        (x) => x.priceNew < parseInt(filterPrice) * 1000000
+      );
+      listTemp = listTemp.filter((x) => x.priceNew > 10 * 1000000);
+    } else if (filterPrice == "20") {
+      listTemp = listTemp.filter((x) => x.priceNew > 20 * 1000000);
+    }
 
-  useEffect(() => {
+    if (filterOrder == "price-asc")
+      listTemp.sort((x, y) => {
+        return x.priceNew - y.priceNew;
+      });
+    else if (filterOrder == "price-desc") {
+      listTemp.sort((x, y) => {
+        return y.priceNew - x.priceNew;
+      });
+    } else if (filterOrder == "new") {
+      listTemp.sort((x, y) => {
+        return x.createdDate - y.createdDate;
+      });
+    }
+    // console.log(listTemp);
+    return listTemp;
+  };
+
+  const getList = () => {
     let listTemp = listProduct;
     let list1 = listTemp.filter((x) => x.cid == category.id);
+    list1 = filter(list1);
     let pageIndex = query.get("page");
-    list1 = getListPage(list1,pageIndex)
+    list1 = getListPage(list1, pageIndex);
     setList(list1);
+  };
+  useEffect(() => {
+    getList();
+  }, [filterPrice]);
+  useEffect(() => {
+    getList();
+  }, [filterOrder]);
+
+  useEffect(() => {
+    getList();
   }, [category]);
 
   useEffect(() => {
-    let listTemp = listProduct;
-    let list1 = listTemp.filter((x) => x.cid == category.id);
-    let pageIndex = query.get("page");
-    list1 = getListPage(list1,pageIndex)
-    setList(list1);
+    getList();
   }, []);
   useEffect(() => {
-    let listTemp = listProduct;
-    let list1 = listTemp.filter((x) => x.cid == category.id);
-    let pageIndex = query.get("page");
-    list1 = getListPage(list1,pageIndex)
-    setList(list1);
+    getList();
   }, [query]);
 
   let handleBuy = (product) => {
@@ -65,7 +112,6 @@ function ListProductByCategory({ category, listProduct, onBuyProduct,onWishlist 
       />
     );
   });
-
 
   return (
     <section id="products">

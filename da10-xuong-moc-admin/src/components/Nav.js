@@ -1,192 +1,76 @@
 import React from "react";
-
+import "./css/style.css";
 function Nav() {
   return (
     <>
-      <div className="right-sidebar">
-        <div className="sidebar-title">
-          <h3 className="weight-600 font-16 text-blue">
-            Layout Settings
-            <span className="btn-block font-weight-400 font-12">
-              User Interface Settings
-            </span>
-          </h3>
-          <div className="close-sidebar" data-toggle="right-sidebar-close">
-            <i className="icon-copy ion-close-round" />
+      <div className="left-side-bar">
+        <div className="brand-logo">        
+          <div className="close-sidebar" data-toggle="left-sidebar-close">
+            <i className="ion-close-round" />
           </div>
         </div>
-        <div className="right-sidebar-body customscroll">
-          <div className="right-sidebar-body-content">
-            <h4 className="weight-600 font-18 pb-10">Header Background</h4>
-            <div className="sidebar-btn-group pb-30 mb-10">
-              <a
-                href="javascript:void(0);"
-                className="btn btn-outline-primary header-white active"
-              >
-                White
-              </a>
-              <a
-                href="javascript:void(0);"
-                className="btn btn-outline-primary header-dark"
-              >
-                Dark
-              </a>
-            </div>
-            <h4 className="weight-600 font-18 pb-10">Sidebar Background</h4>
-            <div className="sidebar-btn-group pb-30 mb-10">
-              <a
-                href="javascript:void(0);"
-                className="btn btn-outline-primary sidebar-light "
-              >
-                White
-              </a>
-              <a
-                href="javascript:void(0);"
-                className="btn btn-outline-primary sidebar-dark active"
-              >
-                Dark
-              </a>
-            </div>
-            <h4 className="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
-            <div className="sidebar-radio-group pb-10 mb-10">
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebaricon-1"
-                  name="menu-dropdown-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-style-1"
-                  defaultChecked=""
-                />
-                <label className="custom-control-label" htmlFor="sidebaricon-1">
-                  <i className="fa fa-angle-down" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebaricon-2"
-                  name="menu-dropdown-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-style-2"
-                />
-                <label className="custom-control-label" htmlFor="sidebaricon-2">
-                  <i className="ion-plus-round" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebaricon-3"
-                  name="menu-dropdown-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-style-3"
-                />
-                <label className="custom-control-label" htmlFor="sidebaricon-3">
-                  <i className="fa fa-angle-double-right" />
-                </label>
-              </div>
-            </div>
-            <h4 className="weight-600 font-18 pb-10">Menu List Icon</h4>
-            <div className="sidebar-radio-group pb-30 mb-10">
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-1"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-1"
-                  defaultChecked=""
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-1"
-                >
-                  <i className="ion-minus-round" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-2"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-2"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-2"
-                >
-                  <i className="fa fa-circle-o" aria-hidden="true" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-3"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-3"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-3"
-                >
-                  <i className="dw dw-check" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-4"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-4"
-                  defaultChecked=""
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-4"
-                >
-                  <i className="icon-copy dw dw-next-2" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-5"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-5"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-5"
-                >
-                  <i className="dw dw-fast-forward-1" />
-                </label>
-              </div>
-              <div className="custom-control custom-radio custom-control-inline">
-                <input
-                  type="radio"
-                  id="sidebariconlist-6"
-                  name="menu-list-icon"
-                  className="custom-control-input"
-                  defaultValue="icon-list-style-6"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor="sidebariconlist-6"
-                >
-                  <i className="dw dw-next" />
-                </label>
-              </div>
-            </div>
-            <div className="reset-options pt-30 text-center">
-              <button className="btn btn-danger" id="reset-settings">
-                Reset Settings
-              </button>
-            </div>
+        <div className="menu-block customscroll">
+          <div className="sidebar-menu">
+            
+            <ul id="accordion-menu">
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Bảng điều khiển</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Quản lý tài khoản</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Quản lý banner</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Quản lý giới thiệu</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Danh mục tin tức</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Danh sách khách hàng</span>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle">
+                  <span class="micon dw dw-edit2"></span>
+                  <span class="mtext">Quản lý sản phẩm</span>
+                </a>
+                <ul class="submenu">
+                  <li>
+                    <a href="form-basic.html">Danh mục sản phẩm</a>
+                  </li>
+                  <li>
+                    <a href="advanced-components.html">Thêm sản phẩm</a>
+                  </li>
+                 
+                </ul>
+              </li>
+              <li>
+                <a href="#" className="dropdown-toggle no-arrow">
+                  <span className="micon dw dw-invoice" />
+                  <span className="mtext">Quản lý giỏ hàng</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

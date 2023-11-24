@@ -71,6 +71,7 @@ function App() {
             element={<Login onLoginSubmit={handleLogin} />}
           />
           <Route path="/home" element={<Manage />} />
+          <Route path="/products" element={<Manage />} />
         </Routes>
       </BrowserRouter>
     </>

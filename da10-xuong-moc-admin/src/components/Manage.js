@@ -1,12 +1,17 @@
-import React from 'react'
-import Nav from './Nav'
+import React from "react";
+import Nav from "./Nav";
+import Product from "./Product";
+import ListProducts from "./ListProducts";
 
 function Manage() {
   return (
     <>
-    <Nav/>
+      <div className="d-flex">
+        <Nav />
+        <ListProducts />
+      </div>
     </>
-  )
+  );
 }
 
-export default Manage
+export default Manage;

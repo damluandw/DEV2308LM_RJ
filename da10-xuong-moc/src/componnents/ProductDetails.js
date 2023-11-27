@@ -31,7 +31,7 @@ function ProductDetails({ listProduct, onBuyProduct, onWishlist }) {
     setProductImages(images);
     let resExtensions = await axios.get("api/Extensions/");
     setExtensions(resExtensions.data);
-    // console.log("product", response.data);
+    
   };
   useEffect(() => {
     getProduct();

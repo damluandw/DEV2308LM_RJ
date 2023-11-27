@@ -16,6 +16,17 @@ a:visited {
   display: block !important;
   padding-left: 2rem !important;
 }
+#header{
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.fix-header{
+  margin-top: 7.15rem;
+}
 header .navbar {
   padding: 0.25rem 0rem !important;
 }

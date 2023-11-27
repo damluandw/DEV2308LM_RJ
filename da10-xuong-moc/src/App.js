@@ -277,6 +277,7 @@ function App() {
           valueSearch={valueSearch}
           onDeleteWishlist={handleDeleteWishlist}
         />
+        <div className="fix-header"></div>
 
         <Routes>
           <Route path="/login" element={<Login />} />

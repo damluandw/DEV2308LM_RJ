@@ -7,7 +7,7 @@ import {
   UPDATE_ITEM,
 } from "../constants/actionType.js";
 import { LOCAL_STORE_WISHLISH } from "../constants/localStorageName.js";
-const initState = [];
+let initState = [];
 
 const listwishlist = JSON.parse(localStorage.getItem(LOCAL_STORE_WISHLISH));
 

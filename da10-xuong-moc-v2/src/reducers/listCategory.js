@@ -1,7 +1,7 @@
-import { axios } from "./api/api-xm.js";
+import axios from "../api/api-xm.js";
 import { LIST_CATEGORY } from "../constants/actionType.js";
 
-const initState = [];
+let initState = [{}];
 
 const getListCategory = async () => {
   let response = await axios.get("api/Products");

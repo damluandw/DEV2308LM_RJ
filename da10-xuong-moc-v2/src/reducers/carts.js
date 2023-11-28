@@ -5,7 +5,7 @@ import {
   UPDATE_ITEM,
 } from "../constants/actionType.js";
 import { LOCAL_STORE_CARTS } from "../constants/localStorageName.js";
-const initState = [];
+let initState = [];
 
 const carts = JSON.parse(localStorage.getItem(LOCAL_STORE_CARTS));
 

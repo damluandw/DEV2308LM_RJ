@@ -348,9 +348,6 @@ footer .thong-tin-chung ul li {
 .btn-add.btn:focus{
   box-shadow: none;
 }
-header{
-  position: relative;
-}
 
 .quantity-item-cart .btn-sub:hover ,
 .quantity-item-cart  .btn-add:hover{

@@ -7,12 +7,20 @@ function ItemCategory({ renderCategory }) {
     <>
       <div className="col-md-3">
         <div className="item">
-          <img className="" src={renderCategory.icon} alt="Phòng khách" />
-          <h4>
-            <NavLink className="cl-blue" to={ref} title="Phòng khách">
-              {renderCategory.title}
-            </NavLink>
-          </h4>
+          <div className="img-category">
+            <img
+              className="w-100"
+              src={`assets/${renderCategory.icon}`}
+              alt="Phòng khách"
+            />
+          </div>
+          <div className="mt-3">
+            <h4>
+              <NavLink className="cl-blue" to={ref} title="Phòng khách">
+                {renderCategory.title}
+              </NavLink>
+            </h4>
+          </div>
         </div>
       </div>
     </>

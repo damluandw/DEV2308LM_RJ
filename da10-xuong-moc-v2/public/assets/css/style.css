@@ -227,12 +227,13 @@ header{
 /* catalog  */
 #catalog {
   position: relative;
-  height: 27rem;
+  /* height: 27rem; */
 }
 #catalog .container {
   background-color: #fff !important;
   /* margin-top: -5rem; */
 }
+
 .catalog-box {
   position: absolute;
   width: 100%;
@@ -244,6 +245,9 @@ header{
   align-items: center;
   flex-direction: column;
   padding: 0.5rem 1.5rem;
+}
+#catalog .img-category{
+  max-width: 10rem;
 }
 #catalog h4 {
   font-size: 1.2rem;

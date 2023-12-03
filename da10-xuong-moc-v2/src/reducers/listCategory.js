@@ -3,9 +3,13 @@ import { LIST_CATEGORY } from "../constants/actionType.js";
 
 let initState = [];
 
+// const getListCategory = async () => {
+//   return (await axios.get("api/Categories")).data;
+// };
+
 const getListCategory = async () => {
-  let response = await axios.get("api/Categories");
-  return response.data;
+  const respone = await axios.get("api/Categories")
+  return respone.data;
 };
 
 let categories = getListCategory();
@@ -15,9 +19,9 @@ initState = categories == undefined ? [] : categories;
 const listCategory = (state = initState, action) => {
   switch (action.type) {
     case LIST_CATEGORY:
-      return [...state];
+      return state;
     default:
-      return [...state];
+      return state;
   }
 };
 

@@ -3,12 +3,18 @@ import { connect } from "react-redux";
 import ItemCategory from "./componnetsItem/ItemCategory";
 
 export const IndexCategories = ({ listCategory }) => {
-  console.log(listCategory);
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    
+    listCategory.then((listCategory) => {
+      setCategories(listCategory);
+    });
+  }, []);
   let elementCategories =
-    listCategory == [] ? (
-      <>1</>
+    categories == [] ? (
+      <></>
     ) : (
-      listCategory.map((item, index) => {
+      categories.map((item, index) => {
         return (
           <ItemCategory
             key={item.id}

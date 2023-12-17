@@ -69,9 +69,9 @@
   }
   
   .product-info h4 {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: #2c2e53;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
   .image5 i {
     color: #bd945f !important;

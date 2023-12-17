@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ItemProductSlick from "./componnetsItem/ItemProductSlick";
+import './assets/css/itemproduct.css';
 
 export const ListProductSlick = ({ lisProduct, arrows }) => {
   const [list, setList] = useState([]);

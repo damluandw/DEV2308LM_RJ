@@ -38,7 +38,7 @@ function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
                 </span>
               </p>
             </div>
-            <div className="product-describe">(Size lớn,trắng sữa)</div>
+            {/* <div className="product-describe">(Size lớn,trắng sữa)</div> */}
             <div className="product-price">
               {renderProduct.priceNew.toLocaleString()}
               <span> VNĐ</span>

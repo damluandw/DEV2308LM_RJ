@@ -3,6 +3,10 @@ import IndexBanner from "./IndexBanner";
 import IndexCategories from "./IndexCategories";
 import ListProductSlick from "./ListProductSlick";
 import './assets/css/index.css';
+import IndexAboutUs from "./IndexAboutUs";
+import IndexNews from "./IndexNews";
+import IndexPartner from "./IndexPartner";
+import IndexContact from "./IndexContact";
 
 function Index() {
   let arrows = true;
@@ -18,7 +22,10 @@ function Index() {
           </div>
         </div>
       </section>
-      
+      <IndexAboutUs/>
+      <IndexNews/>
+      <IndexPartner/>
+      <IndexContact/>
     </>
   );
 }

@@ -1,0 +1,36 @@
+.item-product {
+  position: relative;
+}
+.item-product .product-hover {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.item-product :hover img {
+  opacity: 0.3;
+}
+.item-product:hover .product-hover {
+  display: block;
+}
+
+.item-product .product-hover .btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  border: 2px solid #bd945f;
+  color: #bd945f;
+  background-color: #fff;
+  margin: 0 1rem;
+}
+.item-product .product-hover .btn:hover {
+  border:2px solid  #fff;
+  color: #fff;
+  background-color: #bd945f;
+}
+.img-product img{
+  max-height: 8.5rem;
+  object-fit: cover;
+  object-position: 30% 70%;
+}

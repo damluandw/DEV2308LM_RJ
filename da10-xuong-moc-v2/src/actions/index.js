@@ -40,7 +40,7 @@ export const act_list_wishlist = () =>{
 // action cho chức năng hiển thị sản phẩm trong giỏ hàng
 export const act_buy_item = (product, quantity) =>{
     return{
-        type : types.BUY_ITEM,
+        type : types.ADD_ITEM,
         product,
         quantity
     }

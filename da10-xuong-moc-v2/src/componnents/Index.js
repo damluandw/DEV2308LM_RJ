@@ -18,7 +18,7 @@ function Index() {
         <div className="products-outstanding">
           <div className="container">
             <h3 className="cl-blue">Sản phẩm nổi bật</h3>
-            <ListProductSlick arrows ={arrows}/>
+            <ListProductSlick arrows ={arrows} filterNoiBat={true} filterCID={null}/>
           </div>
         </div>
       </section>

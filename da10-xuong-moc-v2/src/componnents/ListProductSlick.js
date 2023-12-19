@@ -4,16 +4,44 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ItemProductSlick from "./componnetsItem/ItemProductSlick";
-import './assets/css/itemproduct.css';
+import "./assets/css/itemproduct.css";
 
-export const ListProductSlick = ({ lisProduct, arrows }) => {
+export const ListProductSlick = ({
+  lisProduct,
+  arrows,
+  filterNoiBat,
+  filterCID,
+}) => {
   const [list, setList] = useState([]);
-  useEffect(() => {
-    lisProduct.then((lisProduct) => {
-      setList(lisProduct);
+  let getData = () => {
+    lisProduct.then((products) => {
+      let listTemp = products;
+      if (
+        filterNoiBat != null &&
+        filterNoiBat != "" &&
+        filterNoiBat != undefined
+      ) {
+        let list1 = listTemp.filter((x) => x.hot == filterNoiBat);
+        setList(list1);
+      }
+      if (filterCID != null && filterCID != "" && filterCID != undefined) {
+        let list1 = listTemp.filter((x) => x.cid == filterCID);
+        setList(list1);
+      }
     });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
-  console.log(list)
+
+  useEffect(() => {
+    getData();
+  }, [filterCID]);
+  useEffect(() => {
+    getData();
+  }, [filterNoiBat]);
+
   const settings = {
     dots: false,
     infinite: list.length > 5,
@@ -49,6 +77,7 @@ export const ListProductSlick = ({ lisProduct, arrows }) => {
       },
     ],
   };
+
   let render =
     list == [] ? (
       <> </>
@@ -59,8 +88,6 @@ export const ListProductSlick = ({ lisProduct, arrows }) => {
             key={item.id}
             renderProduct={item}
             rollNo={index + 1}
-            // onBuyProduct={handleBuy}
-            // onWishlist={handleWishlist}
           />
         );
       })
@@ -77,10 +104,10 @@ export const ListProductSlick = ({ lisProduct, arrows }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        lisProduct: state.lisProduct,
-    };
+  return {
+    lisProduct: state.lisProduct,
   };
+};
 
 const mapDispatchToProps = {};
 

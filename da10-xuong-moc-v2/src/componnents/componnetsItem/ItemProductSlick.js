@@ -1,16 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 import axios from "../../api/api-xm.js";
 import { Link, NavLink } from "react-router-dom";
-// import "./css/itemproduct.css";
-function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
+import { act_add_wishlist, act_buy_item, act_change_notify, act_delete_item, act_update_item } from "../../actions";
+
+export const ItemProductSlick = ({
+  renderProduct,act_update_item
+}) => {
   let handleBuy = (product) => {
-    onBuyProduct(product);
+    act_buy_item(product,1);
   };
   let handleWishlist = (product) => {
-    onWishlist(product);
+    act_add_wishlist(product);
   };
-  var nf = new Intl.NumberFormat();
-
   return (
     <>
       <div className="item-product col-12 d-flex justify-content-center">
@@ -71,6 +73,27 @@ function ItemProductSlick({ renderProduct, onBuyProduct, onWishlist }) {
       </div>
     </>
   );
-}
+};
+const mapStateToProps = (state) => ({});
 
-export default ItemProductSlick;
+const mapDispatchToProps =(dispatch) =>{
+  return {
+    addItem: (product, quantity) => {
+      dispatch(act_buy_item(product, quantity));
+    },
+    updateItem: (product, quantity) => {
+      dispatch(act_update_item(product, quantity));
+    },
+    deleteItem: (product) => {
+      dispatch(act_delete_item(product));
+    },
+    addWishList: (product) => {
+      dispatch(act_add_wishlist(product));
+    },
+    changNotify: (content) => {
+      dispatch(act_change_notify(content));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemProductSlick);

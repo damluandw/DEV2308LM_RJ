@@ -1,7 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Wishlist from "./Wishlist";
 
-function Header() {
+export const Header = ({ listCart, wishlist }) => {
+  const [carts, setCarts] = useState([]);
+  useEffect(() => {
+    setCarts(listCart);
+  }, []);
+
+  useEffect(() => {
+    setCarts(listCart);
+  }, [listCart]);
+
+  let renderQtyCart =
+    carts != undefined ? (
+      carts.length > 0 ? (
+        <div className="qty">{carts.length}</div>
+      ) : (
+        <></>
+      )
+    ) : (
+      <></>
+    );
+    let renderQtyWishlist =
+    wishlist != undefined ? (
+      wishlist.length > 0 ? (
+        <div className="qty">{wishlist.length}</div>
+      ) : (
+        <></>
+      )
+    ) : (
+      <></>
+    );
+  let renderBoxEmptyWishlist =
+    wishlist.length > 0 ? (
+      // <></>
+      <Wishlist wishlist={wishlist} />
+    ) : (
+      <>
+        <p>Danh sách yêu thích trống</p>
+        <NavLink to="/products" className="d-flex justify-content-center">
+          <button className="btn btn-mua-ngay-header">Xem thêm sản phẩm</button>
+        </NavLink>
+      </>
+    );
   return (
     <>
       <header>
@@ -9,7 +52,11 @@ function Header() {
           <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light">
               <NavLink className="navbar-brand" to="home">
-                <img className="w-100" src="/assets/images/logo.png" alt="Xưởng mộc giá tốt" />
+                <img
+                  className="w-100"
+                  src="/assets/images/logo.png"
+                  alt="Xưởng mộc giá tốt"
+                />
               </NavLink>
 
               <div
@@ -72,9 +119,8 @@ function Header() {
                     <span>
                       <i className="fa-solid fa-basket-shopping"></i>
                     </span>
-                    
+                    {renderQtyCart}
                   </NavLink>
-                  
                 </div>
                 <div className="icon icon-wishlist">
                   <NavLink
@@ -85,24 +131,21 @@ function Header() {
                     <span>
                       <i className="fa-regular fa-heart"></i>
                     </span>
-                    
+                    {renderQtyWishlist}
                   </NavLink>
-                  <div className="box box-wishlist">
-                    
-                  </div>
+                  <div className="box box-wishlist"></div>
                 </div>
                 <div className="icon icon-search">
                   {/* <NavLink onClick={() => handlShowSearch("")}>
-                <span>
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </span>
-              </NavLink> */}
+              <span>
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </span>
+            </NavLink> */}
                   <label>
                     <span>
                       <i className="fa-solid fa-magnifying-glass"></i>
                     </span>
                   </label>
-                 
                 </div>
               </div>
             </nav>
@@ -111,6 +154,13 @@ function Header() {
       </header>
     </>
   );
-}
+};
 
-export default Header;
+const mapStateToProps = (state) => ({
+  listCart: state.carts,
+  wishlist: state.wishlist,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

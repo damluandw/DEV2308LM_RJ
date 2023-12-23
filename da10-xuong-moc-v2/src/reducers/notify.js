@@ -1,12 +1,16 @@
 import * as mess from "../constants/message";
 import { CHANGE_NOTIFY } from "../constants/actionType";
 //hằng
-const initState = mess.MSG_ADD_SUCCESS;
+
+let messNotify = { typeMess: "", title: "", message: "" };
+let initState = messNotify;
 
 // tạo reducer
 const notify = (state = initState, action) => {
-  switch (action.type) {
+  switch (action) {
+    
     case CHANGE_NOTIFY:
+
       state = action;
       return state;
     default:

@@ -54,6 +54,7 @@ const wishlist = (state = initState, action) => {
     case DELETE_ITEM: // xoá sản phẩm trong danh sách yêu thích
       // tìm sản phẩm cần xoá
       state = state.filter((x) => x.product.id != product.id);
+      localStorage.setItem(LOCAL_STORE_WISHLISH, JSON.stringify(state));
       // return state;
       return [...state];
 

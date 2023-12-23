@@ -79,11 +79,11 @@ export const act_delete_wishlist = (product) =>{
     }
 }
 // action cho chức năng thông báo
-export const act_change_notify = (typeMess, title,content) => {
+export const act_change_notify = (typeMess, title, message) => {
     return {
       type: types.CHANGE_NOTIFY,
-      payload: content,
       typeMess : typeMess,
-      title: title
+      title: title,
+      message : message
     };
   };

@@ -5,13 +5,14 @@ import { Link, NavLink } from "react-router-dom";
 import { act_add_wishlist, act_buy_item, act_change_notify, act_delete_item, act_update_item } from "../../actions";
 
 export const ItemProductSlick = ({
-  renderProduct,act_update_item
+  renderProduct,addItem,addWishList,changNotify
 }) => {
   let handleBuy = (product) => {
-    act_buy_item(product,1);
+    addItem(product,1);
   };
   let handleWishlist = (product) => {
-    act_add_wishlist(product);
+    addWishList(product);
+    changNotify("success", "Thành công", "Sản phẩm đã được thêm vào giỏ hàng");
   };
   return (
     <>
@@ -81,17 +82,11 @@ const mapDispatchToProps =(dispatch) =>{
     addItem: (product, quantity) => {
       dispatch(act_buy_item(product, quantity));
     },
-    updateItem: (product, quantity) => {
-      dispatch(act_update_item(product, quantity));
-    },
-    deleteItem: (product) => {
-      dispatch(act_delete_item(product));
-    },
     addWishList: (product) => {
       dispatch(act_add_wishlist(product));
     },
-    changNotify: (content) => {
-      dispatch(act_change_notify(content));
+    changNotify: (typeMess, title,message) => {
+      dispatch(act_change_notify(typeMess, title,message));
     },
   };
 };

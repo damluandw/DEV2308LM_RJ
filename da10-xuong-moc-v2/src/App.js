@@ -1,19 +1,21 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { ReactNotifications, Store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import Header from "./componnents/Header";
 import Index from "./componnents/Index";
 import Footer from "./componnents/Footer";
 import PageListProduct from "./componnents/PageListProduct";
 import { connect } from "react-redux";
+import { useEffect } from "react";
 
-function App() {
-  const notify = (type, title, message) => {
+export const App = ({ notify }) => {
+  const setNotify = (typeMess, title, message) => {
     Store.addNotification({
       title: title,
       message: message,
-      type: type,
+      type: typeMess,
       insert: "top",
       // content: (
       //   <div>
@@ -31,7 +33,14 @@ function App() {
       onNotificationRemoval: () => this.remove(),
     });
   };
-
+  console.log(notify);
+  useEffect(() => {
+    
+    if (notify.typeMess != "" || notify.type != undefined){
+      setNotify(notify.typeMess, notify.title, notify.message);
+    }
+      
+  }, [notify]);
   return (
     <>
       <div className="app-container">
@@ -50,7 +59,7 @@ function App() {
       </BrowserRouter>
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {

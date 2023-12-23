@@ -24,13 +24,14 @@ const listCart = (state = initState, action) => {
   //lấy sản phẩm, số lượng từ action
   let { product, quantity } = action;
   let item = { product, quantity };
+
   // biến quản lý chức năng mua (mua mới/ mua thêm
   let index = -1; // giả định sản phẩm là mua mới
   // tuỳ theo chức năng (type) để xác định mua hàng, cập nhật, xoá
   switch (action.type) {
     case LIST_CART:
       return state;
-    case ADD_ITEM: // mua hàng
+    case ADD_ITEM: // mua hàng    
       if (state.length === 0) {
         //khách hàng chưa mua hàng và giỏ hàng của khách chưa có sản phẩm nào
         //thêm sản phẩm vào giỏ hàng

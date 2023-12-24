@@ -7,10 +7,9 @@ let initState = messNotify;
 
 // tạo reducer
 const notify = (state = initState, action) => {
-  switch (action) {
-    
+  console.log("action",action)
+  switch (action.type) {
     case CHANGE_NOTIFY:
-
       state = action;
       return state;
     default:

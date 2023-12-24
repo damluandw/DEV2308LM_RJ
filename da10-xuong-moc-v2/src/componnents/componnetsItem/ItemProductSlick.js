@@ -2,13 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "../../api/api-xm.js";
 import { Link, NavLink } from "react-router-dom";
-import { act_add_wishlist, act_buy_item, act_change_notify, act_delete_item, act_update_item } from "../../actions";
+import {
+  act_add_wishlist,
+  act_buy_item,
+  act_change_notify,
+  act_delete_item,
+  act_update_item,
+} from "../../actions";
 
 export const ItemProductSlick = ({
-  renderProduct,addItem,addWishList,changNotify
+  renderProduct,
+  addItem,
+  addWishList,
+  changNotify,
 }) => {
   let handleBuy = (product) => {
-    addItem(product,1);
+    addItem(product, 1);
+    // changNotify();
   };
   let handleWishlist = (product) => {
     addWishList(product);
@@ -77,7 +87,7 @@ export const ItemProductSlick = ({
 };
 const mapStateToProps = (state) => ({});
 
-const mapDispatchToProps =(dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (product, quantity) => {
       dispatch(act_buy_item(product, quantity));
@@ -85,8 +95,8 @@ const mapDispatchToProps =(dispatch) =>{
     addWishList: (product) => {
       dispatch(act_add_wishlist(product));
     },
-    changNotify: (typeMess, title,message) => {
-      dispatch(act_change_notify(typeMess, title,message));
+    changNotify: (typeMess, title, message) => {
+      dispatch(act_change_notify(typeMess, title, message));
     },
   };
 };

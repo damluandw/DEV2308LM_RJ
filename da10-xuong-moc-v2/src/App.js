@@ -33,13 +33,12 @@ export const App = ({ notify }) => {
       onNotificationRemoval: () => this.remove(),
     });
   };
-  console.log(notify);
-  useEffect(() => {
-    
+
+  useEffect(() => {    
+    console.log(notify);
     if (notify.typeMess != "" || notify.type != undefined){
       setNotify(notify.typeMess, notify.title, notify.message);
-    }
-      
+    }      
   }, [notify]);
   return (
     <>

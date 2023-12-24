@@ -227,7 +227,7 @@ header{
 /* catalog  */
 #catalog {
   position: relative;
-  height: 27rem;
+  height: 21rem;
 }
 #catalog .container {
   background-color: #fff !important;
